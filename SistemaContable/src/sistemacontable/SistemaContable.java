@@ -16,7 +16,7 @@ public class SistemaContable {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String variable = new String("Hola Mundo! jajaja");
+        String variable = new String("Hola Mundo! jajajajajajaj");
         System.out.println(variable);
     }
     
