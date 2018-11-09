@@ -18,7 +18,7 @@ public class SistemaContable {
         // TODO code application logic here
         String variable = new String("Hola Mundo! jajajajajajajahahaahajajaja");
         System.out.println(variable);
-        String var= new String("Hola Mundo! jajajajajajajahahaahajajaja");
+        String var= new String("Hola Mundo! Pao Estuvo aqui");
         System.out.println(var);
     }
     
