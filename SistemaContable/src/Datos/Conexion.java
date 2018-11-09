@@ -12,18 +12,8 @@ public class Conexion {
     
     public Connection conectar() {
         try {
-            // Ruta Luis
-            String rutafile = "C:\\Users\\Luis Cerna\\Documents\\SIC-02\\Database1.accdb";
-            // Ruta Aby
-            //String rutafile = "C:\\Users\\Luis Cerna\\Documents\\SIC-02\\Database1.accdb";
-            // Ruta Eliezer
-            //String rutafile = "C:\\Users\\Luis Cerna\\Documents\\SIC-02\\Database1.accdb";
-            // Ruta Paola
-            //String rutafile = "C:\\Users\\Luis Cerna\\Documents\\SIC-02\\Database1.accdb";
-            // Ruta Moto
-            //String rutafile = "C:\\Users\\Luis Cerna\\Documents\\SIC-02\\Database1.accdb";
-            // Ruta Irene
-            //String rutafile = "C:\\Users\\Luis Cerna\\Documents\\SIC-02\\Database1.accdb";
+            //Ruta relativa
+            String rutafile = System.getProperty("user.dir")+"\\Database1.accdb";
             String url = "jdbc:ucanaccess://" + rutafile;
             conexion = DriverManager.getConnection(url);
             System.out.println("Conectado a la base de datos");
