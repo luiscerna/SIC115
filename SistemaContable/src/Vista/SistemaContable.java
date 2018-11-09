@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import Datos.Conexion;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Luis Cerna
@@ -15,12 +20,25 @@ public class SistemaContable {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        String variable = new String("Hola Mundo! jajajajajajajahahaahajajaja");
-        System.out.println(variable);
-        String var= new String("Hola Mundo! Pao Estuvo aqui");
-        System.out.println(var);
+        try {
+            // TODO code application logic here
+            String variable = new String("Hola Mundo! jajajajajajajahahaahajajaja");
+            System.out.println(variable);
+            String var= new String("Hola Mundo! Pao Estuvo aqui");
+            System.out.println(var);
+            
+            Conexion conexion = new Conexion();
+            
+            String query = "select Nombre from Usuarios";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            while (conexion.rs.next()){
+                System.out.println(conexion.rs.getString("Nombre"));
+            }
+            
+            conexion.desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(SistemaContable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    
 }
