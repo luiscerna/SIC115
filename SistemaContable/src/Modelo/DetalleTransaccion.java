@@ -1,12 +1,14 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 public class DetalleTransaccion {
     // Atributos
     private int idDetalle;
     private String cuentaMayor;
     private double debe;
     private double haber;
-    private Catalogo catalogo;
+    private ArrayList<Catalogo> catalogo;
     private Transaccion transaccion;
     
     // Constructor
@@ -47,11 +49,11 @@ public class DetalleTransaccion {
         this.haber = haber;
     }
 
-    public Catalogo getCatalogo() {
+    public ArrayList<Catalogo> getCatalogo() {
         return catalogo;
     }
 
-    public void setCatalogo(Catalogo catalogo) {
+    public void setCatalogo(ArrayList<Catalogo> catalogo) {
         this.catalogo = catalogo;
     }
 

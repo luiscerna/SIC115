@@ -1,12 +1,14 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 public class LibroMayor {
     // Atributos
     private int idMayor;
     private String codCuenta;
     private String nombreCuenta;
     private double montoTotal;
-    private DetalleTransaccion detalleTransaccion;
+    private ArrayList<DetalleTransaccion> detalleTransaccion;
     
     // Constructor 
     public LibroMayor() {
@@ -45,11 +47,11 @@ public class LibroMayor {
         this.montoTotal = montoTotal;
     }
 
-    public DetalleTransaccion getDetalleTransaccion() {
+    public ArrayList<DetalleTransaccion> getDetalleTransaccion() {
         return detalleTransaccion;
     }
 
-    public void setDetalleTransaccion(DetalleTransaccion detalleTransaccion) {
+    public void setDetalleTransaccion(ArrayList<DetalleTransaccion> detalleTransaccion) {
         this.detalleTransaccion = detalleTransaccion;
     }
 }

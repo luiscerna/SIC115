@@ -9,9 +9,11 @@ public class PeriodoContable {
     private Date inicio;
     private Date fin;
     private LibroMayor libroMayor;
+    private Planilla planilla;
 
     // Constructor
     public PeriodoContable() {
+        planilla = new Planilla();
     }
     
     // Métodos getter y setter
@@ -53,5 +55,13 @@ public class PeriodoContable {
 
     public void setLibroMayor(LibroMayor libroMayor) {
         this.libroMayor = libroMayor;
+    }
+
+    public Planilla getPlanilla() {
+        return planilla;
+    }
+
+    public void setPlanilla(Planilla planilla) {
+        this.planilla = planilla;
     }
 }
