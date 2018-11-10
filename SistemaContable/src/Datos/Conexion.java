@@ -13,7 +13,7 @@ public class Conexion {
     public Connection conectar() {
         try {
             //Ruta relativa
-            String rutafile = System.getProperty("user.dir")+"\\Database1.accdb";
+            String rutafile = System.getProperty("user.dir")+"\\Acopashe.accdb";
             String url = "jdbc:ucanaccess://" + rutafile;
             conexion = DriverManager.getConnection(url);
             System.out.println("Conectado a la base de datos");
