@@ -9,7 +9,7 @@ public class DetalleTransaccion {
     private double debe;
     private double haber;
     private ArrayList<Catalogo> catalogo;
-    private Transaccion transaccion;
+    private ArrayList<Transaccion> transaccion;
     
     // Constructor
     public DetalleTransaccion(){
@@ -57,11 +57,11 @@ public class DetalleTransaccion {
         this.catalogo = catalogo;
     }
 
-    public Transaccion getTransaccion() {
+    public ArrayList<Transaccion> getTransaccion() {
         return transaccion;
     }
 
-    public void setTransaccion(Transaccion transaccion) {
+    public void setTransaccion(ArrayList<Transaccion> transaccion) {
         this.transaccion = transaccion;
     }
 }
