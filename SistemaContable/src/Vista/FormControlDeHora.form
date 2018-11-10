@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Control de Hora"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblHorasExtrasNocturnas" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHorasExtrasDiurnas" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmpleado" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHorasTrabajadas" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHorasDescontadas" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                      <Component id="cbEmpleados" min="-2" pref="239" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="txtHorasDescontadas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtHorasTrabajadas" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtHorasExtrasNocturnas" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                          <Component id="txtHorasExtrasDiurnas" min="-2" pref="238" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
+                      <Component id="lblInformacion" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Component id="lblInformacion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbEmpleados" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblHorasExtrasDiurnas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHorasExtrasDiurnas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblHorasExtrasNocturnas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHorasExtrasNocturnas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblHorasTrabajadas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHorasTrabajadas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblHorasDescontadas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHorasDescontadas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblInformacion">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Empleados de mano de obra:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEmpleado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Empleado:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbEmpleados">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="Seleccione empleado..."/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHorasExtrasDiurnas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horas extras diurnas:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHorasExtrasNocturnas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horas extras nocturnas:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtHorasExtrasDiurnas">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtHorasExtrasNocturnas">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHorasTrabajadas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horas trabajadas:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtHorasTrabajadas">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHorasDescontadas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Horas descontadas:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtHorasDescontadas">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGuardar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Guardar Cambios"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
