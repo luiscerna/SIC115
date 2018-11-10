@@ -27,25 +27,25 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbllogin = new javax.swing.JLabel();
-        lblfondo1 = new javax.swing.JLabel();
+        lblLogin = new javax.swing.JLabel();
+        lblFondo1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
-        lblfondo2 = new javax.swing.JLabel();
+        lblFondo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbllogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lbllogin.setForeground(new java.awt.Color(255, 255, 255));
-        lbllogin.setText("LOGIN ACOPASHE DE R.L");
-        getContentPane().add(lbllogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        lblLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblLogin.setForeground(new java.awt.Color(255, 255, 255));
+        lblLogin.setText("LOGIN ACOPASHE DE R.L");
+        getContentPane().add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        lblfondo1.setBackground(new java.awt.Color(136, 186, 75));
-        lblfondo1.setForeground(new java.awt.Color(136, 186, 75));
-        lblfondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondo verde.jpg"))); // NOI18N
-        getContentPane().add(lblfondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 50));
+        lblFondo1.setBackground(new java.awt.Color(136, 186, 75));
+        lblFondo1.setForeground(new java.awt.Color(136, 186, 75));
+        lblFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondo verde.jpg"))); // NOI18N
+        getContentPane().add(lblFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 50));
 
         txtUserName.setText("Username");
         getContentPane().add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 220, 30));
@@ -57,8 +57,8 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setText("Login");
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 140, 23));
 
-        lblfondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondo blanco.jpg"))); // NOI18N
-        getContentPane().add(lblfondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, 320, 220));
+        lblFondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondo blanco.jpg"))); // NOI18N
+        getContentPane().add(lblFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, 320, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,9 +100,9 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel lblfondo1;
-    private javax.swing.JLabel lblfondo2;
-    private javax.swing.JLabel lbllogin;
+    private javax.swing.JLabel lblFondo1;
+    private javax.swing.JLabel lblFondo2;
+    private javax.swing.JLabel lblLogin;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
