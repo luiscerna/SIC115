@@ -42,7 +42,4 @@ public class TransaccionTableModel extends AbstractTableModel{
         }
        return valor;
     }
-    
-    
-
 }

@@ -9,6 +9,7 @@ public class Empleado {
     private String apellidoEmpleado;
     private boolean esObrero;
     private ArrayList<TarjetaDeTrabajo> tarjetaDeTrabajo;
+    private Puesto puesto;
 
     // Constructor
     public Empleado() {
@@ -54,5 +55,13 @@ public class Empleado {
 
     public void setTarjetaDeTrabajo(ArrayList<TarjetaDeTrabajo> tarjetaDeTrabajo) {
         this.tarjetaDeTrabajo = tarjetaDeTrabajo;
+    }
+
+    public Puesto getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
     }
 }

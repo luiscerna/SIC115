@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Transaccion {
@@ -14,7 +13,7 @@ public class Transaccion {
     private DetalleActivoFijo detalleActivoFijo;
     private DetalleInteresesAcum detalleInteresesAcum;
     private DetalleGastoAdelantado detalleGastoAdelantado;
-    private ArrayList<Usuarios> usuarios;
+    private Usuarios usuarios;
     private Tipo tipo;
     
     // Constructor
@@ -88,11 +87,11 @@ public class Transaccion {
         this.detalleGastoAdelantado = detalleGastoAdelantado;
     }
 
-    public ArrayList<Usuarios> getUsuarios() {
+    public Usuarios getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(ArrayList<Usuarios> usuarios) {
+    public void setUsuarios(Usuarios usuarios) {
         this.usuarios = usuarios;
     }
 
