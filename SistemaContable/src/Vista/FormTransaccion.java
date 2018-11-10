@@ -1,17 +1,12 @@
 package Vista;
 
 //importando librerias
-import ModeloTablas.TransaccionTableModel;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class FormTransaccion extends javax.swing.JFrame {
-
-    //variables del contexto formulario
-    public TransaccionTableModel transaccionModel= new TransaccionTableModel();//para el modelo de la tabla del formulario
-    
-    
+ 
     public FormTransaccion() {
         initComponents();
         inicializarColumnasTablaTransacciones(); //para inicializar el formato de la tableTransacciones 
@@ -99,7 +94,14 @@ public class FormTransaccion extends javax.swing.JFrame {
 
         lblFechaVal.setText("Valor de la fecha de transaccion");
 
-        tableTransacciones.setModel(transaccionModel);
+        tableTransacciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(tableTransacciones);
 
         lblTotales.setText("Totales");
