@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Transaccion"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblNumPartida" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblNumPartidaVal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblFechaVal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblConceptoGeneral" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtConceptoGeneral" min="-2" pref="349" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblNumCuenta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtNumCuenta" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnCatalogo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="radCargo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="radAbono" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtValor" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <Component id="lblValor" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnOK" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnBorrarLinea" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblTotales" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDiferencia" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblTotalDebe" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                                      <Component id="lblTotalHaber" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblDiferenciaVal" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="554" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
+              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNumPartida" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNumPartidaVal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblFechaVal" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblConceptoGeneral" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtConceptoGeneral" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="txtNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCatalogo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="radCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Component id="lblValor" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="radAbono" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btnOK" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblTotales" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTotalDebe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTotalHaber" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBorrarLinea" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDiferencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDiferenciaVal" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblNumPartida">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Numero de Partida:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFecha">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblConceptoGeneral">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Concepto general:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtConceptoGeneral">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNumCuenta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="No de Cuenta:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNumCuenta">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCatalogo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Catalogo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radCargo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cargo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radAbono">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Abono"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblValor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtValor">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnOK">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="OK"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNumPartidaVal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor del numero de partida"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFechaVal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valor de la fecha de transaccion"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="tableTransacciones">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="transaccionModel" type="code"/>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0"/>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="lblTotales">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Totales"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTotalDebe">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="$ Total Debe"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTotalHaber">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="$ Total Haber"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDiferencia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Diferencia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDiferenciaVal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="$ Valor Diferencia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBorrarLinea">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Borrar linea"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGuardar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Guardar"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
