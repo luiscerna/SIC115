@@ -1,6 +1,6 @@
 package Modelo;
-/*2-Se necesita un constructor que reciba como parámetro boolean cerrado:
-    si cerrado es true
+/*2-Se necesita un constructor que reciba como parámetro boolean esCerrado:
+    si esCerrado es false
         entonces llenar datos con periodo actual
                  al crear ese periodo se debe llenar en cascada su LibroMayor, dentro de este su lista de
                  DetalleTransaccion, y dentro de este su lista de Transaccion.
