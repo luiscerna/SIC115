@@ -50,7 +50,7 @@
           <Color blue="4b" green="ba" red="88" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/fondo verde.jpg"/>
+          <Image iconType="3" name="/Imagenes/fondo verde.jpg"/>
         </Property>
       </Properties>
       <Constraints>
@@ -95,7 +95,7 @@
     <Component class="javax.swing.JLabel" name="lblFondo2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Vista/fondo blanco.jpg"/>
+          <Image iconType="3" name="/Imagenes/fondo blanco.jpg"/>
         </Property>
       </Properties>
       <Constraints>

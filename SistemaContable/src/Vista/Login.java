@@ -44,7 +44,7 @@ public class Login extends javax.swing.JFrame {
 
         lblFondo1.setBackground(new java.awt.Color(136, 186, 75));
         lblFondo1.setForeground(new java.awt.Color(136, 186, 75));
-        lblFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondo verde.jpg"))); // NOI18N
+        lblFondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo verde.jpg"))); // NOI18N
         getContentPane().add(lblFondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 50));
 
         txtUserName.setText("Username");
@@ -57,7 +57,7 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setText("Login");
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 140, 23));
 
-        lblFondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/fondo blanco.jpg"))); // NOI18N
+        lblFondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo blanco.jpg"))); // NOI18N
         getContentPane().add(lblFondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, 320, 220));
 
         pack();
