@@ -1,4 +1,20 @@
 package Modelo;
+/*2-Se necesita un constructor que reciba como parámetro boolean cerrado:
+    si cerrado es true
+        entonces llenar datos con periodo actual
+                 al crear ese periodo se debe llenar en cascada su LibroMayor, dentro de este su lista de
+                 DetalleTransaccion, y dentro de este su lista de Transaccion.
+    sino
+        entonces llenar datos con null
+*/
+/*3- Se necesita un metodo getUltimaTransaccion:devuelve int
+    si libro mayor =! null entonces
+        buscar en los correspondientes datos de los objetos en cascada (crear mas metodos de acceso en las clases que crean necesarias)
+        hasta llegar a la ultima transaccion (id más alto) 
+        y devolver su idTrans
+    sino entonces
+        devolver cero
+*/
 
 import java.util.Date;
 

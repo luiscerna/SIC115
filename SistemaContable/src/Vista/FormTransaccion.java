@@ -5,6 +5,20 @@ import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+/*
+    Este form debe añadir (lo demas datos que se solicitan están bien) la opcion de escoger el tipo de Transaccion segun la tabla Tipo y desplegar los detalles que correspondan para 
+    llenar la respectiva tabla (DetalleGastoAdelantado, DetalleInteresesAcum, DetalleActivoFijo).
+    Queda a creatividad del diseñador si se presenta una ventana que pregunte el tipo antes de abrir esta vista o con pestañas en un panel dentro del mismo
+    form.
+    Recordar hacer las respectivas validadciones de entrada a nivel de form.
+    
+ */
+
+/* Irene!! acordate que dependiendo del tipo de trasaccion tambien se debe restringir las cuentas que el usuario podrá seleccionar 
+    para hacer la transaccion
+  
+*/
+
 public class FormTransaccion extends javax.swing.JFrame {
  
     public FormTransaccion() {

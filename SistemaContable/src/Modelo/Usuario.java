@@ -1,8 +1,13 @@
 package Modelo;
 
+/* 1-Se necesita un metodo get que reciba el idUsuario y llene los demás
+    campos de este objeto o un constructor que haga lo mismo con el mismo parámetro
+    */
+
+
 import java.util.ArrayList;
 
-public class Usuarios extends Empleado {
+public class Usuario extends Empleado {
     // Atributos
     private int idUsuario;
     private String usuario;
@@ -11,7 +16,7 @@ public class Usuarios extends Empleado {
     private ArrayList<Cardex> cardex;
 
     // Constructor
-    public Usuarios() {
+    public Usuario() {
         
     }
     
@@ -23,7 +28,8 @@ public class Usuarios extends Empleado {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-
+    
+    
     public String getUsuario() {
         return usuario;
     }

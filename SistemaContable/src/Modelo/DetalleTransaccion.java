@@ -1,14 +1,26 @@
 package Modelo;
+/*Crear metodo boolean llenarCatalogo() que llene el catalo con todos los registros de dicha tabla
+    si el llenado se finalizo con exito entonces
+        devolver true
+    sino 
+        devolver false
+*/
 
+/*Crear metodo bolean asignarCuentaMayor(string codCuenta) que llene (accediendo a la BD):
+    1- cuentaMayor: con el nombre de la cuenta mayor a la que pertenece laa cuenta detalle que corresponde al codCuenta (crear una var auxiliar Cuenta)
+    2-codCuentaMayor: con el cod de la Cuenta mayor del paso anterior
+devolver true si se puede sino devolver false jeje
+*/
 import java.util.ArrayList;
 
 public class DetalleTransaccion {
     // Atributos
     private int idDetalle;
     private String cuentaMayor;
+    private String idCuentaMayor; //encapsular
     private double debe;
     private double haber;
-    private ArrayList<Catalogo> catalogo;
+    private ArrayList<Cuenta> catalogo;
     private ArrayList<Transaccion> transaccion;
     
     // Constructor
@@ -49,11 +61,11 @@ public class DetalleTransaccion {
         this.haber = haber;
     }
 
-    public ArrayList<Catalogo> getCatalogo() {
+    public ArrayList<Cuenta> getCatalogo() {
         return catalogo;
     }
 
-    public void setCatalogo(ArrayList<Catalogo> catalogo) {
+    public void setCatalogo(ArrayList<Cuenta> catalogo) {
         this.catalogo = catalogo;
     }
 

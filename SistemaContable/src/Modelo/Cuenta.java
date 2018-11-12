@@ -1,6 +1,8 @@
 package Modelo;
+/*Crear constructor Cuenta(codCuenta)
 
-public class Catalogo {
+*/
+public class Cuenta {
     // Atributos
     private String codCuenta;
     private String rubro;
@@ -8,7 +10,7 @@ public class Catalogo {
     private String nomCuenta;
     
     // Constructor
-    public Catalogo(){
+    public Cuenta(){
             
     }
 

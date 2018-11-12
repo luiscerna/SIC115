@@ -1,5 +1,7 @@
 package Modelo;
+/*Crear un constructor Transaccion(idTrans)
 
+*/
 import java.util.Date;
 
 public class Transaccion {
@@ -13,7 +15,7 @@ public class Transaccion {
     private DetalleActivoFijo detalleActivoFijo;
     private DetalleInteresesAcum detalleInteresesAcum;
     private DetalleGastoAdelantado detalleGastoAdelantado;
-    private Usuarios usuarios;
+    private Usuario usuarios;
     private Tipo tipo;
     
     // Constructor
@@ -87,11 +89,11 @@ public class Transaccion {
         this.detalleGastoAdelantado = detalleGastoAdelantado;
     }
 
-    public Usuarios getUsuarios() {
+    public Usuario getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(Usuarios usuarios) {
+    public void setUsuarios(Usuario usuarios) {
         this.usuarios = usuarios;
     }
 

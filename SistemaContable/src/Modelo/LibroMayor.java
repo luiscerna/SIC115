@@ -1,5 +1,6 @@
 package Modelo;
 
+
 import java.util.ArrayList;
 
 public class LibroMayor {
@@ -12,6 +13,7 @@ public class LibroMayor {
     
     // Constructor 
     public LibroMayor() {
+        
     }
      
     // Métodos getter y setter
