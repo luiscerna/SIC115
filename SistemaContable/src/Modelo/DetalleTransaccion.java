@@ -17,7 +17,6 @@ public class DetalleTransaccion {
     // Atributos
     private int idDetalle;
     private String cuentaMayor;
-    private String idCuentaMayor; //encapsular
     private double debe;
     private double haber;
     private ArrayList<Cuenta> catalogo;

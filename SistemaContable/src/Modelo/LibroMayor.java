@@ -9,6 +9,7 @@ public class LibroMayor {
     private String nombreCuenta;
     private double montoTotal;
     private ArrayList<DetalleTransaccion> detalleTransaccion;
+    private int idMayor;
     
     // Constructor 
     public LibroMayor() {
@@ -46,5 +47,19 @@ public class LibroMayor {
 
     public void setDetalleTransaccion(ArrayList<DetalleTransaccion> detalleTransaccion) {
         this.detalleTransaccion = detalleTransaccion;
+    }
+
+    /**
+     * @return the idMayor
+     */
+    public int getIdMayor() {
+        return idMayor;
+    }
+
+    /**
+     * @param idMayor the idMayor to set
+     */
+    public void setIdMayor(int idMayor) {
+        this.idMayor = idMayor;
     }
 }
