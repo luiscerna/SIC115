@@ -30,7 +30,7 @@ public class SistemaContable {
             Conexion conexion = new Conexion();
             
             String query = "select Nombre from Usuarios";
-            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst= conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
             while (conexion.rs.next()){
                 System.out.println(conexion.rs.getString("Nombre"));

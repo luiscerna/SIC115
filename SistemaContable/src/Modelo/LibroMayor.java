@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class LibroMayor {
     // Atributos
-    private int idMayor;
     private String codCuenta;
     private String nombreCuenta;
     private double montoTotal;
@@ -17,15 +16,7 @@ public class LibroMayor {
     }
      
     // Métodos getter y setter
-    public int getIdMayor() {
-        return idMayor;
-    }
-
-    public void setIdMayor(int idMayor) {
-        this.idMayor = idMayor;
-    }
-
-    public String getCodCuenta() {
+        public String getCodCuenta() {
         return codCuenta;
     }
 

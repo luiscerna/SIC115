@@ -1,6 +1,12 @@
 package Modelo;
-/*Crear un constructor Transaccion(idTrans)
+/*Crear un constructor Transaccion(idTrans)que iguale los atributos de esta misma clase con los del unico registro
+correspondiente al idTrans que se le pase como parametro
+    ej. 
+    String sentenciaSql= *aqui la consulta XD*;
 
+    //codigo del acceso a la BD a traves de objeto conexion a creatividad de quien programe
+
+    this.numeroPartida= resultado.getSTring(numeroPartida); //esta instruccion puede variar dependiendo de cada quien
 */
 import java.util.Date;
 
