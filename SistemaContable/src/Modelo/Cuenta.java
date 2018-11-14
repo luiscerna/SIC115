@@ -1,4 +1,8 @@
 package Modelo;
+
+import Datos.Conexion;
+import java.sql.SQLException;
+
 /*Crear constructor Cuenta(codCuenta)
 
 */
@@ -10,10 +14,28 @@ public class Cuenta {
     String nomCuenta;
     
     // Constructor
-    public Cuenta()
+    public Cuenta(String codCuenta) throws SQLException
     {
            
+        //Conexion a la base de datos
+        Conexion conexion = new Conexion();
+        String query = "select codCuenta, nomCuenta,rubro, nivel, nomCuenta from Cuenta where idTransaccion= ?";
+        conexion.pst.setString(1, codCuenta);
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.rs = conexion.pst.executeQuery();
         
+        //Asignado los datos a los atributos de la clase
+        if(conexion.rs.first()){
+            String codigo = conexion.rs.getString("codCuenta");
+            int rubro = conexion.rs.getInt("idTrans");
+            String nombre = conexion.rs.getString("nomCuenta");
+            int nivel=conexion.rs.getInt("nivel");
+            this.codCuenta = codigo;
+            this.rubro=rubro;
+            this.nivel=nivel;
+            this.nomCuenta=nomCuenta;
+            
+        }
     }
 
     // Métodos getter y setter

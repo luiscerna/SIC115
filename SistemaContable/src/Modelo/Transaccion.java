@@ -31,7 +31,7 @@ public class Transaccion {
    {
        //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "select idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida from Transaccion where idTransaccion= ?";
+        String query = "select idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida from Transaccion where idTrans= ?";
         conexion.pst.setInt(1, idTrans);
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.rs = conexion.pst.executeQuery();
