@@ -14,6 +14,11 @@ public class Cuenta {
     String nomCuenta;
     
     // Constructor
+    
+    public Cuenta()
+    {
+        
+    }
     public Cuenta(String codCuenta) throws SQLException
     {
            

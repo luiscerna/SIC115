@@ -27,6 +27,11 @@ public class Transaccion {
     private Tipo tipo;
     
     // Constructor
+    
+    public Transaccion()
+    {
+        
+    }
     public Transaccion(int idTrans) throws SQLException
    {
        //Conexion a la base de datos
