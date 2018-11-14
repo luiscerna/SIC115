@@ -10,8 +10,10 @@ public class Cuenta {
     String nomCuenta;
     
     // Constructor
-    public Cuenta(){
-            
+    public Cuenta()
+    {
+           
+        
     }
 
     // Métodos getter y setter

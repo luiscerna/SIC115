@@ -8,6 +8,8 @@ correspondiente al idTrans que se le pase como parametro
 
     this.numeroPartida= resultado.getSTring(numeroPartida); //esta instruccion puede variar dependiendo de cada quien
 */
+import Datos.Conexion;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Transaccion {
@@ -25,7 +27,28 @@ public class Transaccion {
     private Tipo tipo;
     
     // Constructor
-    public Transaccion() {
+    public Transaccion(int idTrans) throws SQLException
+   {
+       //Conexion a la base de datos
+        Conexion conexion = new Conexion();
+        String query = "select idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida from Transaccion where idTransaccion= ?";
+        conexion.pst.setInt(1, idTrans);
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.rs = conexion.pst.executeQuery();
+        
+        //Asignado los datos a los atributos de la clase
+        if(conexion.rs.first()){
+            int id = conexion.rs.getInt("idTrans");
+            int num = conexion.rs.getInt("numeroPartida");
+            Date fecha=conexion.rs.getDate("fechaTrans");
+            double monto=conexion.rs.getDouble("monto");
+            String concepto=conexion.rs.getString("concepto");
+            this.idTrans = id;
+            this.numeroPartida=num;
+            this.fechaTrans=fecha;
+            this.monto=monto;
+            this.concepto=concepto;
+        }
         
     }
     
