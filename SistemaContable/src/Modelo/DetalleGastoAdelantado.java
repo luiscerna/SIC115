@@ -1,5 +1,6 @@
 package Modelo;
 
+//Crear constructor de Consulta DetalleGastoAdelantado(int idTrans) que obtenga el registro Único de esa tabla y le asigne sus valores a los atributos correspondientes
 public class DetalleGastoAdelantado {
     // Atributos
     private int idGastoA;

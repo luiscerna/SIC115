@@ -24,7 +24,7 @@ public class Transaccion {
     private DetalleInteresesAcum detalleInteresesAcum;
     private DetalleGastoAdelantado detalleGastoAdelantado;
     private Usuario usuarios;
-    private Tipo tipo;
+    private int tipo;
     
     // Constructor
     
@@ -32,8 +32,11 @@ public class Transaccion {
     {
         
     }
-    public Transaccion(int idTrans) throws SQLException
-   {
+    public Transaccion(int idTrans) throws SQLException //Dependiendo de su "tipo" debe
+                                                       // crear su respectivo detalleActivoFijo o detalleInteresAcum o detalleGastoAdelantado (ver esas clases)
+                                                       //Para eso consultar la tabla Tipo como referencia, en la BD
+                                                      //Como referencia ver relaciones que dependen de esta tabla en la BD
+   { 
        //Conexion a la base de datos
         Conexion conexion = new Conexion();
         String query = "select idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida from Transaccion where idTrans= ?";
@@ -44,6 +47,7 @@ public class Transaccion {
         //Asignado los datos a los atributos de la clase
         if(conexion.rs.first()){
             int id = conexion.rs.getInt("idTrans");
+            int idTipo = conexion.rs.getInt("idTipo");
             int num = conexion.rs.getInt("numeroPartida");
             Date fecha=conexion.rs.getDate("fechaTrans");
             double monto=conexion.rs.getDouble("monto");
@@ -52,7 +56,9 @@ public class Transaccion {
             this.numeroPartida=num;
             this.fechaTrans=fecha;
             this.monto=monto;
-            this.concepto=concepto;
+            this.concepto=concepto; 
+            
+            this.tipo=idTipo; //Se podria crear un switch o algo asi, para crear el objeto detalleActivoFijo, etc. dependiendo del tipo
         }
         
     }
@@ -131,11 +137,11 @@ public class Transaccion {
         this.usuarios = usuarios;
     }
 
-    public Tipo getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 }

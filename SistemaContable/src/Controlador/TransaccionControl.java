@@ -5,6 +5,7 @@
  */
 package Controlador;
 import Modelo.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 /*Crear constructor TransaccionControl(idUsuario) que llene usuarioActual, periodoActual, mayorActual
 y cree un objeto nuevoCatalogo y llene el catalogoAcopashe de la sig manera:
@@ -29,6 +30,9 @@ public class TransaccionControl {
     private ArrayList<Cuenta> nuevoCatalogo; //atrib auxiliar 
     private ArrayList<Cuenta> catalogoAcopashe; //atrib auxiliar
     
+    
+    //Flujo para una Transaccion Normal
+    //Paso 1: mostrar al usuario el num de partida (en esta capa) y la fecha actual (desde la capa Vista)
     //Metodo que obtine el numero de partida actual dentro del periodo actual (se obtine con metodo de clase periodo)
     //Nota: este met es pa evitar acceder directamente a la capa modelo.
     /*public static int getNumSiguientePartida(){
@@ -38,16 +42,22 @@ public class TransaccionControl {
     }
     */
     
-    //se llena la pantalla con objetos de catalogoAcopashe
-   /* public static boolean agregarCuenta(String codCuenta,boolean esCargo,double valor, int indexCuenta){ //el indexCuenta se obtiene de la lista donde escoge el usuario
-        si esCargo entonces
-                1- crear objeto DetalleTansaccion() detalle1
-                2-detalle1.asignarCuentaMayor(codCuenta)
-                3-
-        
-        return true;
+    //Paso 2: Se llena la lista de del catálogo que aparece en el form solo con codCuenta y nombreCuenta
+    public String[][] obtenerCuentasCatalogo() throws SQLException{
+        this.periodoActual.llenarCatalogo();
+        this.catalogoAcopashe=periodoActual.getCatalogo();
+        String[][] cuentas=new String[catalogoAcopashe.size()][2];
+        int a=0;
+        for(Cuenta cuenta: this.catalogoAcopashe){
+            cuentas[a][0]=cuenta.getCodCuenta();
+            cuentas[a][1]=cuenta.getNomCuenta();
+            a++;
+        }
+        return cuentas;
     }
     
-    */
+    //Paso 3: El usuario selecciona la cuenta, indica si es Cargo/abono, el monto y presiona OK
+   
+  
     
 }

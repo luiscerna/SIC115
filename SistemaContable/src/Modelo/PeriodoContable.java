@@ -1,9 +1,9 @@
 package Modelo;
-/*2-Se necesita un constructor que reciba como parámetro boolean esCerrado:
+/*2-Se necesita un constructor que reciba como parámetro boolean esCerrado: //Constructor de Consulta, suponiendo que ya existe ese registro
     si esCerrado es false
         entonces llenar datos con periodo actual
                  al crear ese periodo se debe llenar en cascada su LibroMayor, dentro de este su lista de
-                 DetalleTransaccion, y dentro de este su lista de Transaccion.
+                 DetalleTransaccion, y dentro de este su lista de Transaccion. El constructor de Transaccion le toca a Abi y sus dependencias tambien 
     sino
         entonces llenar datos con null
 */
@@ -16,68 +16,153 @@ package Modelo;
         devolver cero
 */
 
-import java.util.Date;
+import Datos.Conexion;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date ;
 
 public class PeriodoContable {
+    
+    
     // Atributos
-    private int idPeriodo;
-    private boolean cerrado;
-    private Date inicio;
-    private Date fin;
-    private LibroMayor libroMayor;
-    private Planilla planilla;
-
+    private  int idPeriodo;
+    private  boolean cerrado;
+    private  Date  inicio;
+    private  Date fin;
+    private  LibroMayor libroMayor;
+    private  Planilla planilla;
+    private  ArrayList<Cuenta> catalogo; //Atributo Auxiliar que no aparece en el modelo
+   
     // Constructor
     public PeriodoContable() {
         planilla = new Planilla();
     }
     
+    
+    //Metodos
+    
+    /*Crear metodo boolean llenarCatalogo() que llene el catalo con todos los registros de dicha tabla
+    si el llenado se finalizo con exito entonces
+        devolver true
+    sino 
+        devolver false
+    */
+    public boolean llenarCatalogo() throws SQLException{ //metodo de Eliezer XD
+        Conexion conexion = new Conexion();
+        String query = "select codCuenta, nomCuenta, rubro, nivel from Cuenta";
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.rs = conexion.pst.executeQuery();
+        while (conexion.rs.next()){
+            Cuenta cuenta = new Cuenta();
+                cuenta.codCuenta = conexion.rs.getString("codCuenta");
+                cuenta.nomCuenta =  conexion.rs.getString("nomCuenta");
+                cuenta.rubro = conexion.rs.getInt("rubro");
+                cuenta.nivel = conexion.rs.getInt("nivel");
+                this.catalogo.add(cuenta);  
+            }
+        return true;
+    }
+    
+    
     // Métodos getter y setter
-    public int getIdPeriodo() {
+
+    /**
+     * @return the idPeriodo
+     */
+    public   int getIdPeriodo() {
         return idPeriodo;
     }
 
-    public void setIdPeriodo(int idPeriodo) {
-        this.idPeriodo = idPeriodo;
+    /**
+     * @param aIdPeriodo the idPeriodo to set
+     */
+    public   void setIdPeriodo(int aIdPeriodo) {
+        idPeriodo = aIdPeriodo;
     }
 
-    public boolean isCerrado() {
+    /**
+     * @return the cerrado
+     */
+    public   boolean isCerrado() {
         return cerrado;
     }
 
-    public void setCerrado(boolean cerrado) {
-        this.cerrado = cerrado;
+    /**
+     * @param aCerrado the cerrado to set
+     */
+    public   void setCerrado(boolean aCerrado) {
+        cerrado = aCerrado;
     }
 
-    public Date getInicio() {
+    /**
+     * @return the inicio
+     */
+    public   Date getInicio() {
         return inicio;
     }
 
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
+    /**
+     * @param aInicio the inicio to set
+     */
+    public   void setInicio(Date aInicio) {
+        inicio = aInicio;
     }
 
-    public Date getFin() {
+    /**
+     * @return the fin
+     */
+    public   Date getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
-        this.fin = fin;
+    /**
+     * @param aFin the fin to set
+     */
+    public   void setFin(Date aFin) {
+        fin = aFin;
     }
 
-    public LibroMayor getLibroMayor() {
+    /**
+     * @return the libroMayor
+     */
+    public   LibroMayor getLibroMayor() {
         return libroMayor;
     }
 
-    public void setLibroMayor(LibroMayor libroMayor) {
-        this.libroMayor = libroMayor;
+    /**
+     * @param aLibroMayor the libroMayor to set
+     */
+    public   void setLibroMayor(LibroMayor aLibroMayor) {
+        libroMayor = aLibroMayor;
     }
 
-    public Planilla getPlanilla() {
+    /**
+     * @return the planilla
+     */
+    public   Planilla getPlanilla() {
         return planilla;
     }
 
-    public void setPlanilla(Planilla planilla) {
-        this.planilla = planilla;
+    /**
+     * @param aPlanilla the planilla to set
+     */
+    public   void setPlanilla(Planilla aPlanilla) {
+        planilla = aPlanilla;
     }
+
+    /**
+     * @return the catalogo
+     */
+    public   ArrayList<Cuenta> getCatalogo() {
+        return catalogo;
+    }
+
+    /**
+     * @param aCatalogo the catalogo to set
+     */
+    public   void setCatalogo(ArrayList<Cuenta> aCatalogo) {
+        catalogo = aCatalogo;
+    }
+
+    
 }

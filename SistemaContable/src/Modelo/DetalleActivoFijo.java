@@ -1,5 +1,5 @@
 package Modelo;
-
+    //Crear constructor de Consulta DetalleACtivoFijo(int idTrans) que obtenga el registro Único de esa tabla y le asigne sus valores a los atributos correspondientes
 public class DetalleActivoFijo {
     // Atributos
     private int idDesgaste;

@@ -1,5 +1,5 @@
 package Modelo;
-
+//Crear constructor de consulta DetalleInteresesAcum(int idTrans) que obtenga el registro Único de esa tabla y le asigne sus valores a los atributos correspondientes
 public class DetalleInteresesAcum {
     // Atributos
     private int idAcum;

@@ -1,5 +1,7 @@
 package Modelo;
 
+
+
 import Datos.Conexion;
 import java.sql.SQLException;
 
@@ -19,12 +21,12 @@ public class Cuenta {
     {
         
     }
-    public Cuenta(String codCuenta) throws SQLException
+    public Cuenta(String codCuenta) throws SQLException //constructor para obtener Registro ya Existente
     {
            
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "select codCuenta, nomCuenta,rubro, nivel, nomCuenta from Cuenta where idTransaccion= ?";
+        String query = "select codCuenta, nomCuenta,rubro, nivel, nomCuenta from Cuenta where idTransaccion= ?"; //Revisar Tabla Cuenta, No tiene atributo idTransaccion
         conexion.pst.setString(1, codCuenta);
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.rs = conexion.pst.executeQuery();
@@ -32,7 +34,7 @@ public class Cuenta {
         //Asignado los datos a los atributos de la clase
         if(conexion.rs.first()){
             String codigo = conexion.rs.getString("codCuenta");
-            int rubro = conexion.rs.getInt("idTrans");
+            int rubro = conexion.rs.getInt("idTrans");//no existe el atributo idTrans en la tabla Cuenta
             String nombre = conexion.rs.getString("nomCuenta");
             int nivel=conexion.rs.getInt("nivel");
             this.codCuenta = codigo;
