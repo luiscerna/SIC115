@@ -1,22 +1,19 @@
 package Modelo;
-/*Crear metodo boolean llenarCatalogo() que llene el catalo con todos los registros de dicha tabla
-    si el llenado se finalizo con exito entonces
-        devolver true
-    sino 
-        devolver false
-*/
 
-/*Crear metodo bolean asignarCuentaMayor(string codCuenta) que llene (accediendo a la BD):
-    1- cuentaMayor: con el nombre de la cuenta mayor a la que pertenece laa cuenta detalle que corresponde al codCuenta (crear una var auxiliar Cuenta)
-    2-codCuentaMayor: con el cod de la Cuenta mayor del paso anterior
-devolver true si se puede sino devolver false jeje
-*/
+
+
+
 import java.util.ArrayList;
+import java.sql.*;
+import Datos.*;
+import java.sql.SQLException;
+
 
 public class DetalleTransaccion {
     // Atributos
     private int idDetalle;
     private String cuentaMayor;
+    private String idCuentaMayor;
     private double debe;
     private double haber;
     private ArrayList<Cuenta> catalogo;
@@ -75,4 +72,52 @@ public class DetalleTransaccion {
     public void setTransaccion(ArrayList<Transaccion> transaccion) {
         this.transaccion = transaccion;
     }
+    
+    public boolean asignarCuentaMayor(String codCuenta) throws SQLException{
+        
+        //Cortando codCuenta
+        String codCuentaMayor= codCuenta.substring(0,3);
+        
+        //Rescatando datos de cuenta
+        Conexion conexion = new Conexion();
+        String query = "select codCuenta, nomCuenta from Cuenta where codCuenta = ?";
+        conexion.pst.setString(1, codCuentaMayor);
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.rs = conexion.pst.executeQuery();
+        
+        //Asignado los datos de la cuenta mayor al detalleCuenta
+        if(conexion.rs.first()){
+            String codigo = conexion.rs.getString("codCuenta");
+            String nombre = conexion.rs.getString("nomCuenta");
+            this.cuentaMayor = nombre;
+            this.idCuentaMayor = codigo;
+            return true;
+        }
+        else 
+            return false; 
+    }
+    
+    /*Crear metodo boolean llenarCatalogo() que llene el catalo con todos los registros de dicha tabla
+    si el llenado se finalizo con exito entonces
+        devolver true
+    sino 
+        devolver false
+*/
+    public boolean llenarCatalogo() throws SQLException{
+        Conexion conexion = new Conexion();
+        String query = "select codCuenta, nomCuenta, rubro, nivel from Cuenta";
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.rs = conexion.pst.executeQuery();
+        while (conexion.rs.next()){
+            Cuenta cuenta = new Cuenta();
+                cuenta.codCuenta = conexion.rs.getString("codCuenta");
+                cuenta.nomCuenta =  conexion.rs.getString("nomCuenta");
+                cuenta.rubro = conexion.rs.getInt("rubro");
+                cuenta.nivel = conexion.rs.getInt("nivel");
+            catalogo.add(cuenta);  
+            }
+        return true;
+    }
+    
+    
 }

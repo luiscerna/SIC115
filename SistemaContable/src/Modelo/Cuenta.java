@@ -4,10 +4,10 @@ package Modelo;
 */
 public class Cuenta {
     // Atributos
-    private String codCuenta;
-    private String rubro;
-    private int nivel;
-    private String nomCuenta;
+    String codCuenta;
+    int rubro;
+    int nivel;
+    String nomCuenta;
     
     // Constructor
     public Cuenta(){
@@ -23,11 +23,11 @@ public class Cuenta {
         this.codCuenta = codCuenta;
     }
 
-    public String getRubro() {
+    public int getRubro() {
         return rubro;
     }
 
-    public void setRubro(String rubro) {
+    public void setRubro(int rubro) {
         this.rubro = rubro;
     }
 
