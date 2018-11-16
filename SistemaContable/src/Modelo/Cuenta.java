@@ -26,7 +26,7 @@ public class Cuenta {
            
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "select codCuenta, nomCuenta,rubro, nivel, nomCuenta from Cuenta where idTransaccion= ?"; //Revisar Tabla Cuenta, No tiene atributo idTransaccion
+        String query = "select codCuenta, nomCuenta,rubro, nivel, nomCuenta from Cuenta where codCuenta= ?"; 
         conexion.pst.setString(1, codCuenta);
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.rs = conexion.pst.executeQuery();
@@ -34,7 +34,7 @@ public class Cuenta {
         //Asignado los datos a los atributos de la clase
         if(conexion.rs.first()){
             String codigo = conexion.rs.getString("codCuenta");
-            int rubro = conexion.rs.getInt("idTrans");//no existe el atributo idTrans en la tabla Cuenta
+            int rubro = conexion.rs.getInt("rubro");
             String nombre = conexion.rs.getString("nomCuenta");
             int nivel=conexion.rs.getInt("nivel");
             this.codCuenta = codigo;
