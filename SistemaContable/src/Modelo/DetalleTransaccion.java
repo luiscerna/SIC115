@@ -72,21 +72,23 @@ public class DetalleTransaccion {
     public boolean asignarCuentaMayor(String codCuenta) throws SQLException{
         
         //Cortando codCuenta
-        String codCuentaMayor= codCuenta.substring(0,3); //Verificar que funciona para todos los niveles de "Detalle"
+        String codCuentaMayor= codCuenta.substring(0,4); //Verificar que funciona para todos los niveles de "Detalle"
         
         //Rescatando datos de cuenta
         Conexion conexion = new Conexion();
         String query = "select codCuenta, nomCuenta from Cuenta where codCuenta = ?";
-        conexion.pst.setString(1, codCuentaMayor);
         conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setString(1, codCuentaMayor);
         conexion.rs = conexion.pst.executeQuery();
         
         //Asignado los datos de la cuenta mayor al detalleCuenta
-        if(conexion.rs.first()){
+        if(conexion.rs.next()){
             String codigo = conexion.rs.getString("codCuenta");
             String nombre = conexion.rs.getString("nomCuenta");
             this.cuentaMayor = nombre;
             this.idCuentaMayor = codigo;
+            System.out.println(cuentaMayor);
+            System.out.println(idCuentaMayor);
             return true;
         }
         else 
