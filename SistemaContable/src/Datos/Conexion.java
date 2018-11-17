@@ -10,7 +10,6 @@ public class Conexion {
     public static ResultSet rs;
     public static Statement st;
     
-    
     public  Connection conectar() {
         try {
             //Ruta relativa

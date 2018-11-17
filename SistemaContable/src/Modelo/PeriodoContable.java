@@ -20,6 +20,8 @@ import Datos.Conexion;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date ;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PeriodoContable {
     
@@ -35,7 +37,51 @@ public class PeriodoContable {
    
     // Constructor
     public PeriodoContable() {
-        planilla = new Planilla();
+        
+    }
+    
+    // Para hacer pruebas nada más
+    public static void main(String[] args) {
+        PeriodoContable pc = new PeriodoContable(true);
+    }
+    
+    // Constructor para cerrar o abrir el periodo contable
+    public PeriodoContable(boolean esCerrado) {
+        Conexion conexion = new Conexion();
+        
+        // Si es true que se abra el periodo contable, de lo contrario se cierra el actual
+        if(esCerrado){
+            try {
+                // Crear la planilla
+                planilla = new Planilla(true);
+                System.out.println("El id de la nueva planilla es: "+planilla.getIdPlanilla());
+                
+                // Crear Registro del Libro Mayor
+                libroMayor = new LibroMayor(true);
+                System.out.println("El id del nuevo libro mayor es: "+libroMayor.getIdMayor());
+                
+                 // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
+                String query;
+                query = "SELECT idPeriodo FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
+                conexion.pst= conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                int id = conexion.rs.getInt("idPeriodo");
+                id += 1;
+                setIdPeriodo(id);
+                
+                // Registro del periodo contable
+                query = "INSERT INTO PeriodoContable (idPeriodo, idMayor, idPlanilla) VALUES ("+ getIdPeriodo() +", "+ libroMayor.getIdMayor() +","+ planilla.getIdPlanilla() +");";
+                conexion.pst = conexion.conectar().prepareStatement(query);
+                conexion.pst.executeUpdate();
+                System.out.println("Se ha registrado exitosamente el periodo contable.");
+            } catch (SQLException ex) {
+                Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Ha ocurrido un error al registrar.");
+            }            
+        } else {
+            
+        }
     }
     
     
