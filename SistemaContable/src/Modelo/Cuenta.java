@@ -26,7 +26,7 @@ public class Cuenta {
            
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "select codCuenta, nomCuenta,rubro, nivel, nomCuenta from Cuenta where codCuenta= ?"; 
+        String query = "SELECT codCuenta, nomCuenta,rubro, nivel, nomCuenta FROM Cuenta WHERE codCuenta= ?"; 
         conexion.pst.setString(1, codCuenta);
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.rs = conexion.pst.executeQuery();

@@ -31,7 +31,9 @@ public class Transaccion {
     public Transaccion()
     {
         
+        
     }
+    
     public Transaccion(int idTrans) throws SQLException //Dependiendo de su "tipo" debe
                                                        // crear su respectivo detalleActivoFijo o detalleInteresAcum o detalleGastoAdelantado (ver esas clases)
                                                        //Para eso consultar la tabla Tipo como referencia, en la BD
@@ -39,7 +41,7 @@ public class Transaccion {
    { 
        //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "select idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida from Transaccion where idTrans= ?";
+        String query = "SELECT idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida FROM Transaccion WHERE idTrans= ?";
         conexion.pst.setInt(1, idTrans);
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.rs = conexion.pst.executeQuery();
