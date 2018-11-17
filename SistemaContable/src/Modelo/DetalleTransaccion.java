@@ -72,7 +72,7 @@ public class DetalleTransaccion {
     public boolean asignarCuentaMayor(String codCuenta) throws SQLException{
         
         //Cortando codCuenta
-        String codCuentaMayor= codCuenta.substring(0,4); //Verificar que funciona para todos los niveles de "Detalle"
+        String codCuentaMayor= codCuenta.substring(0,4); 
         
         //Rescatando datos de cuenta
         Conexion conexion = new Conexion();

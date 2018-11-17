@@ -1,8 +1,12 @@
 package Modelo;
-    //Crear constructor de Consulta DetalleACtivoFijo(int idTrans) que obtenga el registro Único de esa tabla y le asigne sus valores a los atributos correspondientes
+    //Crear constructor de Consulta DetalleACtivoFijo(int idTrans) que obtenga el registro Único de esa tabla y le asigne sus valores a los atributos correspondien
+import Datos.Conexion;
+import java.sql.SQLException;
+
 public class DetalleActivoFijo {
     // Atributos
     private int idDesgaste;
+    private int idTrans;
     private double valor;
     private int vidaUtil;
     private double valorSalvamento;
@@ -11,7 +15,38 @@ public class DetalleActivoFijo {
     private double desgasteMensual;
 
     // Constructor
-    public DetalleActivoFijo() {
+    public DetalleActivoFijo() 
+    {
+        
+    }
+    public DetalleActivoFijo(int idTrans) throws SQLException
+    {
+        //Conexion a la base de datos
+        Conexion conexion = new Conexion();
+        String query = "SELECT idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, tipoActivo, desgateAnual, desgasteMensual FROM DetalleActivoFijo WHERE idTrans= ?";
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setInt(1, idTrans);
+        conexion.rs = conexion.pst.executeQuery();
+        
+        //Asignado los datos a los atributos de la clase
+        if(conexion.rs.next()){
+            int idDesgaste = conexion.rs.getInt("idDesgaste");
+            int id = conexion.rs.getInt("idTrans");
+            double valor = conexion.rs.getInt("valor");
+            int vida =conexion.rs.getInt("vidaUtil");
+            double salvamento =conexion.rs.getDouble("valorSalvamento");
+            String activo=conexion.rs.getString("tipoActivo");
+            double desgasteAnual=conexion.rs.getDouble("desgasteAnual");
+            double desgasteMensual=conexion.rs.getDouble("desgasteMensual");
+            this.idDesgaste = idDesgaste;
+            this.idTrans=id;
+            this.valor=valor;
+            this.vidaUtil=vida;
+            this.valorSalvamento=salvamento;
+            this.tipoActivo=activo;
+            this.desgasteAnual=desgasteAnual;
+            this.desgasteMensual=desgasteMensual;
+        }
     }
     
     // Métodos getter y setter

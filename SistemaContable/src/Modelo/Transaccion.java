@@ -58,8 +58,13 @@ public class Transaccion {
             this.monto=monto;
             this.concepto=concepto; 
             
-            this.tipo=idTipo; //Se podria crear un switch o algo asi, para crear el objeto detalleActivoFijo, etc. dependiendo del tipo
+            this.tipo=idTipo; 
         }
+        if(this.tipo==1)
+        {
+            
+        }
+        
         
     }
     
