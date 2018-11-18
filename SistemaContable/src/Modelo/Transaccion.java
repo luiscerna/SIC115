@@ -20,12 +20,11 @@ public class Transaccion {
     private Date fechaTrans;
     private double monto;
     private String concepto;
+    private Usuario usuarios;
+    private int tipo;
     private DetalleActivoFijo detalleActivoFijo;
     private DetalleInteresesAcum detalleInteresesAcum;
     private DetalleGastoAdelantado detalleGastoAdelantado;
-    private Usuario usuarios;
-    private int tipo;
-    
     // Constructor
     
     public Transaccion()
@@ -62,9 +61,37 @@ public class Transaccion {
             
             this.tipo=idTipo; 
         }
+          
         if(this.tipo==1)
+        { 
+            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
+        
+           }
+        if(this.tipo==2)
         {
-            
+            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
+        
+        }
+        if(this.tipo==3)
+        {
+            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
+        
+        }
+        if(this.tipo==4)
+        {
+           DetalleInteresesAcum detalleInteresesAcum = new DetalleInteresesAcum(this.idTrans);
+        }
+        if(this.tipo==5)
+        {
+            DetalleInteresesAcum detalleInteresesAcum = new DetalleInteresesAcum(this.idTrans);
+        }
+        if(this.tipo==6)
+        {
+            DetalleActivoFijo detalleActivoFijo=new DetalleActivoFijo(this.idTrans);
+        }
+        if(this.tipo==7)
+        {
+            DetalleActivoFijo detalleActivoFijo=new DetalleActivoFijo(this.idTrans);
         }
         
         

@@ -41,7 +41,7 @@ public class DetalleGastoAdelantado {
             this.valorTotal=valor;
             this.gastoMensual=gasto;
         }
-        
+       
     }
     
     // Métodos getter y setter
@@ -76,4 +76,6 @@ public class DetalleGastoAdelantado {
     public void setGastoMensual(double gastoMensual) {
         this.gastoMensual = gastoMensual;
     }
+
+   
 }
