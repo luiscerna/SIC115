@@ -1,7 +1,10 @@
 package Vista;
 
 //importando librerias
+import Modelo.Prueba;
 import java.util.ArrayList;
+import Controlador.TransaccionFormControl;
+import javax.swing.JOptionPane;
 
 /*
     Este form debe añadir (lo demas datos que se solicitan están bien) la opcion de escoger el tipo de Transaccion segun la tabla Tipo y desplegar los detalles que correspondan para 
@@ -18,7 +21,11 @@ import java.util.ArrayList;
 */
 
 public class FormTransaccion extends javax.swing.JFrame {
- 
+    //Elementos de la lista (por el momento solamente se busca cumplir partida doble)
+    ArrayList <Prueba> registrosTransacciones= new ArrayList<Prueba>();
+    Double []totalesTransacciones= new Double[2];
+    
+    
     public FormTransaccion() {
         initComponents();
         inicializandoValoresComponentes();
@@ -31,8 +38,13 @@ public class FormTransaccion extends javax.swing.JFrame {
         radioCargoTrans.setSelected(true);
         radioCargoDGA.setSelected(true);
         radioCargoDIA.setSelected(true);
-        radioCargoDAF.setSelected(true); 
+        radioCargoDAF.setSelected(true);
+        
+        //lista de debe y haber
+        totalesTransacciones[0]=0.00;
+        totalesTransacciones[1]=0.00;        
     }
+    
 
     
     @SuppressWarnings("unchecked")
@@ -194,6 +206,11 @@ public class FormTransaccion extends javax.swing.JFrame {
         lblMontoTrans.setText("Monto:");
 
         btnRegistrarTrans.setText("Registrar");
+        btnRegistrarTrans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarTransActionPerformed(evt);
+            }
+        });
 
         tableTransacciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,6 +235,11 @@ public class FormTransaccion extends javax.swing.JFrame {
         btnBorrarTrans.setText("Borrar Linea de Registro");
 
         btnGuardarTrans.setText("Guardar y Finalizar");
+        btnGuardarTrans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarTransActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabTransaccionLayout = new javax.swing.GroupLayout(tabTransaccion);
         tabTransaccion.setLayout(tabTransaccionLayout);
@@ -877,6 +899,30 @@ public class FormTransaccion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void btnRegistrarTransActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        try{
+        TransaccionFormControl.agregarElementoTabla(txtNumCuentaTrans.getText(),"Prueba 1",txtMontoTrans.getText(), radioCargoTrans.isSelected(),tableTransacciones, registrosTransacciones);
+        TransaccionFormControl.calcularTotalesYDiferencia(totalesTransacciones, registrosTransacciones, lblTotalDebeTrans , lblTotalHaberTrans, lblValDiferenciaHaberTrans);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Se han producido errores en el registro\nPor favor revisar los campos del formulario");
+        }
+    }                                                 
+
+    private void btnGuardarTransActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        try{
+            boolean respuesta=TransaccionFormControl.validadorPartidaDoble(lblValDiferenciaHaberTrans);
+            if(respuesta)
+                JOptionPane.showMessageDialog(null,"Todo Correcto");
+            else
+                JOptionPane.showMessageDialog(null,"No se cumple partida doble, por favor revisar\nel registro de la tabla!");
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Se han producido errores en el registro\nPor favor inicializar un resgistro por favor");
+        }
+    }                                               
 
     /**
      * @param args the command line arguments
