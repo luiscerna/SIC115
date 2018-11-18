@@ -1,9 +1,7 @@
 package Vista;
 
 //importando librerias
-import javax.swing.table.DefaultTableColumnModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+import java.util.ArrayList;
 
 /*
     Este form debe añadir (lo demas datos que se solicitan están bien) la opcion de escoger el tipo de Transaccion segun la tabla Tipo y desplegar los detalles que correspondan para 
@@ -23,227 +21,862 @@ public class FormTransaccion extends javax.swing.JFrame {
  
     public FormTransaccion() {
         initComponents();
-        inicializarColumnasTablaTransacciones(); //para inicializar el formato de la tableTransacciones 
-    }
-
-    //Metodo para inicializar las columnas de la tabla
-    private void inicializarColumnasTablaTransacciones()
-    {
-        TableColumnModel tColumnModel = new DefaultTableColumnModel();
+        inicializandoValoresComponentes();
         
-        for(int i=0; i<4; i++)
-        {
-            TableColumn col= new TableColumn(i);
-            
-            switch(i){
-                case 0:
-                    col.setHeaderValue("Codigo");
-                    break;
-                case 1:
-                    col.setHeaderValue("Nombre");
-                    break;
-                case 2:
-                    col.setHeaderValue("Debe");
-                    break;
-                case 3:
-                    col.setHeaderValue("Haber");
-                    break;
-            }
-            tColumnModel.addColumn(col);
-        }
-        tableTransacciones.setColumnModel(tColumnModel);
     }
     
+    private void inicializandoValoresComponentes()
+    {
+        //inicializando contenido de radios para evitar modulo de validacion
+        radioCargoTrans.setSelected(true);
+        radioCargoDGA.setSelected(true);
+        radioCargoDIA.setSelected(true);
+        radioCargoDAF.setSelected(true); 
+    }
+
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        lblNumPartida = new javax.swing.JLabel();
-        lblFecha = new javax.swing.JLabel();
-        lblConceptoGeneral = new javax.swing.JLabel();
-        txtConceptoGeneral = new javax.swing.JTextField();
-        lblNumCuenta = new javax.swing.JLabel();
-        txtNumCuenta = new javax.swing.JTextField();
-        btnCatalogo = new javax.swing.JButton();
-        radCargo = new javax.swing.JRadioButton();
-        radAbono = new javax.swing.JRadioButton();
-        lblValor = new javax.swing.JLabel();
-        txtValor = new javax.swing.JTextField();
-        btnOK = new javax.swing.JButton();
-        lblNumPartidaVal = new javax.swing.JLabel();
-        lblFechaVal = new javax.swing.JLabel();
+        btngpTransacciones = new javax.swing.ButtonGroup();
+        btngpDetalleGastoAdelantado = new javax.swing.ButtonGroup();
+        btngpDetalleInteresesAcumulados = new javax.swing.ButtonGroup();
+        btngpDetalleActivoFijo = new javax.swing.ButtonGroup();
+        tabPanelTransacciones = new javax.swing.JTabbedPane();
+        tabTransaccion = new javax.swing.JPanel();
+        lblNumPartidaTrans = new javax.swing.JLabel();
+        lblValNumPartidaTrans = new javax.swing.JLabel();
+        lblFechaTrans = new javax.swing.JLabel();
+        lblValFechaTrans = new javax.swing.JLabel();
+        lblConceptoGeneralTrans = new javax.swing.JLabel();
+        txtConceptoGeneralTrans = new javax.swing.JTextField();
+        lblNumCuentaTrans = new javax.swing.JLabel();
+        txtNumCuentaTrans = new javax.swing.JTextField();
+        btnCatalogoTrans = new javax.swing.JButton();
+        panelTipoTrans = new javax.swing.JPanel();
+        radioCargoTrans = new javax.swing.JRadioButton();
+        radioAbonoTrans = new javax.swing.JRadioButton();
+        lblMontoTrans = new javax.swing.JLabel();
+        txtMontoTrans = new javax.swing.JTextField();
+        btnRegistrarTrans = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableTransacciones = new javax.swing.JTable();
-        lblTotales = new javax.swing.JLabel();
-        lblTotalDebe = new javax.swing.JLabel();
-        lblTotalHaber = new javax.swing.JLabel();
-        lblDiferencia = new javax.swing.JLabel();
-        lblDiferenciaVal = new javax.swing.JLabel();
-        btnBorrarLinea = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
+        lblTotalesTrans = new javax.swing.JLabel();
+        lblTotalDebeTrans = new javax.swing.JLabel();
+        lblTotalHaberTrans = new javax.swing.JLabel();
+        lblDiferenciaTrans = new javax.swing.JLabel();
+        lblValDiferenciaHaberTrans = new javax.swing.JLabel();
+        btnBorrarTrans = new javax.swing.JButton();
+        btnGuardarTrans = new javax.swing.JButton();
+        tabDetalleGastoAdelantado = new javax.swing.JPanel();
+        lblNumPartidaDGA = new javax.swing.JLabel();
+        lblValNumPartidaDGA = new javax.swing.JLabel();
+        lblFechaDGA = new javax.swing.JLabel();
+        lblValFechaDGA = new javax.swing.JLabel();
+        lblConceptoGeneralDGA = new javax.swing.JLabel();
+        txtConceptoGeneralDGA = new javax.swing.JTextField();
+        lblNumCuentaDGA = new javax.swing.JLabel();
+        txtNumCuentaDGA = new javax.swing.JTextField();
+        btnCatalogoDGA = new javax.swing.JButton();
+        panelTipoDGA = new javax.swing.JPanel();
+        radioCargoDGA = new javax.swing.JRadioButton();
+        radioAbonoDGA = new javax.swing.JRadioButton();
+        lblMontoDGA = new javax.swing.JLabel();
+        txtMontoDGA = new javax.swing.JTextField();
+        btnRegistrarDGA = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableDetalleGastosAdelantados = new javax.swing.JTable();
+        lblTotalesDGA = new javax.swing.JLabel();
+        lblTotalDebeDGA = new javax.swing.JLabel();
+        lblTotalHaberDGA = new javax.swing.JLabel();
+        lblDiferenciaDGA = new javax.swing.JLabel();
+        lblValDiferenciaHaberDGA = new javax.swing.JLabel();
+        btnBorrarDGA = new javax.swing.JButton();
+        btnGuardarDGA = new javax.swing.JButton();
+        tabDetalleInteresesAcumulados = new javax.swing.JPanel();
+        lblNumPartidaDIA = new javax.swing.JLabel();
+        lblValNumPartidaDIA = new javax.swing.JLabel();
+        lblFechaDIA = new javax.swing.JLabel();
+        lblValFechaDIA = new javax.swing.JLabel();
+        lblConceptoGeneralDIA = new javax.swing.JLabel();
+        txtConceptoGeneralDIA = new javax.swing.JTextField();
+        lblNumCuentaDIA = new javax.swing.JLabel();
+        txtNumCuentaDIA = new javax.swing.JTextField();
+        btnCatalogoDIA = new javax.swing.JButton();
+        panelTipoDIA = new javax.swing.JPanel();
+        radioCargoDIA = new javax.swing.JRadioButton();
+        radioAbonoDIA = new javax.swing.JRadioButton();
+        lblMontoDIA = new javax.swing.JLabel();
+        txtMontoDIA = new javax.swing.JTextField();
+        btnRegistrarDIA = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableDetalleInteresesAcumulados = new javax.swing.JTable();
+        lblTotalesDIA = new javax.swing.JLabel();
+        lblTotalDebeDIA = new javax.swing.JLabel();
+        lblTotalHaberDIA = new javax.swing.JLabel();
+        lblDiferenciaDIA = new javax.swing.JLabel();
+        lblValDiferenciaHaberDIA = new javax.swing.JLabel();
+        btnBorrarDIA = new javax.swing.JButton();
+        btnGuardarDIA = new javax.swing.JButton();
+        tabDetalleActivoFijo = new javax.swing.JPanel();
+        lblNumPartidaDAF = new javax.swing.JLabel();
+        lblValNumPartidaDAF = new javax.swing.JLabel();
+        lblFechaDAF = new javax.swing.JLabel();
+        lblValFechaDAF = new javax.swing.JLabel();
+        lblConceptoGeneralDAF = new javax.swing.JLabel();
+        txtConceptoGeneralDAF = new javax.swing.JTextField();
+        lblNumCuentaDAF = new javax.swing.JLabel();
+        txtNumCuentaDAF = new javax.swing.JTextField();
+        btnCatalogoDAF = new javax.swing.JButton();
+        panelTipoDAF = new javax.swing.JPanel();
+        radioCargoDAF = new javax.swing.JRadioButton();
+        radioAbonoDAF = new javax.swing.JRadioButton();
+        lblMontoDAF = new javax.swing.JLabel();
+        txtMontoDAF = new javax.swing.JTextField();
+        btnRegistrarDAF = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableDetalleActivoFijo = new javax.swing.JTable();
+        lblTotalesDAF = new javax.swing.JLabel();
+        lblTotalDebeDAF = new javax.swing.JLabel();
+        lblTotalHaberDAF = new javax.swing.JLabel();
+        lblDiferenciaDAF = new javax.swing.JLabel();
+        lblValDiferenciaHaberDAF = new javax.swing.JLabel();
+        btnBorrarDAF = new javax.swing.JButton();
+        btnGuardarDAF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transaccion");
 
-        lblNumPartida.setText("Numero de Partida:");
+        lblNumPartidaTrans.setText("Numero de Partida:");
 
-        lblFecha.setText("Fecha:");
+        lblValNumPartidaTrans.setText("Valor de numero de partida");
 
-        lblConceptoGeneral.setText("Concepto general:");
+        lblFechaTrans.setText("Fecha:");
 
-        lblNumCuenta.setText("No de Cuenta:");
+        lblValFechaTrans.setText("Valor de fecha");
 
-        btnCatalogo.setText("Catalogo");
+        lblConceptoGeneralTrans.setText("Concepto General:");
 
-        radCargo.setText("Cargo");
+        lblNumCuentaTrans.setText("Numero de Cuenta:");
 
-        radAbono.setText("Abono");
+        btnCatalogoTrans.setText("Catalogo");
 
-        lblValor.setText("Valor:");
+        panelTipoTrans.setBorder(javax.swing.BorderFactory.createTitledBorder("tipo"));
 
-        btnOK.setText("OK");
+        btngpTransacciones.add(radioCargoTrans);
+        radioCargoTrans.setText("Cargo");
 
-        lblNumPartidaVal.setText("Valor del numero de partida");
+        btngpTransacciones.add(radioAbonoTrans);
+        radioAbonoTrans.setText("Abono");
 
-        lblFechaVal.setText("Valor de la fecha de transaccion");
+        javax.swing.GroupLayout panelTipoTransLayout = new javax.swing.GroupLayout(panelTipoTrans);
+        panelTipoTrans.setLayout(panelTipoTransLayout);
+        panelTipoTransLayout.setHorizontalGroup(
+            panelTipoTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoTransLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTipoTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioCargoTrans)
+                    .addComponent(radioAbonoTrans))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        panelTipoTransLayout.setVerticalGroup(
+            panelTipoTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoTransLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(radioCargoTrans)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addComponent(radioAbonoTrans)
+                .addContainerGap())
+        );
+
+        lblMontoTrans.setText("Monto:");
+
+        btnRegistrarTrans.setText("Registrar");
 
         tableTransacciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "Numero de Cuenta", "Cuenta", "Debe", "Haber"
             }
         ));
         jScrollPane1.setViewportView(tableTransacciones);
 
-        lblTotales.setText("Totales");
+        lblTotalesTrans.setText("Totales:");
 
-        lblTotalDebe.setText("$ Total Debe");
+        lblTotalDebeTrans.setText("Total Debe");
 
-        lblTotalHaber.setText("$ Total Haber");
+        lblTotalHaberTrans.setText("Total Haber");
 
-        lblDiferencia.setText("Diferencia");
+        lblDiferenciaTrans.setText("Diferencia:");
 
-        lblDiferenciaVal.setText("$ Valor Diferencia");
+        lblValDiferenciaHaberTrans.setText("Valor de la diferencia de Debe y Haber");
 
-        btnBorrarLinea.setText("Borrar linea");
+        btnBorrarTrans.setText("Borrar Linea de Registro");
 
-        btnGuardar.setText("Guardar");
+        btnGuardarTrans.setText("Guardar y Finalizar");
+
+        javax.swing.GroupLayout tabTransaccionLayout = new javax.swing.GroupLayout(tabTransaccion);
+        tabTransaccion.setLayout(tabTransaccionLayout);
+        tabTransaccionLayout.setHorizontalGroup(
+            tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabTransaccionLayout.createSequentialGroup()
+                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                    .addComponent(lblConceptoGeneralTrans)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtConceptoGeneralTrans))
+                                .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                    .addComponent(lblNumPartidaTrans)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblValNumPartidaTrans)
+                                    .addGap(134, 134, 134)
+                                    .addComponent(lblFechaTrans)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblValFechaTrans)))
+                            .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMontoTrans)
+                                    .addComponent(lblNumCuentaTrans))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNumCuentaTrans, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(txtMontoTrans))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCatalogoTrans)
+                                .addGap(50, 50, 50)
+                                .addComponent(panelTipoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRegistrarTrans))))
+                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(btnBorrarTrans)
+                        .addGap(68, 68, 68)
+                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardarTrans)
+                            .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDiferenciaTrans)
+                                    .addComponent(lblTotalesTrans))
+                                .addGap(62, 62, 62)
+                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                        .addComponent(lblTotalDebeTrans)
+                                        .addGap(83, 83, 83)
+                                        .addComponent(lblTotalHaberTrans))
+                                    .addComponent(lblValDiferenciaHaberTrans))))))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        tabTransaccionLayout.setVerticalGroup(
+            tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabTransaccionLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumPartidaTrans)
+                    .addComponent(lblValNumPartidaTrans)
+                    .addComponent(lblFechaTrans)
+                    .addComponent(lblValFechaTrans))
+                .addGap(29, 29, 29)
+                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConceptoGeneralTrans)
+                    .addComponent(txtConceptoGeneralTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumCuentaTrans)
+                            .addComponent(txtNumCuentaTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCatalogoTrans))
+                        .addGap(18, 18, 18)
+                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMontoTrans)
+                            .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(panelTipoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btnRegistrarTrans)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalesTrans)
+                    .addComponent(lblTotalDebeTrans)
+                    .addComponent(lblTotalHaberTrans))
+                .addGap(39, 39, 39)
+                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDiferenciaTrans)
+                    .addComponent(lblValDiferenciaHaberTrans))
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrarTrans)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnGuardarTrans)
+                .addGap(31, 31, 31))
+        );
+
+        tabPanelTransacciones.addTab("Transacciones", tabTransaccion);
+
+        lblNumPartidaDGA.setText("Numero de Partida:");
+
+        lblValNumPartidaDGA.setText("Valor de numero de partida");
+
+        lblFechaDGA.setText("Fecha:");
+
+        lblValFechaDGA.setText("Valor de fecha");
+
+        lblConceptoGeneralDGA.setText("Concepto General:");
+
+        lblNumCuentaDGA.setText("Numero de Cuenta:");
+
+        btnCatalogoDGA.setText("Catalogo");
+
+        panelTipoDGA.setBorder(javax.swing.BorderFactory.createTitledBorder("tipo"));
+
+        btngpDetalleGastoAdelantado.add(radioCargoDGA);
+        radioCargoDGA.setText("Cargo");
+
+        btngpDetalleGastoAdelantado.add(radioAbonoDGA);
+        radioAbonoDGA.setText("Abono");
+
+        javax.swing.GroupLayout panelTipoDGALayout = new javax.swing.GroupLayout(panelTipoDGA);
+        panelTipoDGA.setLayout(panelTipoDGALayout);
+        panelTipoDGALayout.setHorizontalGroup(
+            panelTipoDGALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoDGALayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTipoDGALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioCargoDGA)
+                    .addComponent(radioAbonoDGA))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        panelTipoDGALayout.setVerticalGroup(
+            panelTipoDGALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoDGALayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(radioCargoDGA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addComponent(radioAbonoDGA)
+                .addContainerGap())
+        );
+
+        lblMontoDGA.setText("Monto:");
+
+        btnRegistrarDGA.setText("Registrar");
+
+        tableDetalleGastosAdelantados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Numero de Cuenta", "Cuenta", "Debe", "Haber"
+            }
+        ));
+        jScrollPane2.setViewportView(tableDetalleGastosAdelantados);
+
+        lblTotalesDGA.setText("Totales:");
+
+        lblTotalDebeDGA.setText("Total Debe");
+
+        lblTotalHaberDGA.setText("Total Haber");
+
+        lblDiferenciaDGA.setText("Diferencia:");
+
+        lblValDiferenciaHaberDGA.setText("Valor de la diferencia de Debe y Haber");
+
+        btnBorrarDGA.setText("Borrar Linea de Registro");
+
+        btnGuardarDGA.setText("Guardar y Finalizar");
+
+        javax.swing.GroupLayout tabDetalleGastoAdelantadoLayout = new javax.swing.GroupLayout(tabDetalleGastoAdelantado);
+        tabDetalleGastoAdelantado.setLayout(tabDetalleGastoAdelantadoLayout);
+        tabDetalleGastoAdelantadoLayout.setHorizontalGroup(
+            tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                                    .addComponent(lblConceptoGeneralDGA)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtConceptoGeneralDGA))
+                                .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                                    .addComponent(lblNumPartidaDGA)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblValNumPartidaDGA)
+                                    .addGap(134, 134, 134)
+                                    .addComponent(lblFechaDGA)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblValFechaDGA)))
+                            .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMontoDGA)
+                                    .addComponent(lblNumCuentaDGA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNumCuentaDGA, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(txtMontoDGA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCatalogoDGA)
+                                .addGap(50, 50, 50)
+                                .addComponent(panelTipoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRegistrarDGA))))
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(btnBorrarDGA)
+                        .addGap(68, 68, 68)
+                        .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardarDGA)
+                            .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDiferenciaDGA)
+                                    .addComponent(lblTotalesDGA))
+                                .addGap(62, 62, 62)
+                                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                                        .addComponent(lblTotalDebeDGA)
+                                        .addGap(83, 83, 83)
+                                        .addComponent(lblTotalHaberDGA))
+                                    .addComponent(lblValDiferenciaHaberDGA))))))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        tabDetalleGastoAdelantadoLayout.setVerticalGroup(
+            tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumPartidaDGA)
+                    .addComponent(lblValNumPartidaDGA)
+                    .addComponent(lblFechaDGA)
+                    .addComponent(lblValFechaDGA))
+                .addGap(29, 29, 29)
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConceptoGeneralDGA)
+                    .addComponent(txtConceptoGeneralDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumCuentaDGA)
+                            .addComponent(txtNumCuentaDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCatalogoDGA))
+                        .addGap(18, 18, 18)
+                        .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMontoDGA)
+                            .addComponent(txtMontoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(panelTipoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btnRegistrarDGA)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalesDGA)
+                    .addComponent(lblTotalDebeDGA)
+                    .addComponent(lblTotalHaberDGA))
+                .addGap(39, 39, 39)
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDiferenciaDGA)
+                    .addComponent(lblValDiferenciaHaberDGA))
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrarDGA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnGuardarDGA)
+                .addGap(31, 31, 31))
+        );
+
+        tabPanelTransacciones.addTab("Detalle Gasto Adelantado", tabDetalleGastoAdelantado);
+
+        lblNumPartidaDIA.setText("Numero de Partida:");
+
+        lblValNumPartidaDIA.setText("Valor de numero de partida");
+
+        lblFechaDIA.setText("Fecha:");
+
+        lblValFechaDIA.setText("Valor de fecha");
+
+        lblConceptoGeneralDIA.setText("Concepto General:");
+
+        lblNumCuentaDIA.setText("Numero de Cuenta:");
+
+        btnCatalogoDIA.setText("Catalogo");
+
+        panelTipoDIA.setBorder(javax.swing.BorderFactory.createTitledBorder("tipo"));
+
+        btngpDetalleInteresesAcumulados.add(radioCargoDIA);
+        radioCargoDIA.setText("Cargo");
+
+        btngpDetalleInteresesAcumulados.add(radioAbonoDIA);
+        radioAbonoDIA.setText("Abono");
+
+        javax.swing.GroupLayout panelTipoDIALayout = new javax.swing.GroupLayout(panelTipoDIA);
+        panelTipoDIA.setLayout(panelTipoDIALayout);
+        panelTipoDIALayout.setHorizontalGroup(
+            panelTipoDIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoDIALayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTipoDIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioCargoDIA)
+                    .addComponent(radioAbonoDIA))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        panelTipoDIALayout.setVerticalGroup(
+            panelTipoDIALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoDIALayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(radioCargoDIA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addComponent(radioAbonoDIA)
+                .addContainerGap())
+        );
+
+        lblMontoDIA.setText("Monto:");
+
+        btnRegistrarDIA.setText("Registrar");
+
+        tableDetalleInteresesAcumulados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Numero de Cuenta", "Cuenta", "Debe", "Haber"
+            }
+        ));
+        jScrollPane3.setViewportView(tableDetalleInteresesAcumulados);
+
+        lblTotalesDIA.setText("Totales:");
+
+        lblTotalDebeDIA.setText("Total Debe");
+
+        lblTotalHaberDIA.setText("Total Haber");
+
+        lblDiferenciaDIA.setText("Diferencia:");
+
+        lblValDiferenciaHaberDIA.setText("Valor de la diferencia de Debe y Haber");
+
+        btnBorrarDIA.setText("Borrar Linea de Registro");
+
+        btnGuardarDIA.setText("Guardar y Finalizar");
+
+        javax.swing.GroupLayout tabDetalleInteresesAcumuladosLayout = new javax.swing.GroupLayout(tabDetalleInteresesAcumulados);
+        tabDetalleInteresesAcumulados.setLayout(tabDetalleInteresesAcumuladosLayout);
+        tabDetalleInteresesAcumuladosLayout.setHorizontalGroup(
+            tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                                    .addComponent(lblConceptoGeneralDIA)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtConceptoGeneralDIA))
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                                    .addComponent(lblNumPartidaDIA)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblValNumPartidaDIA)
+                                    .addGap(134, 134, 134)
+                                    .addComponent(lblFechaDIA)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblValFechaDIA)))
+                            .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMontoDIA)
+                                    .addComponent(lblNumCuentaDIA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNumCuentaDIA, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(txtMontoDIA))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCatalogoDIA)
+                                .addGap(50, 50, 50)
+                                .addComponent(panelTipoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRegistrarDIA))))
+                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(btnBorrarDIA)
+                        .addGap(68, 68, 68)
+                        .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardarDIA)
+                            .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDiferenciaDIA)
+                                    .addComponent(lblTotalesDIA))
+                                .addGap(62, 62, 62)
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                                        .addComponent(lblTotalDebeDIA)
+                                        .addGap(83, 83, 83)
+                                        .addComponent(lblTotalHaberDIA))
+                                    .addComponent(lblValDiferenciaHaberDIA))))))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        tabDetalleInteresesAcumuladosLayout.setVerticalGroup(
+            tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumPartidaDIA)
+                    .addComponent(lblValNumPartidaDIA)
+                    .addComponent(lblFechaDIA)
+                    .addComponent(lblValFechaDIA))
+                .addGap(29, 29, 29)
+                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConceptoGeneralDIA)
+                    .addComponent(txtConceptoGeneralDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumCuentaDIA)
+                            .addComponent(txtNumCuentaDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCatalogoDIA))
+                        .addGap(18, 18, 18)
+                        .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMontoDIA)
+                            .addComponent(txtMontoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(panelTipoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btnRegistrarDIA)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalesDIA)
+                    .addComponent(lblTotalDebeDIA)
+                    .addComponent(lblTotalHaberDIA))
+                .addGap(39, 39, 39)
+                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDiferenciaDIA)
+                    .addComponent(lblValDiferenciaHaberDIA))
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrarDIA)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnGuardarDIA)
+                .addGap(31, 31, 31))
+        );
+
+        tabPanelTransacciones.addTab("Detalle Intereses Acumulados", tabDetalleInteresesAcumulados);
+
+        lblNumPartidaDAF.setText("Numero de Partida:");
+
+        lblValNumPartidaDAF.setText("Valor de numero de partida");
+
+        lblFechaDAF.setText("Fecha:");
+
+        lblValFechaDAF.setText("Valor de fecha");
+
+        lblConceptoGeneralDAF.setText("Concepto General:");
+
+        lblNumCuentaDAF.setText("Numero de Cuenta:");
+
+        btnCatalogoDAF.setText("Catalogo");
+
+        panelTipoDAF.setBorder(javax.swing.BorderFactory.createTitledBorder("tipo"));
+
+        btngpDetalleActivoFijo.add(radioCargoDAF);
+        radioCargoDAF.setText("Cargo");
+
+        btngpDetalleActivoFijo.add(radioAbonoDAF);
+        radioAbonoDAF.setText("Abono");
+
+        javax.swing.GroupLayout panelTipoDAFLayout = new javax.swing.GroupLayout(panelTipoDAF);
+        panelTipoDAF.setLayout(panelTipoDAFLayout);
+        panelTipoDAFLayout.setHorizontalGroup(
+            panelTipoDAFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoDAFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTipoDAFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioCargoDAF)
+                    .addComponent(radioAbonoDAF))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        panelTipoDAFLayout.setVerticalGroup(
+            panelTipoDAFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTipoDAFLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(radioCargoDAF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addComponent(radioAbonoDAF)
+                .addContainerGap())
+        );
+
+        lblMontoDAF.setText("Monto:");
+
+        btnRegistrarDAF.setText("Registrar");
+
+        tableDetalleActivoFijo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Numero de Cuenta", "Cuenta", "Debe", "Haber"
+            }
+        ));
+        jScrollPane4.setViewportView(tableDetalleActivoFijo);
+
+        lblTotalesDAF.setText("Totales:");
+
+        lblTotalDebeDAF.setText("Total Debe");
+
+        lblTotalHaberDAF.setText("Total Haber");
+
+        lblDiferenciaDAF.setText("Diferencia:");
+
+        lblValDiferenciaHaberDAF.setText("Valor de la diferencia de Debe y Haber");
+
+        btnBorrarDAF.setText("Borrar Linea de Registro");
+
+        btnGuardarDAF.setText("Guardar y Finalizar");
+
+        javax.swing.GroupLayout tabDetalleActivoFijoLayout = new javax.swing.GroupLayout(tabDetalleActivoFijo);
+        tabDetalleActivoFijo.setLayout(tabDetalleActivoFijoLayout);
+        tabDetalleActivoFijoLayout.setHorizontalGroup(
+            tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                    .addComponent(lblConceptoGeneralDAF)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtConceptoGeneralDAF))
+                                .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                    .addComponent(lblNumPartidaDAF)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblValNumPartidaDAF)
+                                    .addGap(134, 134, 134)
+                                    .addComponent(lblFechaDAF)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblValFechaDAF)))
+                            .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMontoDAF)
+                                    .addComponent(lblNumCuentaDAF))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNumCuentaDAF, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(txtMontoDAF))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCatalogoDAF)
+                                .addGap(50, 50, 50)
+                                .addComponent(panelTipoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRegistrarDAF))))
+                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(btnBorrarDAF)
+                        .addGap(68, 68, 68)
+                        .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardarDAF)
+                            .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDiferenciaDAF)
+                                    .addComponent(lblTotalesDAF))
+                                .addGap(62, 62, 62)
+                                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                        .addComponent(lblTotalDebeDAF)
+                                        .addGap(83, 83, 83)
+                                        .addComponent(lblTotalHaberDAF))
+                                    .addComponent(lblValDiferenciaHaberDAF))))))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        tabDetalleActivoFijoLayout.setVerticalGroup(
+            tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNumPartidaDAF)
+                    .addComponent(lblValNumPartidaDAF)
+                    .addComponent(lblFechaDAF)
+                    .addComponent(lblValFechaDAF))
+                .addGap(29, 29, 29)
+                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConceptoGeneralDAF)
+                    .addComponent(txtConceptoGeneralDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumCuentaDAF)
+                            .addComponent(txtNumCuentaDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCatalogoDAF))
+                        .addGap(18, 18, 18)
+                        .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMontoDAF)
+                            .addComponent(txtMontoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(panelTipoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btnRegistrarDAF)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalesDAF)
+                    .addComponent(lblTotalDebeDAF)
+                    .addComponent(lblTotalHaberDAF))
+                .addGap(39, 39, 39)
+                .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDiferenciaDAF)
+                    .addComponent(lblValDiferenciaHaberDAF))
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrarDAF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnGuardarDAF)
+                .addGap(31, 31, 31))
+        );
+
+        tabPanelTransacciones.addTab("Detalle Activo Fijo", tabDetalleActivoFijo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNumPartida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNumPartidaVal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFecha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblFechaVal)
-                        .addGap(118, 118, 118))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblConceptoGeneral)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtConceptoGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNumCuenta)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCatalogo)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radCargo)
-                                    .addComponent(radAbono))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblValor))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnOK)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBorrarLinea)
-                                .addGap(104, 104, 104)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTotales)
-                                    .addComponent(lblDiferencia))
-                                .addGap(69, 69, 69)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblTotalDebe)
-                                        .addGap(85, 85, 85)
-                                        .addComponent(lblTotalHaber))
-                                    .addComponent(lblDiferenciaVal)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 63, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(298, 298, 298)
-                .addComponent(btnGuardar)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(tabPanelTransacciones)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumPartida)
-                    .addComponent(lblFecha)
-                    .addComponent(lblNumPartidaVal)
-                    .addComponent(lblFechaVal))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblConceptoGeneral)
-                    .addComponent(txtConceptoGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblNumCuenta)
-                                .addComponent(btnCatalogo)
-                                .addComponent(radCargo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(lblValor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(radAbono)
-                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnOK)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTotales)
-                    .addComponent(lblTotalDebe)
-                    .addComponent(lblTotalHaber)
-                    .addComponent(btnBorrarLinea))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDiferencia)
-                    .addComponent(lblDiferenciaVal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addGap(26, 26, 26))
+            .addComponent(tabPanelTransacciones)
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /**
      * @param args the command line arguments
@@ -280,29 +913,111 @@ public class FormTransaccion extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBorrarLinea;
-    private javax.swing.JButton btnCatalogo;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnOK;
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton btnBorrarDAF;
+    private javax.swing.JButton btnBorrarDGA;
+    private javax.swing.JButton btnBorrarDIA;
+    private javax.swing.JButton btnBorrarTrans;
+    private javax.swing.JButton btnCatalogoDAF;
+    private javax.swing.JButton btnCatalogoDGA;
+    private javax.swing.JButton btnCatalogoDIA;
+    private javax.swing.JButton btnCatalogoTrans;
+    private javax.swing.JButton btnGuardarDAF;
+    private javax.swing.JButton btnGuardarDGA;
+    private javax.swing.JButton btnGuardarDIA;
+    private javax.swing.JButton btnGuardarTrans;
+    private javax.swing.JButton btnRegistrarDAF;
+    private javax.swing.JButton btnRegistrarDGA;
+    private javax.swing.JButton btnRegistrarDIA;
+    private javax.swing.JButton btnRegistrarTrans;
+    private javax.swing.ButtonGroup btngpDetalleActivoFijo;
+    private javax.swing.ButtonGroup btngpDetalleGastoAdelantado;
+    private javax.swing.ButtonGroup btngpDetalleInteresesAcumulados;
+    private javax.swing.ButtonGroup btngpTransacciones;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblConceptoGeneral;
-    private javax.swing.JLabel lblDiferencia;
-    private javax.swing.JLabel lblDiferenciaVal;
-    private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblFechaVal;
-    private javax.swing.JLabel lblNumCuenta;
-    private javax.swing.JLabel lblNumPartida;
-    private javax.swing.JLabel lblNumPartidaVal;
-    private javax.swing.JLabel lblTotalDebe;
-    private javax.swing.JLabel lblTotalHaber;
-    private javax.swing.JLabel lblTotales;
-    private javax.swing.JLabel lblValor;
-    private javax.swing.JRadioButton radAbono;
-    private javax.swing.JRadioButton radCargo;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblConceptoGeneralDAF;
+    private javax.swing.JLabel lblConceptoGeneralDGA;
+    private javax.swing.JLabel lblConceptoGeneralDIA;
+    private javax.swing.JLabel lblConceptoGeneralTrans;
+    private javax.swing.JLabel lblDiferenciaDAF;
+    private javax.swing.JLabel lblDiferenciaDGA;
+    private javax.swing.JLabel lblDiferenciaDIA;
+    private javax.swing.JLabel lblDiferenciaTrans;
+    private javax.swing.JLabel lblFechaDAF;
+    private javax.swing.JLabel lblFechaDGA;
+    private javax.swing.JLabel lblFechaDIA;
+    private javax.swing.JLabel lblFechaTrans;
+    private javax.swing.JLabel lblMontoDAF;
+    private javax.swing.JLabel lblMontoDGA;
+    private javax.swing.JLabel lblMontoDIA;
+    private javax.swing.JLabel lblMontoTrans;
+    private javax.swing.JLabel lblNumCuentaDAF;
+    private javax.swing.JLabel lblNumCuentaDGA;
+    private javax.swing.JLabel lblNumCuentaDIA;
+    private javax.swing.JLabel lblNumCuentaTrans;
+    private javax.swing.JLabel lblNumPartidaDAF;
+    private javax.swing.JLabel lblNumPartidaDGA;
+    private javax.swing.JLabel lblNumPartidaDIA;
+    private javax.swing.JLabel lblNumPartidaTrans;
+    private javax.swing.JLabel lblTotalDebeDAF;
+    private javax.swing.JLabel lblTotalDebeDGA;
+    private javax.swing.JLabel lblTotalDebeDIA;
+    private javax.swing.JLabel lblTotalDebeTrans;
+    private javax.swing.JLabel lblTotalHaberDAF;
+    private javax.swing.JLabel lblTotalHaberDGA;
+    private javax.swing.JLabel lblTotalHaberDIA;
+    private javax.swing.JLabel lblTotalHaberTrans;
+    private javax.swing.JLabel lblTotalesDAF;
+    private javax.swing.JLabel lblTotalesDGA;
+    private javax.swing.JLabel lblTotalesDIA;
+    private javax.swing.JLabel lblTotalesTrans;
+    private javax.swing.JLabel lblValDiferenciaHaberDAF;
+    private javax.swing.JLabel lblValDiferenciaHaberDGA;
+    private javax.swing.JLabel lblValDiferenciaHaberDIA;
+    private javax.swing.JLabel lblValDiferenciaHaberTrans;
+    private javax.swing.JLabel lblValFechaDAF;
+    private javax.swing.JLabel lblValFechaDGA;
+    private javax.swing.JLabel lblValFechaDIA;
+    private javax.swing.JLabel lblValFechaTrans;
+    private javax.swing.JLabel lblValNumPartidaDAF;
+    private javax.swing.JLabel lblValNumPartidaDGA;
+    private javax.swing.JLabel lblValNumPartidaDIA;
+    private javax.swing.JLabel lblValNumPartidaTrans;
+    private javax.swing.JPanel panelTipoDAF;
+    private javax.swing.JPanel panelTipoDGA;
+    private javax.swing.JPanel panelTipoDIA;
+    private javax.swing.JPanel panelTipoTrans;
+    private javax.swing.JRadioButton radioAbonoDAF;
+    private javax.swing.JRadioButton radioAbonoDGA;
+    private javax.swing.JRadioButton radioAbonoDIA;
+    private javax.swing.JRadioButton radioAbonoTrans;
+    private javax.swing.JRadioButton radioCargoDAF;
+    private javax.swing.JRadioButton radioCargoDGA;
+    private javax.swing.JRadioButton radioCargoDIA;
+    private javax.swing.JRadioButton radioCargoTrans;
+    private javax.swing.JPanel tabDetalleActivoFijo;
+    private javax.swing.JPanel tabDetalleGastoAdelantado;
+    private javax.swing.JPanel tabDetalleInteresesAcumulados;
+    private javax.swing.JTabbedPane tabPanelTransacciones;
+    private javax.swing.JPanel tabTransaccion;
+    private javax.swing.JTable tableDetalleActivoFijo;
+    private javax.swing.JTable tableDetalleGastosAdelantados;
+    private javax.swing.JTable tableDetalleInteresesAcumulados;
     private javax.swing.JTable tableTransacciones;
-    private javax.swing.JTextField txtConceptoGeneral;
-    private javax.swing.JTextField txtNumCuenta;
-    private javax.swing.JTextField txtValor;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JTextField txtConceptoGeneralDAF;
+    private javax.swing.JTextField txtConceptoGeneralDGA;
+    private javax.swing.JTextField txtConceptoGeneralDIA;
+    private javax.swing.JTextField txtConceptoGeneralTrans;
+    private javax.swing.JTextField txtMontoDAF;
+    private javax.swing.JTextField txtMontoDGA;
+    private javax.swing.JTextField txtMontoDIA;
+    private javax.swing.JTextField txtMontoTrans;
+    private javax.swing.JTextField txtNumCuentaDAF;
+    private javax.swing.JTextField txtNumCuentaDGA;
+    private javax.swing.JTextField txtNumCuentaDIA;
+    private javax.swing.JTextField txtNumCuentaTrans;
+    // End of variables declaration                   
 }

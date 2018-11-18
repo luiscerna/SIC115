@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="btngpTransacciones">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="btngpDetalleGastoAdelantado">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="btngpDetalleInteresesAcumulados">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="btngpDetalleActivoFijo">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Transaccion"/>
@@ -24,260 +34,1357 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblNumPartida" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblNumPartidaVal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lblFecha" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblFechaVal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lblConceptoGeneral" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtConceptoGeneral" min="-2" pref="349" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblNumCuenta" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtNumCuenta" min="-2" pref="128" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnCatalogo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="radCargo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radAbono" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtValor" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <Component id="lblValor" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnOK" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnBorrarLinea" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTotales" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblDiferencia" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblTotalDebe" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                                      <Component id="lblTotalHaber" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="lblDiferenciaVal" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jScrollPane1" min="-2" pref="554" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="298" max="-2" attributes="0"/>
-              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="tabPanelTransacciones" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNumPartida" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNumPartidaVal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFechaVal" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblConceptoGeneral" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtConceptoGeneral" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="txtNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblNumCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnCatalogo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="radCargo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="lblValor" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="radAbono" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtValor" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="btnOK" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTotales" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTotalDebe" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTotalHaber" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnBorrarLinea" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDiferencia" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblDiferenciaVal" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
-              <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-          </Group>
+          <Component id="tabPanelTransacciones" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblNumPartida">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Numero de Partida:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblFecha">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblConceptoGeneral">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Concepto general:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtConceptoGeneral">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblNumCuenta">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="No de Cuenta:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNumCuenta">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnCatalogo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Catalogo"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="radCargo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cargo"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="radAbono">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Abono"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblValor">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtValor">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnOK">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="OK"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblNumPartidaVal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor del numero de partida"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblFechaVal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor de la fecha de transaccion"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
+    <Container class="javax.swing.JTabbedPane" name="tabPanelTransacciones">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tableTransacciones">
-          <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="0"/>
-            </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0"/>
-            </Property>
-            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-            </Property>
-          </Properties>
-        </Component>
+        <Container class="javax.swing.JPanel" name="tabTransaccion">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Transacciones">
+                <Property name="tabTitle" type="java.lang.String" value="Transacciones"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="lblConceptoGeneralTrans" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtConceptoGeneralTrans" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="lblNumPartidaTrans" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lblValNumPartidaTrans" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="lblFechaTrans" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblValFechaTrans" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblMontoTrans" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNumCuentaTrans" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtNumCuentaTrans" pref="128" max="32767" attributes="0"/>
+                                          <Component id="txtMontoTrans" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnCatalogoTrans" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="panelTipoTrans" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnRegistrarTrans" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="602" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="btnBorrarTrans" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnGuardarTrans" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblDiferenciaTrans" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTotalesTrans" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="lblTotalDebeTrans" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="lblTotalHaberTrans" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblValDiferenciaHaberTrans" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNumPartidaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValNumPartidaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValFechaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblConceptoGeneralTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtConceptoGeneralTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNumCuentaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNumCuentaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCatalogoTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblMontoTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMontoTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="panelTipoTrans" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="btnRegistrarTrans" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="223" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTotalesTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalDebeTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalHaberTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDiferenciaTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValDiferenciaHaberTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnBorrarTrans" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <Component id="btnGuardarTrans" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblNumPartidaTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Partida:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValNumPartidaTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de numero de partida"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblFechaTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValFechaTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de fecha"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblConceptoGeneralTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Concepto General:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtConceptoGeneralTrans">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNumCuentaTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Cuenta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumCuentaTrans">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCatalogoTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Catalogo"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelTipoTrans">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="tipo"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="radioCargoTrans" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioAbonoTrans" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="radioCargoTrans" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="4" max="32767" attributes="0"/>
+                          <Component id="radioAbonoTrans" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="radioCargoTrans">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpTransacciones"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cargo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="radioAbonoTrans">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpTransacciones"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Abono"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblMontoTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Monto:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtMontoTrans">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRegistrarTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tableTransacciones">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="true" title="Numero de Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Debe" type="java.lang.Object"/>
+                        <Column editable="true" title="Haber" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblTotalesTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Totales:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalDebeTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Debe"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalHaberTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDiferenciaTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Diferencia:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValDiferenciaHaberTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de la diferencia de Debe y Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBorrarTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnGuardarTrans">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar y Finalizar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="tabDetalleGastoAdelantado">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Detalle Gasto Adelantado">
+                <Property name="tabTitle" type="java.lang.String" value="Detalle Gasto Adelantado"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblConceptoGeneralDGA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtConceptoGeneralDGA" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblNumPartidaDGA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lblValNumPartidaDGA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="lblFechaDGA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblValFechaDGA" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblMontoDGA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNumCuentaDGA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtNumCuentaDGA" alignment="0" pref="128" max="32767" attributes="0"/>
+                                          <Component id="txtMontoDGA" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnCatalogoDGA" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="panelTipoDGA" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnRegistrarDGA" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="602" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="btnBorrarDGA" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnGuardarDGA" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblDiferenciaDGA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTotalesDGA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblTotalDebeDGA" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="lblTotalHaberDGA" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblValDiferenciaHaberDGA" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNumPartidaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValNumPartidaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValFechaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblConceptoGeneralDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtConceptoGeneralDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNumCuentaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNumCuentaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCatalogoDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblMontoDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMontoDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="panelTipoDGA" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="btnRegistrarDGA" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="223" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTotalesDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalDebeDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalHaberDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDiferenciaDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValDiferenciaHaberDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnBorrarDGA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <Component id="btnGuardarDGA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblNumPartidaDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Partida:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValNumPartidaDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de numero de partida"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblFechaDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValFechaDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de fecha"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblConceptoGeneralDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Concepto General:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtConceptoGeneralDGA">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNumCuentaDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Cuenta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumCuentaDGA">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCatalogoDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Catalogo"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelTipoDGA">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="tipo"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="radioCargoDGA" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioAbonoDGA" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="radioCargoDGA" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="4" max="32767" attributes="0"/>
+                          <Component id="radioAbonoDGA" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="radioCargoDGA">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpDetalleGastoAdelantado"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cargo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="radioAbonoDGA">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpDetalleGastoAdelantado"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Abono"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblMontoDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Monto:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtMontoDGA">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRegistrarDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tableDetalleGastosAdelantados">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="true" title="Numero de Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Debe" type="java.lang.Object"/>
+                        <Column editable="true" title="Haber" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblTotalesDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Totales:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalDebeDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Debe"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalHaberDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDiferenciaDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Diferencia:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValDiferenciaHaberDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de la diferencia de Debe y Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBorrarDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnGuardarDGA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar y Finalizar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="tabDetalleInteresesAcumulados">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Detalle Intereses Acumulados">
+                <Property name="tabTitle" type="java.lang.String" value="Detalle Intereses Acumulados"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblConceptoGeneralDIA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtConceptoGeneralDIA" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblNumPartidaDIA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lblValNumPartidaDIA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="lblFechaDIA" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblValFechaDIA" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblMontoDIA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNumCuentaDIA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtNumCuentaDIA" alignment="0" pref="128" max="32767" attributes="0"/>
+                                          <Component id="txtMontoDIA" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnCatalogoDIA" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="panelTipoDIA" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnRegistrarDIA" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="602" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="btnBorrarDIA" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnGuardarDIA" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblDiferenciaDIA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTotalesDIA" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblTotalDebeDIA" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="lblTotalHaberDIA" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblValDiferenciaHaberDIA" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNumPartidaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValNumPartidaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValFechaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblConceptoGeneralDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtConceptoGeneralDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNumCuentaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNumCuentaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCatalogoDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblMontoDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMontoDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="panelTipoDIA" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="btnRegistrarDIA" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="223" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTotalesDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalDebeDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalHaberDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDiferenciaDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValDiferenciaHaberDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnBorrarDIA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <Component id="btnGuardarDIA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblNumPartidaDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Partida:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValNumPartidaDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de numero de partida"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblFechaDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValFechaDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de fecha"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblConceptoGeneralDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Concepto General:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtConceptoGeneralDIA">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNumCuentaDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Cuenta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumCuentaDIA">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCatalogoDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Catalogo"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelTipoDIA">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="tipo"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="radioCargoDIA" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioAbonoDIA" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="radioCargoDIA" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="4" max="32767" attributes="0"/>
+                          <Component id="radioAbonoDIA" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="radioCargoDIA">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpDetalleInteresesAcumulados"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cargo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="radioAbonoDIA">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpDetalleInteresesAcumulados"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Abono"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblMontoDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Monto:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtMontoDIA">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRegistrarDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tableDetalleInteresesAcumulados">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="true" title="Numero de Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Debe" type="java.lang.Object"/>
+                        <Column editable="true" title="Haber" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblTotalesDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Totales:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalDebeDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Debe"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalHaberDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDiferenciaDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Diferencia:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValDiferenciaHaberDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de la diferencia de Debe y Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBorrarDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnGuardarDIA">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar y Finalizar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="tabDetalleActivoFijo">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Detalle Activo Fijo">
+                <Property name="tabTitle" type="java.lang.String" value="Detalle Activo Fijo"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblConceptoGeneralDAF" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtConceptoGeneralDAF" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblNumPartidaDAF" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lblValNumPartidaDAF" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="lblFechaDAF" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblValFechaDAF" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblMontoDAF" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNumCuentaDAF" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtNumCuentaDAF" alignment="0" pref="128" max="32767" attributes="0"/>
+                                          <Component id="txtMontoDAF" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnCatalogoDAF" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="panelTipoDAF" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnRegistrarDAF" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="602" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="btnBorrarDAF" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnGuardarDAF" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblDiferenciaDAF" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTotalesDAF" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblTotalDebeDAF" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="lblTotalHaberDAF" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblValDiferenciaHaberDAF" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNumPartidaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValNumPartidaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValFechaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblConceptoGeneralDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtConceptoGeneralDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNumCuentaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNumCuentaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCatalogoDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblMontoDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMontoDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="panelTipoDAF" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="btnRegistrarDAF" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane4" min="-2" pref="223" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTotalesDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalDebeDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalHaberDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDiferenciaDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValDiferenciaHaberDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnBorrarDAF" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <Component id="btnGuardarDAF" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblNumPartidaDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Partida:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValNumPartidaDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de numero de partida"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblFechaDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValFechaDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de fecha"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblConceptoGeneralDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Concepto General:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtConceptoGeneralDAF">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNumCuentaDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Numero de Cuenta:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtNumCuentaDAF">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnCatalogoDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Catalogo"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelTipoDAF">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="tipo"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="radioCargoDAF" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioAbonoDAF" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="radioCargoDAF" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="4" max="32767" attributes="0"/>
+                          <Component id="radioAbonoDAF" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JRadioButton" name="radioCargoDAF">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpDetalleActivoFijo"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Cargo"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="radioAbonoDAF">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngpDetalleActivoFijo"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Abono"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblMontoDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Monto:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtMontoDAF">
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRegistrarDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tableDetalleActivoFijo">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="0">
+                        <Column editable="true" title="Numero de Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Cuenta" type="java.lang.Object"/>
+                        <Column editable="true" title="Debe" type="java.lang.Object"/>
+                        <Column editable="true" title="Haber" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="lblTotalesDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Totales:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalDebeDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Debe"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTotalHaberDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Total Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDiferenciaDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Diferencia:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblValDiferenciaHaberDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Valor de la diferencia de Debe y Haber"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnBorrarDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnGuardarDAF">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Guardar y Finalizar"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblTotales">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Totales"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTotalDebe">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="$ Total Debe"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTotalHaber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="$ Total Haber"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDiferencia">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Diferencia"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDiferenciaVal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="$ Valor Diferencia"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnBorrarLinea">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Borrar linea"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnGuardar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>
