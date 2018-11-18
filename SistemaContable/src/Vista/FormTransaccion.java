@@ -3,7 +3,7 @@ package Vista;
 //importando librerias
 import Modelo.Prueba;
 import java.util.ArrayList;
-import Controlador.TransaccionFormControl;
+import Controlador.TransaccionControl;
 import javax.swing.JOptionPane;
 
 /*
@@ -902,8 +902,8 @@ public class FormTransaccion extends javax.swing.JFrame {
 
     private void btnRegistrarTransActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         try{
-        TransaccionFormControl.agregarElementoTabla(txtNumCuentaTrans.getText(),"Prueba 1",txtMontoTrans.getText(), radioCargoTrans.isSelected(),tableTransacciones, registrosTransacciones);
-        TransaccionFormControl.calcularTotalesYDiferencia(totalesTransacciones, registrosTransacciones, lblTotalDebeTrans , lblTotalHaberTrans, lblValDiferenciaHaberTrans);
+        TransaccionControl.agregarElementoTabla(txtNumCuentaTrans.getText(),"Prueba 1",txtMontoTrans.getText(), radioCargoTrans.isSelected(),tableTransacciones, registrosTransacciones);
+        TransaccionControl.calcularTotalesYDiferencia(totalesTransacciones, registrosTransacciones, lblTotalDebeTrans , lblTotalHaberTrans, lblValDiferenciaHaberTrans);
         }
         catch(Exception e)
         {
@@ -913,7 +913,7 @@ public class FormTransaccion extends javax.swing.JFrame {
 
     private void btnGuardarTransActionPerformed(java.awt.event.ActionEvent evt) {                                                
         try{
-            boolean respuesta=TransaccionFormControl.validadorPartidaDoble(lblValDiferenciaHaberTrans);
+            boolean respuesta=TransaccionControl.validadorPartidaDoble(lblValDiferenciaHaberTrans);
             if(respuesta)
                 JOptionPane.showMessageDialog(null,"Todo Correcto");
             else

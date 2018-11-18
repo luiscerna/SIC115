@@ -19,12 +19,27 @@ public class DetalleTransaccion {
     private Transaccion transaccion;
     private Cuenta cuenta;
     
-    // Constructor
+    // Constructores
+    
+    
     public DetalleTransaccion(){
         
     }
     
-    public DetalleTransaccion(int idDetalle){
+    //Constructor para Hacer Nuevo Registro en la BD:
+    public DetalleTransaccion(Transaccion trans, Cuenta cuenta, double debe, double haber, String codCuenta) throws SQLException{ 
+        this.cuenta= new Cuenta(codCuenta);
+        this.asignarCuentaMayor(this.cuenta.getCodCuenta());
+        /*
+        --Obtener el idDetalle sumando 1 al ultimo idDetalle registrado en la BD    
+        --asignar los demás valores
+        --Hacer el registro en la BD 
+        */
+        
+    }
+    
+    //Constructor de Consulta
+    public DetalleTransaccion(int idDetalle){ 
         
     }
     

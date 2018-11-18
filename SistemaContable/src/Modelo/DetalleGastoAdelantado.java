@@ -19,6 +19,15 @@ public class DetalleGastoAdelantado {
     {
         
     }
+    public DetalleGastoAdelantado(int idTrans, int mesesPagados, double valTotal)
+    {
+        /*Debe hacer lo siguiente:
+        --obtener el idGastoA aumentando 1 al ultimo registrado
+        --Calcular que correspondería por mes, es decir el this.gastoMensual
+        --Asignar los valores a sus respectivas variables
+        --Al final, hacer el registro en la BD
+        */
+    }
     public DetalleGastoAdelantado(int idTrans) throws SQLException
     {
          //Conexion a la base de datos

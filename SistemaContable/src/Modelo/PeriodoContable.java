@@ -100,7 +100,7 @@ public class PeriodoContable {
         conexion.rs = conexion.pst.executeQuery();
         while (conexion.rs.next()){
             Cuenta cuenta = new Cuenta();
-                cuenta.codCuenta = conexion.rs.getString("codCuenta");
+                cuenta.setCodCuenta("codCuenta");//Arreglar los siguientes cambiandolos a Setter
                 cuenta.nomCuenta =  conexion.rs.getString("nomCuenta");
                 cuenta.rubro = conexion.rs.getInt("rubro");
                 cuenta.nivel = conexion.rs.getInt("nivel");

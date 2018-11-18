@@ -5,15 +5,13 @@ package Modelo;
 import Datos.Conexion;
 import java.sql.SQLException;
 
-/*Crear constructor Cuenta(codCuenta)
 
-*/
 public class Cuenta {
     // Atributos
-    String codCuenta;
-    int rubro;
-    int nivel;
-    String nomCuenta;
+    private String codCuenta;
+    private int rubro; //Encapsular
+    private int nivel;//Encapsular
+    private String nomCuenta;
     
     // Constructor
     

@@ -14,11 +14,22 @@ public class DetalleInteresesAcum {
     private double interesMensual;
 
     // Constructor
-    public DetalleInteresesAcum() 
+    public DetalleInteresesAcum(){
+            
+    }
+    
+    public DetalleInteresesAcum(int idTrans, double valorPresente, double tasaAnual) 
     {
-        
+        /*Debe hacer lo siguiente:
+        --obtener el idAcum aumentando 1 al ultimo registrado
+        --Calcular la this.tasaMensual
+        --Calcular el this.interesMensual
+        --Asignar los valores a sus respectivas variables
+        --Al final, hacer el registro en la BD
+        */
         
     }
+    
     public DetalleInteresesAcum(int idTrans) throws SQLException
     {
         //Conexion a la base de datos
