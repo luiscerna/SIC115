@@ -93,7 +93,7 @@ public class PeriodoContable {
     sino 
         devolver false
     */
-    public boolean llenarCatalogo() throws SQLException{ //metodo de Eliezer XD
+   /* public boolean llenarCatalogo() throws SQLException{ //metodo de Eliezer XD
         Conexion conexion = new Conexion();
         String query = "select codCuenta, nomCuenta, rubro, nivel from Cuenta";
         conexion.pst= conexion.conectar().prepareStatement(query);
@@ -108,7 +108,7 @@ public class PeriodoContable {
             }
         return true;
     }
-    
+    */
     
     // Métodos getter y setter
 

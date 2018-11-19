@@ -1,62 +1,54 @@
 package Vista;
 
-//importando librerias
-import Modelo.Prueba;
-import java.util.ArrayList;
 import Controlador.TransaccionControl;
+import Modelo.AuxiliarTransaccion;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/*
-    Este form debe añadir (lo demas datos que se solicitan están bien) la opcion de escoger el tipo de Transaccion segun la tabla Tipo y desplegar los detalles que correspondan para 
-    llenar la respectiva tabla (DetalleGastoAdelantado, DetalleInteresesAcum, DetalleActivoFijo).
-    Queda a creatividad del diseñador si se presenta una ventana que pregunte el tipo antes de abrir esta vista o con pestañas en un panel dentro del mismo
-    form.
-    Recordar hacer las respectivas validadciones de entrada a nivel de form.
-    
- */
-
-/* Irene!! acordate que dependiendo del tipo de trasaccion tambien se debe restringir las cuentas que el usuario podrá seleccionar 
-    para hacer la transaccion
-  
-*/
-
 public class FormTransaccion extends javax.swing.JFrame {
-    //Elementos de la lista (por el momento solamente se busca cumplir partida doble)
-    ArrayList <Prueba> registrosTransacciones= new ArrayList<Prueba>();
-    Double []totalesTransacciones= new Double[2];
-    
-    
+ArrayList <AuxiliarTransaccion> regTransacciones= new ArrayList<AuxiliarTransaccion>();
+ArrayList <AuxiliarTransaccion> regDetalleGastoAdelantado= new ArrayList<AuxiliarTransaccion>();
+ArrayList <AuxiliarTransaccion> regDetalleInteresesAcumulados= new ArrayList<AuxiliarTransaccion>();
+ArrayList <AuxiliarTransaccion> regDetalleActivoFijo= new ArrayList<AuxiliarTransaccion>();
+
+Double [] montoTransacciones= new Double[2];
+Double [] montoDetalleGastoAdelantado= new Double[2];
+Double [] montoDetalleInteresesAcumulados= new Double[2];
+Double [] montoDetalleActivoFijo= new Double[2];
+
+    /** Creates new form FormTransaccion */
     public FormTransaccion() {
         initComponents();
-        inicializandoValoresComponentes();
-        
+        inicializandoComponentes();
+        tabDetalleGastoAdelantado.setEnabled(false);
     }
     
-    private void inicializandoValoresComponentes()
+    //metodo para inicializar valores
+    private void inicializandoComponentes()
     {
-        //inicializando contenido de radios para evitar modulo de validacion
+        //botones
+        btnGuardarTrans.setEnabled(false);
+        btnGuardarDGA.setEnabled(false);
+        btnGuardarDIA.setEnabled(false);
+        btnGuardarDAF.setEnabled(false);
+        
+        //radios
         radioCargoTrans.setSelected(true);
         radioCargoDGA.setSelected(true);
         radioCargoDIA.setSelected(true);
         radioCargoDAF.setSelected(true);
         
-        //lista de debe y haber
-        totalesTransacciones[0]=0.00;
-        totalesTransacciones[1]=0.00;        
     }
-    
-
-    
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btngpTransacciones = new javax.swing.ButtonGroup();
         btngpDetalleGastoAdelantado = new javax.swing.ButtonGroup();
         btngpDetalleInteresesAcumulados = new javax.swing.ButtonGroup();
         btngpDetalleActivoFijo = new javax.swing.ButtonGroup();
-        tabPanelTransacciones = new javax.swing.JTabbedPane();
-        tabTransaccion = new javax.swing.JPanel();
+        panelesTransaccion = new javax.swing.JTabbedPane();
+        tabTransacciones = new javax.swing.JPanel();
         lblNumPartidaTrans = new javax.swing.JLabel();
         lblValNumPartidaTrans = new javax.swing.JLabel();
         lblFechaTrans = new javax.swing.JLabel();
@@ -82,7 +74,6 @@ public class FormTransaccion extends javax.swing.JFrame {
         btnBorrarTrans = new javax.swing.JButton();
         btnGuardarTrans = new javax.swing.JButton();
         tabDetalleGastoAdelantado = new javax.swing.JPanel();
-        lblNumPartidaDGA = new javax.swing.JLabel();
         lblValNumPartidaDGA = new javax.swing.JLabel();
         lblFechaDGA = new javax.swing.JLabel();
         lblValFechaDGA = new javax.swing.JLabel();
@@ -106,6 +97,7 @@ public class FormTransaccion extends javax.swing.JFrame {
         lblValDiferenciaHaberDGA = new javax.swing.JLabel();
         btnBorrarDGA = new javax.swing.JButton();
         btnGuardarDGA = new javax.swing.JButton();
+        lblNumPartidaDGA = new javax.swing.JLabel();
         tabDetalleInteresesAcumulados = new javax.swing.JPanel();
         lblNumPartidaDIA = new javax.swing.JLabel();
         lblValNumPartidaDIA = new javax.swing.JLabel();
@@ -158,7 +150,6 @@ public class FormTransaccion extends javax.swing.JFrame {
         btnGuardarDAF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Transaccion");
 
         lblNumPartidaTrans.setText("Numero de Partida:");
 
@@ -241,21 +232,21 @@ public class FormTransaccion extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout tabTransaccionLayout = new javax.swing.GroupLayout(tabTransaccion);
-        tabTransaccion.setLayout(tabTransaccionLayout);
-        tabTransaccionLayout.setHorizontalGroup(
-            tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabTransaccionLayout.createSequentialGroup()
-                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+        javax.swing.GroupLayout tabTransaccionesLayout = new javax.swing.GroupLayout(tabTransacciones);
+        tabTransacciones.setLayout(tabTransaccionesLayout);
+        tabTransaccionesLayout.setHorizontalGroup(
+            tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabTransaccionesLayout.createSequentialGroup()
+                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(tabTransaccionLayout.createSequentialGroup()
+                        .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(tabTransaccionesLayout.createSequentialGroup()
                                     .addComponent(lblConceptoGeneralTrans)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txtConceptoGeneralTrans))
-                                .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                .addGroup(tabTransaccionesLayout.createSequentialGroup()
                                     .addComponent(lblNumPartidaTrans)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(lblValNumPartidaTrans)
@@ -263,12 +254,12 @@ public class FormTransaccion extends javax.swing.JFrame {
                                     .addComponent(lblFechaTrans)
                                     .addGap(18, 18, 18)
                                     .addComponent(lblValFechaTrans)))
-                            .addGroup(tabTransaccionLayout.createSequentialGroup()
-                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(tabTransaccionesLayout.createSequentialGroup()
+                                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblMontoTrans)
                                     .addComponent(lblNumCuentaTrans))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNumCuentaTrans, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                                     .addComponent(txtMontoTrans))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -277,79 +268,77 @@ public class FormTransaccion extends javax.swing.JFrame {
                                 .addComponent(panelTipoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnRegistrarTrans))))
-                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(btnBorrarTrans)
                         .addGap(68, 68, 68)
-                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGuardarTrans)
-                            .addGroup(tabTransaccionLayout.createSequentialGroup()
-                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(tabTransaccionesLayout.createSequentialGroup()
+                                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblDiferenciaTrans)
                                     .addComponent(lblTotalesTrans))
                                 .addGap(62, 62, 62)
-                                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                                         .addComponent(lblTotalDebeTrans)
                                         .addGap(83, 83, 83)
                                         .addComponent(lblTotalHaberTrans))
                                     .addComponent(lblValDiferenciaHaberTrans))))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
-        tabTransaccionLayout.setVerticalGroup(
-            tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabTransaccionLayout.createSequentialGroup()
+        tabTransaccionesLayout.setVerticalGroup(
+            tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabTransaccionesLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumPartidaTrans)
                     .addComponent(lblValNumPartidaTrans)
                     .addComponent(lblFechaTrans)
                     .addComponent(lblValFechaTrans))
                 .addGap(29, 29, 29)
-                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConceptoGeneralTrans)
                     .addComponent(txtConceptoGeneralTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNumCuentaTrans)
                             .addComponent(txtNumCuentaTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCatalogoTrans))
                         .addGap(18, 18, 18)
-                        .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblMontoTrans)
                             .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(panelTipoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(tabTransaccionLayout.createSequentialGroup()
+                    .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(btnRegistrarTrans)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalesTrans)
                     .addComponent(lblTotalDebeTrans)
                     .addComponent(lblTotalHaberTrans))
                 .addGap(39, 39, 39)
-                .addGroup(tabTransaccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDiferenciaTrans)
                     .addComponent(lblValDiferenciaHaberTrans))
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarTrans)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarTrans)
                 .addGap(31, 31, 31))
         );
 
-        tabPanelTransacciones.addTab("Transacciones", tabTransaccion);
-
-        lblNumPartidaDGA.setText("Numero de Partida:");
+        panelesTransaccion.addTab("Transacciones", tabTransacciones);
 
         lblValNumPartidaDGA.setText("Valor de numero de partida");
 
@@ -395,6 +384,11 @@ public class FormTransaccion extends javax.swing.JFrame {
         lblMontoDGA.setText("Monto:");
 
         btnRegistrarDGA.setText("Registrar");
+        btnRegistrarDGA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarDGAActionPerformed(evt);
+            }
+        });
 
         tableDetalleGastosAdelantados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -419,6 +413,8 @@ public class FormTransaccion extends javax.swing.JFrame {
         btnBorrarDGA.setText("Borrar Linea de Registro");
 
         btnGuardarDGA.setText("Guardar y Finalizar");
+
+        lblNumPartidaDGA.setText("Numero de Partida:");
 
         javax.swing.GroupLayout tabDetalleGastoAdelantadoLayout = new javax.swing.GroupLayout(tabDetalleGastoAdelantado);
         tabDetalleGastoAdelantado.setLayout(tabDetalleGastoAdelantadoLayout);
@@ -476,7 +472,7 @@ public class FormTransaccion extends javax.swing.JFrame {
                                         .addGap(83, 83, 83)
                                         .addComponent(lblTotalHaberDGA))
                                     .addComponent(lblValDiferenciaHaberDGA))))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         tabDetalleGastoAdelantadoLayout.setVerticalGroup(
             tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,12 +517,12 @@ public class FormTransaccion extends javax.swing.JFrame {
                     .addComponent(lblValDiferenciaHaberDGA))
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarDGA)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarDGA)
                 .addGap(31, 31, 31))
         );
 
-        tabPanelTransacciones.addTab("Detalle Gasto Adelantado", tabDetalleGastoAdelantado);
+        panelesTransaccion.addTab("Detalle Gasto Adelantado", tabDetalleGastoAdelantado);
 
         lblNumPartidaDIA.setText("Numero de Partida:");
 
@@ -574,6 +570,11 @@ public class FormTransaccion extends javax.swing.JFrame {
         lblMontoDIA.setText("Monto:");
 
         btnRegistrarDIA.setText("Registrar");
+        btnRegistrarDIA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarDIAActionPerformed(evt);
+            }
+        });
 
         tableDetalleInteresesAcumulados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -655,7 +656,7 @@ public class FormTransaccion extends javax.swing.JFrame {
                                         .addGap(83, 83, 83)
                                         .addComponent(lblTotalHaberDIA))
                                     .addComponent(lblValDiferenciaHaberDIA))))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         tabDetalleInteresesAcumuladosLayout.setVerticalGroup(
             tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,12 +701,12 @@ public class FormTransaccion extends javax.swing.JFrame {
                     .addComponent(lblValDiferenciaHaberDIA))
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarDIA)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarDIA)
                 .addGap(31, 31, 31))
         );
 
-        tabPanelTransacciones.addTab("Detalle Intereses Acumulados", tabDetalleInteresesAcumulados);
+        panelesTransaccion.addTab("Detalle Intereses Acumulados", tabDetalleInteresesAcumulados);
 
         lblNumPartidaDAF.setText("Numero de Partida:");
 
@@ -753,6 +754,11 @@ public class FormTransaccion extends javax.swing.JFrame {
         lblMontoDAF.setText("Monto:");
 
         btnRegistrarDAF.setText("Registrar");
+        btnRegistrarDAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarDAFActionPerformed(evt);
+            }
+        });
 
         tableDetalleActivoFijo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -834,7 +840,7 @@ public class FormTransaccion extends javax.swing.JFrame {
                                         .addGap(83, 83, 83)
                                         .addComponent(lblTotalHaberDAF))
                                     .addComponent(lblValDiferenciaHaberDAF))))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         tabDetalleActivoFijoLayout.setVerticalGroup(
             tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -879,50 +885,100 @@ public class FormTransaccion extends javax.swing.JFrame {
                     .addComponent(lblValDiferenciaHaberDAF))
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarDAF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarDAF)
                 .addGap(31, 31, 31))
         );
 
-        tabPanelTransacciones.addTab("Detalle Activo Fijo", tabDetalleActivoFijo);
+        panelesTransaccion.addTab("Detalle Activo Fijo", tabDetalleActivoFijo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPanelTransacciones)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelesTransaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPanelTransacciones)
+            .addComponent(panelesTransaccion)
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarTransActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+    private void btnRegistrarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTransActionPerformed
+        //obtenido valores de los campos
         try{
-        TransaccionControl.agregarElementoTabla(txtNumCuentaTrans.getText(),"Prueba 1",txtMontoTrans.getText(), radioCargoTrans.isSelected(),tableTransacciones, registrosTransacciones);
-        TransaccionControl.calcularTotalesYDiferencia(totalesTransacciones, registrosTransacciones, lblTotalDebeTrans , lblTotalHaberTrans, lblValDiferenciaHaberTrans);
+            String conceptoGeneral= txtConceptoGeneralTrans.getText();
+            String codigoCuenta= txtNumCuentaTrans.getText();
+            String monto= txtMontoTrans.getText();
+            
+            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            TransaccionControl.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
+            TransaccionControl.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Se han producido errores en el registro\nPor favor revisar los campos del formulario");
+            JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
         }
-    }                                                 
+    }//GEN-LAST:event_btnRegistrarTransActionPerformed
 
-    private void btnGuardarTransActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    private void btnGuardarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTransActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarTransActionPerformed
+
+    private void btnRegistrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDGAActionPerformed
+        //obtenido valores de los campos
         try{
-            boolean respuesta=TransaccionControl.validadorPartidaDoble(lblValDiferenciaHaberTrans);
-            if(respuesta)
-                JOptionPane.showMessageDialog(null,"Todo Correcto");
-            else
-                JOptionPane.showMessageDialog(null,"No se cumple partida doble, por favor revisar\nel registro de la tabla!");
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,"Se han producido errores en el registro\nPor favor inicializar un resgistro por favor");
+            String conceptoGeneral= txtConceptoGeneralDGA.getText();
+            String codigoCuenta= txtNumCuentaDGA.getText();
+            String monto= txtMontoDGA.getText();
+            
+            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            TransaccionControl.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
+            TransaccionControl.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
         }
-    }                                               
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
+        }
+    }//GEN-LAST:event_btnRegistrarDGAActionPerformed
+
+    private void btnRegistrarDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDIAActionPerformed
+        //obtenido valores de los campos
+        try{
+            String conceptoGeneral= txtConceptoGeneralDIA.getText();
+            String codigoCuenta= txtNumCuentaDIA.getText();
+            String monto= txtMontoDIA.getText();
+            
+            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
+            TransaccionControl.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
+            TransaccionControl.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
+        }
+    }//GEN-LAST:event_btnRegistrarDIAActionPerformed
+
+    private void btnRegistrarDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDAFActionPerformed
+        //obtenido valores de los campos
+        try{
+            String conceptoGeneral= txtConceptoGeneralDAF.getText();
+            String codigoCuenta= txtNumCuentaDAF.getText();
+            String monto= txtMontoDAF.getText();
+            
+            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            TransaccionControl.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
+            TransaccionControl.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
+        }
+    }//GEN-LAST:event_btnRegistrarDAFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -959,7 +1015,7 @@ public class FormTransaccion extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrarDAF;
     private javax.swing.JButton btnBorrarDGA;
     private javax.swing.JButton btnBorrarDIA;
@@ -1036,6 +1092,7 @@ public class FormTransaccion extends javax.swing.JFrame {
     private javax.swing.JPanel panelTipoDGA;
     private javax.swing.JPanel panelTipoDIA;
     private javax.swing.JPanel panelTipoTrans;
+    private javax.swing.JTabbedPane panelesTransaccion;
     private javax.swing.JRadioButton radioAbonoDAF;
     private javax.swing.JRadioButton radioAbonoDGA;
     private javax.swing.JRadioButton radioAbonoDIA;
@@ -1047,8 +1104,7 @@ public class FormTransaccion extends javax.swing.JFrame {
     private javax.swing.JPanel tabDetalleActivoFijo;
     private javax.swing.JPanel tabDetalleGastoAdelantado;
     private javax.swing.JPanel tabDetalleInteresesAcumulados;
-    private javax.swing.JTabbedPane tabPanelTransacciones;
-    private javax.swing.JPanel tabTransaccion;
+    private javax.swing.JPanel tabTransacciones;
     private javax.swing.JTable tableDetalleActivoFijo;
     private javax.swing.JTable tableDetalleGastosAdelantados;
     private javax.swing.JTable tableDetalleInteresesAcumulados;
@@ -1065,5 +1121,6 @@ public class FormTransaccion extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumCuentaDGA;
     private javax.swing.JTextField txtNumCuentaDIA;
     private javax.swing.JTextField txtNumCuentaTrans;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
+
 }

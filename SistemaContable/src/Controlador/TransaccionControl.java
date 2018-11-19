@@ -7,6 +7,7 @@ package Controlador;
 import Modelo.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -47,7 +48,7 @@ public class TransaccionControl {
     
     //Paso 2: Se llena la lista de del catálogo que aparece en el form solo con codCuenta y nombreCuenta
     public String[][] obtenerCuentasCatalogo() throws SQLException{
-        this.periodoActual.llenarCatalogo();
+        //this.periodoActual.llenarCatalogo();
         this.catalogoAcopashe=periodoActual.getCatalogo();
         String[][] cuentas=new String[catalogoAcopashe.size()][2];
         int a=0;
@@ -95,64 +96,66 @@ public class TransaccionControl {
     
     
     
-    public static void agregarElementoTabla(String codigo,String nombre,String monto, boolean esCargo, JTable tabla, ArrayList lista)
+    public static void agregarElementoTabla(String concepto,String codigo,String nombre,String monto, boolean esCargo, JTable tabla, ArrayList lista)
     {   
         //Por el momento es simbolico pero luego se trabajara con la clase real
-        Prueba prueba= new Prueba();
-        prueba.setNombre(nombre);
-        prueba.setNumero(codigo);
+        AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
+        auxiliar.setNombreCuenta(nombre);
+        auxiliar.setCodigoCuenta(codigo);
+        auxiliar.setConceptoGeneral(concepto);
         if(esCargo)
         {
-            prueba.setDebe(Double.parseDouble(monto));
-            prueba.setHaber(0.00);
+            auxiliar.setDebe(Double.parseDouble(monto));
+            auxiliar.setHaber(0.00);
         }
         else
         {
-            prueba.setHaber(Double.parseDouble(monto));
-            prueba.setDebe(0.00);
+            auxiliar.setHaber(Double.parseDouble(monto));
+            auxiliar.setDebe(0.00);
         }
         
         //Agregar elemento del registro de la tabla
         Object [] registro= new Object[4];
-        registro[0]=prueba.getNumero();
-        registro[1]= prueba.getNombre();
-        registro[2]=prueba.getDebe();
-        registro[3]=prueba.getHaber();
+        registro[0]=auxiliar.getCodigoCuenta();
+        registro[1]= auxiliar.getNombreCuenta();
+        registro[2]=auxiliar.getDebe();
+        registro[3]=auxiliar.getHaber();
         
         //Objeteniendo el modelo de la tabla
         DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
         modelo.addRow(registro);
         tabla.setModel(modelo);
-        lista.add(prueba);
+        lista.add(auxiliar);
     }
     
-    public static void calcularTotalesYDiferencia(Double []total, ArrayList<Prueba> lista, JLabel debe, JLabel haber, JLabel diferencia)
+    public static void calcularTotalesYDiferencia(Double []total, ArrayList<AuxiliarTransaccion> lista, JLabel debe, JLabel haber, JLabel diferencia)
     {
         //inicializando acumuladores y diferencia
         Double totalDebe=0.00, totalHaber=0.00, diferenciaTotal=0.00;
         
-        for(Prueba o: lista)
+        for(AuxiliarTransaccion o: lista)
         {
             totalDebe+= o.getDebe();
             totalHaber+= o.getHaber();
         }
         
+        //asignado valores a array de transaccion de montos
+        total[0]=totalDebe;
+        total[1]=totalHaber;
+        
+        //asignando valores a Labels de totalizacion en formulario
         diferenciaTotal= totalDebe - totalHaber;       
             debe.setText("$"+totalDebe);
             haber.setText("$"+totalHaber);
             diferencia.setText("$"+diferenciaTotal);
     }
     
-    public static boolean validadorPartidaDoble(JLabel lbl)
+    public static void validadorPartidaDoble(Double [] monto, JButton boton)
     {
-        //Double diferencia= total[0]-total[1];
-        Double diferencia=Double.parseDouble(lbl.getText().substring(1));
-        boolean respuesta= false;
+        Double diferencia= monto[0]-monto[1];       
         if(diferencia == 0)
-           respuesta= true;
+           boton.setEnabled(true);
         else 
-            respuesta=false;
-        
-        return respuesta;
+            boton.setEnabled(false);
     }
 }
