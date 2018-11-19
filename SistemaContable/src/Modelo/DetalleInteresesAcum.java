@@ -3,6 +3,8 @@ package Modelo;
 
 import Datos.Conexion;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DetalleInteresesAcum {
     // Atributos
@@ -18,7 +20,7 @@ public class DetalleInteresesAcum {
             
     }
     
-    public DetalleInteresesAcum(int idTrans, double valorPresente, double tasaAnual) 
+    public DetalleInteresesAcum(Transaccion trans, double valorPresente, double tasaAnual) 
     {
         /*Debe hacer lo siguiente:
         --obtener el idAcum aumentando 1 al ultimo registrado
@@ -27,6 +29,37 @@ public class DetalleInteresesAcum {
         --Asignar los valores a sus respectivas variables
         --Al final, hacer el registro en la BD
         */
+       
+        try{
+        Conexion conexion = new Conexion();
+        String query;
+                query = "SELECT idAcum FROM DetalleInteresesAcum ORDER BY idAcum DESC LIMIT 1;";
+                conexion.pst= conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                int id = conexion.rs.getInt("idAcum");
+                id += 1;
+                setIdAcum(id);
+          
+        this.tasaMensual = tasaAnual/12;
+        this.interesMensual = this.tasaMensual*valorPresente;
+                
+        query = "INSERT INTO DetalleInteresesAcum (idAcum, idTrans, valorPresente, tasaAnual, tasaMensual, interesMensual) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setInt(1, getIdAcum());
+        conexion.pst.setInt(2, trans.getIdTrans());
+        conexion.pst.setDouble(3, valorPresente);
+        conexion.pst.setDouble(4, tasaAnual);
+        conexion.pst.setDouble(5, this.tasaMensual);
+        conexion.pst.setDouble(6, this.interesMensual);
+        conexion.rs = conexion.pst.executeQuery();
+                
+              System.out.println("Se ha registrado exitosamente en detalle transaccion.");
+            } catch (SQLException ex) {
+                Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Ha ocurrido un error al registrar.");
+            }  
         
     }
     

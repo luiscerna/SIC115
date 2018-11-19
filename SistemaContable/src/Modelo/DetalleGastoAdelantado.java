@@ -5,6 +5,8 @@ package Modelo;
 import Datos.Conexion;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DetalleGastoAdelantado {
     // Atributos
@@ -29,6 +31,35 @@ public class DetalleGastoAdelantado {
         --Asignar los valores a sus respectivas variables
         --Al final, hacer el registro en la BD
         */
+        try{
+        Conexion conexion = new Conexion();
+        String query;
+                query = "SELECT idGastoA FROM DetalleGastoAdelantado ORDER BY idGastoA DESC LIMIT 1;";
+                conexion.pst= conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                int id = conexion.rs.getInt("idGastoA");
+                id += 1;
+                setIdGastoA(id);
+                
+                this.gastoMensual = valTotal/mesesPagados;
+                query = "INSERT INTO DetalleGastoAdelantado (idGastoA, idTrans, mesesPagados, valorTotal, gastoMensual) "
+                + "VALUES (?, ?, ?, ?, ?)";
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setInt(1, getIdGastoA());
+        conexion.pst.setInt(2, trans.getIdTrans());
+        conexion.pst.setInt(3, mesesPagados);
+        conexion.pst.setDouble(4, this.valorTotal);
+        conexion.pst.setDouble(5, this.getGastoMensual());
+      
+        conexion.rs = conexion.pst.executeQuery();
+                
+                 System.out.println("Se ha registrado exitosamente en detalle transaccion.");
+            } catch (SQLException ex) {
+                Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Ha ocurrido un error al registrar.");
+            }  
+        
     }
     public DetalleGastoAdelantado(int trans) throws SQLException
     {
