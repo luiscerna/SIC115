@@ -7,13 +7,15 @@ package Modelo;
 import java.util.ArrayList;
 import Datos.*;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DetalleTransaccion {
     // Atributos
     private int idDetalle;
     private String cuentaMayor;
-    private String idCuentaMayor;
+    private int idCuentaMayor; // le cambie el tipo, porque estaba en String y en la tabla esta el id que seria int
     private double debe;
     private double haber;
     private Transaccion transaccion;
@@ -27,9 +29,38 @@ public class DetalleTransaccion {
     }
     
     //Constructor para Hacer Nuevo Registro en la BD:
-    public DetalleTransaccion(Transaccion trans, Cuenta cuenta, double debe, double haber, String codCuenta) throws SQLException{ 
-        this.cuenta= new Cuenta(codCuenta);
+    public DetalleTransaccion(Transaccion trans, Cuenta cuenta, double debe, double haber) throws SQLException{ // quite el String codCuenta porque ese ya iria en la cuenta
+         try {
+        this.cuenta= new Cuenta(this.cuenta.getCodCuenta());
         this.asignarCuentaMayor(this.cuenta.getCodCuenta());
+        Conexion conexion = new Conexion();
+        String query;
+                query = "SELECT idDetalle FROM DetalleTransaccion ORDER BY idDetalle DESC LIMIT 1;";
+                conexion.pst= conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                int id = conexion.rs.getInt("idDetalle");
+                id += 1;
+                setIdDetalle(id);
+ 
+        query = "INSERT INTO PeriodoContable (idDetalle, idTrans, cuentaMayor, debe, haber, codCuentaMayor, codCuenta) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setInt(1, getIdDetalle());
+        conexion.pst.setInt(2, trans.getIdTrans());
+        conexion.pst.setString(3, this.cuentaMayor);
+        conexion.pst.setDouble(4, debe);
+        conexion.pst.setDouble(5, haber);
+        conexion.pst.setInt(6, this.idCuentaMayor);
+        conexion.pst.setInt(7, cuenta.id);
+      
+        conexion.rs = conexion.pst.executeQuery();
+            System.out.println("Se ha registrado exitosamente en detalle transaccion.");
+            } catch (SQLException ex) {
+                Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Ha ocurrido un error al registrar.");
+            }  
+        
         /*
         --Obtener el idDetalle sumando 1 al ultimo idDetalle registrado en la BD    
         --asignar los demás valores
@@ -91,17 +122,18 @@ public class DetalleTransaccion {
         
         //Rescatando datos de cuenta
         Conexion conexion = new Conexion();
-        String query = "select codCuenta, nomCuenta from Cuenta where codCuenta = ?";
+        String query = "select id, codCuenta, nomCuenta from Cuenta where codCuenta = ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.pst.setString(1, codCuentaMayor);
         conexion.rs = conexion.pst.executeQuery();
         
         //Asignado los datos de la cuenta mayor al detalleCuenta
         if(conexion.rs.next()){
+            int id = conexion.rs.getInt("id");
             String codigo = conexion.rs.getString("codCuenta");
             String nombre = conexion.rs.getString("nomCuenta");
-            this.cuentaMayor = nombre;
-            this.idCuentaMayor = codigo;
+            this.cuentaMayor = codigo;
+            this.idCuentaMayor = id;
             System.out.println(cuentaMayor);
             System.out.println(idCuentaMayor);
             return true;
