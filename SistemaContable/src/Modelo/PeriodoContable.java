@@ -49,38 +49,31 @@ public class PeriodoContable {
     public PeriodoContable(boolean esCerrado) {
         Conexion conexion = new Conexion();
         
-        // Si es true que se abra el periodo contable, de lo contrario se cierra el actual
-        if(esCerrado){
-            try {
-                // Crear la planilla
-                planilla = new Planilla(true);
-                System.out.println("El id de la nueva planilla es: "+planilla.getIdPlanilla());
-                
-                // Crear Registro del Libro Mayor
-                libroMayor = new LibroMayor(true);
-                System.out.println("El id del nuevo libro mayor es: "+libroMayor.getIdMayor());
-                
-                 // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
-                String query;
-                query = "SELECT idPeriodo FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
-                conexion.pst= conexion.conectar().prepareStatement(query);
-                conexion.rs = conexion.pst.executeQuery();
-                conexion.rs.next();
-                int id = conexion.rs.getInt("idPeriodo");
-                id += 1;
-                setIdPeriodo(id);
-                
-                // Registro del periodo contable
-                query = "INSERT INTO PeriodoContable (idPeriodo, idMayor, idPlanilla) VALUES ("+ getIdPeriodo() +", "+ libroMayor.getIdMayor() +","+ planilla.getIdPlanilla() +");";
-                conexion.pst = conexion.conectar().prepareStatement(query);
-                conexion.pst.executeUpdate();
-                System.out.println("Se ha registrado exitosamente el periodo contable.");
-            } catch (SQLException ex) {
-                Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Ha ocurrido un error al registrar.");
-            }            
-        } else {
+        try {
+            String query;
+            query = "SELECT * FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            conexion.rs.next();
+            setIdPeriodo(conexion.rs.getInt("idPeriodo"));
             
+            this.setCerrado(conexion.rs.getBoolean("cerrado"));
+            
+            if(this.isCerrado()){
+                // Mostrando todos los datos en consola
+                this.planilla = new Planilla(conexion.rs.getInt("idPlanilla"));
+            
+                this.libroMayor = new LibroMayor(conexion.rs.getInt("idMayor"));
+            } else {
+                this.setPlanilla(null);
+                this.setLibroMayor(null);
+                this.setCatalogo(null);
+                this.setInicio(null);
+                this.setFin(null);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -212,3 +205,33 @@ public class PeriodoContable {
 
     
 }
+/* CODIGO QUE NOS SERVIRÁ DESPUÉS
+            try {
+                // Crear la planilla
+                planilla = new Planilla(true);
+                System.out.println("El id de la nueva planilla es: "+planilla.getIdPlanilla());
+                
+                // Crear Registro del Libro Mayor
+                libroMayor = new LibroMayor(true);
+                System.out.println("El id del nuevo libro mayor es: "+libroMayor.getIdMayor());
+                
+                 // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
+                String query;
+                query = "SELECT idPeriodo FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
+                conexion.pst= conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                int id = conexion.rs.getInt("idPeriodo");
+                id += 1;
+                setIdPeriodo(id);
+                
+                // Registro del periodo contable
+                query = "INSERT INTO PeriodoContable (idPeriodo, idMayor, idPlanilla) VALUES ("+ getIdPeriodo() +", "+ libroMayor.getIdMayor() +","+ planilla.getIdPlanilla() +");";
+                conexion.pst = conexion.conectar().prepareStatement(query);
+                conexion.pst.executeUpdate();
+                System.out.println("Se ha registrado exitosamente el periodo contable.");
+            } catch (SQLException ex) {
+                Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Ha ocurrido un error al registrar.");
+            }
+*/

@@ -25,31 +25,19 @@ public class Planilla {
     }
 
     // Constructor para registrar una nueva Planilla
-    public Planilla(boolean crear) {
+    public Planilla(int idPlanilla) {
         Conexion conexion = new Conexion();
-        if(crear){
-            try {
-                // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
-                String query;
-                query = "SELECT idPlanilla FROM Planilla ORDER BY idPlanilla DESC LIMIT 1;";
-                conexion.pst= conexion.conectar().prepareStatement(query);
-                conexion.rs = conexion.pst.executeQuery();
-                conexion.rs.next();
-                int id = conexion.rs.getInt("idPlanilla");
-                id += 1;
-                setIdPlanilla(id);
-
-                query = "INSERT INTO Planilla (idPlanilla, fechaPlanilla) VALUES ("+getIdPlanilla()+", '2018-11-14 00:00:00');";
-                conexion.pst = conexion.conectar().prepareStatement(query);
-                conexion.pst.executeUpdate();
-                
-                //conexion.rs.next();
-                //setIdPlanilla(conexion.rs.getInt(0));
-                System.out.println("Se ha registrado una nueva planilla.");
-            } catch (SQLException ex) {
-                Logger.getLogger(Planilla.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("No se ha registrado una nueva planilla.");
-            }
+        this.setIdPlanilla(idPlanilla);
+        try {
+            String query;
+            query = "SELECT * FROM Planilla WHERE idPlanilla = "+ this.getIdPlanilla() +";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            conexion.rs.next();
+            this.setFechaPlanilla(conexion.rs.getDate("fechaPlanilla"));
+            // FALTA CARGAR LOS EMPLEADOS 
+        } catch (SQLException ex) {
+            Logger.getLogger(Planilla.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,3 +66,30 @@ public class Planilla {
         this.empleado = empleado;
     }
 }
+
+/* CODIGO QUE NOS SERVIRÁ MÁS ADELANTE
+if(crear){
+            try {
+                // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
+                String query;
+                query = "SELECT idPlanilla FROM Planilla ORDER BY idPlanilla DESC LIMIT 1;";
+                conexion.pst= conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                int id = conexion.rs.getInt("idPlanilla");
+                id += 1;
+                setIdPlanilla(id);
+
+                query = "INSERT INTO Planilla (idPlanilla, fechaPlanilla) VALUES ("+getIdPlanilla()+", '2018-11-14 00:00:00');";
+                conexion.pst = conexion.conectar().prepareStatement(query);
+                conexion.pst.executeUpdate();
+                
+                //conexion.rs.next();
+                //setIdPlanilla(conexion.rs.getInt(0));
+                System.out.println("Se ha registrado una nueva planilla.");
+            } catch (SQLException ex) {
+                Logger.getLogger(Planilla.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("No se ha registrado una nueva planilla.");
+            }
+        }
+*/
