@@ -8,10 +8,11 @@ import java.sql.SQLException;
 
 public class Cuenta {
     // Atributos
-    private String codCuenta;
-    private int rubro; //Encapsular
-    private int nivel;//Encapsular
-    private String nomCuenta;
+    int id; //Agregue el atributo id para cuando se tenga que hacer el insert en otras tablas.
+    String codCuenta;
+    int rubro; //Encapsular
+    int nivel;//Encapsular
+    String nomCuenta;
     
     // Constructor
     
