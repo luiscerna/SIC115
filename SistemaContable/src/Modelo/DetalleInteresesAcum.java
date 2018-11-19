@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DetalleInteresesAcum {
     // Atributos
     private int idAcum;
-    private int idTrans;
+    private Transaccion trans;
     private double valorPresente;
     private double tasaAnual;
     private double tasaMensual;
@@ -48,7 +48,7 @@ public class DetalleInteresesAcum {
             double tasaMensual=conexion.rs.getDouble("tasaMensual");
             double interesMensual=conexion.rs.getDouble("interesMensual");
             this.idAcum=idAcum;
-            this.idTrans=id;
+            this.trans.setIdTrans(id);
             this.valorPresente=valorPresente;
             this.tasaAnual=tasaAnual;
             this.tasaMensual=tasaMensual;
@@ -98,6 +98,14 @@ public class DetalleInteresesAcum {
 
     public void setInteresMensual(double interesMensual) {
         this.interesMensual = interesMensual;
+    }
+
+    public Transaccion getTrans() {
+        return trans;
+    }
+
+    public void setTrans(Transaccion trans) {
+        this.trans = trans;
     }
     
 }

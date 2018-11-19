@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class DetalleActivoFijo {
     // Atributos
     private int idDesgaste;
-    private int idTrans;
+    private Transaccion trans;
     private double valor;
     private int vidaUtil;
     private double valorSalvamento;
@@ -19,13 +19,13 @@ public class DetalleActivoFijo {
     {
         
     }
-    public DetalleActivoFijo(int idTrans) throws SQLException
+    public DetalleActivoFijo(int trans) throws SQLException
     {
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
         String query = "SELECT idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, tipoActivo, desgateAnual, desgasteMensual FROM DetalleActivoFijo WHERE idTrans= ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
-        conexion.pst.setInt(1, idTrans);
+        conexion.pst.setInt(1, trans);
         conexion.rs = conexion.pst.executeQuery();
         
         //Asignado los datos a los atributos de la clase
@@ -39,7 +39,7 @@ public class DetalleActivoFijo {
             double desgasteAnual=conexion.rs.getDouble("desgasteAnual");
             double desgasteMensual=conexion.rs.getDouble("desgasteMensual");
             this.idDesgaste = idDesgaste;
-            this.idTrans=id;
+            this.trans.setIdTrans(id);
             this.valor=valor;
             this.vidaUtil=vida;
             this.valorSalvamento=salvamento;
@@ -104,5 +104,13 @@ public class DetalleActivoFijo {
 
     public void setDesgasteMensual(double desgasteMensual) {
         this.desgasteMensual = desgasteMensual;
+    }
+
+    public Transaccion getTrans() {
+        return trans;
+    }
+
+    public void setTrans(Transaccion trans) {
+        this.trans = trans;
     }
 }

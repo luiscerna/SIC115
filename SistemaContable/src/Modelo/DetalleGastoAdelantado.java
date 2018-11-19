@@ -12,14 +12,16 @@ public class DetalleGastoAdelantado {
     private int mesesPagados;
     private double valorTotal;
     private double gastoMensual;
-    private int idTrans;
+    private Transaccion trans;
+
+    
 
     // Constructor
     public DetalleGastoAdelantado()
     {
         
     }
-    public DetalleGastoAdelantado(int idTrans, int mesesPagados, double valTotal)
+    public DetalleGastoAdelantado(Transaccion trans, int mesesPagados, double valTotal)
     {
         /*Debe hacer lo siguiente:
         --obtener el idGastoA aumentando 1 al ultimo registrado
@@ -28,13 +30,13 @@ public class DetalleGastoAdelantado {
         --Al final, hacer el registro en la BD
         */
     }
-    public DetalleGastoAdelantado(int idTrans) throws SQLException
+    public DetalleGastoAdelantado(int trans) throws SQLException
     {
          //Conexion a la base de datos
         Conexion conexion = new Conexion();
         String query = "SELECT idGastoA, idTrans, mesesPagados, valorTotal, gastoMensual FROM DetalleGastoAdelantado WHERE idTrans= ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
-        conexion.pst.setInt(1, idTrans);
+        conexion.pst.setInt(1, trans);
         conexion.rs = conexion.pst.executeQuery();
         
         //Asignado los datos a los atributos de la clase
@@ -45,7 +47,7 @@ public class DetalleGastoAdelantado {
             double valor=conexion.rs.getDouble("valorTotal");
             double gasto=conexion.rs.getDouble("gastoMensual");
             this.idGastoA = idGastoA;
-            this.idTrans=id;
+            this.trans.setIdTrans(id); 
             this.mesesPagados=meses;
             this.valorTotal=valor;
             this.gastoMensual=gasto;
@@ -86,5 +88,13 @@ public class DetalleGastoAdelantado {
         this.gastoMensual = gastoMensual;
     }
 
+    public Transaccion getTrans() {
+        return trans;
+    }
+
+    public void setTrans(Transaccion trans) {
+        this.trans = trans;
+    }
+    
    
 }

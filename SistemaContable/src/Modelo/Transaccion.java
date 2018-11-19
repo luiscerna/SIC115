@@ -22,9 +22,7 @@ public class Transaccion {
     private String concepto;
     private Usuario usuarios;
     private int tipo;
-    private DetalleActivoFijo detalleActivoFijo;
-    private DetalleInteresesAcum detalleInteresesAcum;
-    private DetalleGastoAdelantado detalleGastoAdelantado;
+   ;
     // Constructor
     
     public Transaccion()
@@ -137,30 +135,6 @@ public class Transaccion {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
-    }
-
-    public DetalleActivoFijo getDetalleActivoFijo() {
-        return detalleActivoFijo;
-    }
-
-    public void setDetalleActivoFijo(DetalleActivoFijo detalleActivoFijo) {
-        this.detalleActivoFijo = detalleActivoFijo;
-    }
-
-    public DetalleInteresesAcum getDetalleInteresesAcum() {
-        return detalleInteresesAcum;
-    }
-
-    public void setDetalleInteresesAcum(DetalleInteresesAcum detalleInteresesAcum) {
-        this.detalleInteresesAcum = detalleInteresesAcum;
-    }
-
-    public DetalleGastoAdelantado getDetalleGastoAdelantado() {
-        return detalleGastoAdelantado;
-    }
-
-    public void setDetalleGastoAdelantado(DetalleGastoAdelantado detalleGastoAdelantado) {
-        this.detalleGastoAdelantado = detalleGastoAdelantado;
     }
 
     public Usuario getUsuarios() {
