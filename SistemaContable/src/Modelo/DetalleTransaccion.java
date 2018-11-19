@@ -31,8 +31,8 @@ public class DetalleTransaccion {
     //Constructor para Hacer Nuevo Registro en la BD:
     public DetalleTransaccion(Transaccion trans, Cuenta cuenta, double debe, double haber) throws SQLException{ // quite el String codCuenta porque ese ya iria en la cuenta
          try {
-        this.cuenta= new Cuenta(this.cuenta.getCodCuenta());
-        this.asignarCuentaMayor(this.cuenta.getCodCuenta());
+        this.cuenta = new Cuenta(cuenta.getCodCuenta());
+        this.asignarCuentaMayor(cuenta.getCodCuenta());
         Conexion conexion = new Conexion();
         String query;
                 query = "SELECT idDetalle FROM DetalleTransaccion ORDER BY idDetalle DESC LIMIT 1;";
