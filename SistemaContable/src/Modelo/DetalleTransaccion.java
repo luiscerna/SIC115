@@ -43,7 +43,7 @@ public class DetalleTransaccion {
                 id += 1;
                 setIdDetalle(id);
  
-        query = "INSERT INTO PeriodoContable (idDetalle, idTrans, cuentaMayor, debe, haber, codCuentaMayor, codCuenta) "
+        query = "INSERT INTO DetalleTransaccion (idDetalle, idTrans, cuentaMayor, debe, haber, codCuentaMayor, codCuenta) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.pst.setInt(1, getIdDetalle());
