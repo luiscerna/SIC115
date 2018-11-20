@@ -224,6 +224,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         lblValDiferenciaHaberTrans.setText("Valor de la diferencia de Debe y Haber");
 
         btnBorrarTrans.setText("Borrar Linea de Registro");
+        btnBorrarTrans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarTransActionPerformed(evt);
+            }
+        });
 
         btnGuardarTrans.setText("Guardar y Finalizar");
         btnGuardarTrans.addActionListener(new java.awt.event.ActionListener() {
@@ -979,6 +984,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
             JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
         }
     }//GEN-LAST:event_btnRegistrarDAFActionPerformed
+
+    private void btnBorrarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarTransActionPerformed
+        // TODO add your handling code here:
+        TransaccionControl.eliminarFila(tableTransacciones);
+    }//GEN-LAST:event_btnBorrarTransActionPerformed
 
     /**
      * @param args the command line arguments

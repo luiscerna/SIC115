@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 /*Crear constructor TransaccionControl(idUsuario) que llene usuarioActual, periodoActual, mayorActual
 y cree un objeto nuevoCatalogo y llene el catalogoAcopashe de la sig manera:
     1-crear variable DetalleTransaccion detalle
@@ -157,5 +158,32 @@ public class TransaccionControl {
            boton.setEnabled(true);
         else 
             boton.setEnabled(false);
+    }
+    
+    public static void eliminarFila(JTable tabla)
+    {
+        //obtenemos modelo de la tabla
+        DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+        int fila = tabla.getSelectedRow();
+        //condicion para ver si ha seleccionado o no una fila
+        if (fila<0)
+        {
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar una fila de la tabla");
+        }
+        else
+        {
+            //cuadro de confirmacion que pedira si quiere eliminar o no
+            int confirmar = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar el registro?");
+            
+            if(JOptionPane.OK_OPTION==confirmar)
+            {
+                modelo.removeRow(fila);
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+            }
+        }
+        
+       
+
+    
     }
 }
