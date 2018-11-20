@@ -669,6 +669,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorrarDGAActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGuardarDGA">
               <Properties>
@@ -987,6 +990,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorrarDIAActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGuardarDIA">
               <Properties>
@@ -1300,6 +1306,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Borrar Linea de Registro"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorrarDAFActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGuardarDAF">
               <Properties>

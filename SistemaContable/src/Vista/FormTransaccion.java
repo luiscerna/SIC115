@@ -416,6 +416,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         lblValDiferenciaHaberDGA.setText("Valor de la diferencia de Debe y Haber");
 
         btnBorrarDGA.setText("Borrar Linea de Registro");
+        btnBorrarDGA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarDGAActionPerformed(evt);
+            }
+        });
 
         btnGuardarDGA.setText("Guardar y Finalizar");
 
@@ -602,6 +607,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         lblValDiferenciaHaberDIA.setText("Valor de la diferencia de Debe y Haber");
 
         btnBorrarDIA.setText("Borrar Linea de Registro");
+        btnBorrarDIA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarDIAActionPerformed(evt);
+            }
+        });
 
         btnGuardarDIA.setText("Guardar y Finalizar");
 
@@ -786,6 +796,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         lblValDiferenciaHaberDAF.setText("Valor de la diferencia de Debe y Haber");
 
         btnBorrarDAF.setText("Borrar Linea de Registro");
+        btnBorrarDAF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarDAFActionPerformed(evt);
+            }
+        });
 
         btnGuardarDAF.setText("Guardar y Finalizar");
 
@@ -989,6 +1004,21 @@ Double [] montoDetalleActivoFijo= new Double[2];
         // TODO add your handling code here:
         TransaccionControl.eliminarFila(tableTransacciones);
     }//GEN-LAST:event_btnBorrarTransActionPerformed
+
+    private void btnBorrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDGAActionPerformed
+        // TODO add your handling code here:
+        TransaccionControl.eliminarFila(tableDetalleGastosAdelantados);
+    }//GEN-LAST:event_btnBorrarDGAActionPerformed
+
+    private void btnBorrarDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDIAActionPerformed
+        // TODO add your handling code here:
+        TransaccionControl.eliminarFila(tableDetalleInteresesAcumulados);
+    }//GEN-LAST:event_btnBorrarDIAActionPerformed
+
+    private void btnBorrarDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDAFActionPerformed
+        // TODO add your handling code here:
+        TransaccionControl.eliminarFila(tableDetalleActivoFijo);
+    }//GEN-LAST:event_btnBorrarDAFActionPerformed
 
     /**
      * @param args the command line arguments
