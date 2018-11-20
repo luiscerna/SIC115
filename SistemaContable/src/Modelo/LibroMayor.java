@@ -22,11 +22,12 @@ public class LibroMayor {
     
         // Constructor para hacer consulta de Planilla
     public LibroMayor(int idMayor) {
+        this.setDetalleTransaccion(new ArrayList<DetalleTransaccion>());
         Conexion conexion = new Conexion();
         this.setIdMayor(idMayor);
         try {
             String query;
-            query = "SELECT * FROM Planilla WHERE idPlanilla = "+ this.getIdMayor() +";";
+            query = "SELECT * FROM LibroMayor WHERE idMayor = "+ this.getIdMayor() +";";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
             conexion.rs.next();
@@ -34,9 +35,26 @@ public class LibroMayor {
             this.setNombreCuenta(conexion.rs.getString("nombreCuenta"));
             this.setMontoTotal(conexion.rs.getDouble("montoTotal"));
             // FALTA CARGAR LOS DETALLE TRANSACCION
+            
+            // CARGAR DETALLE TRANSACCION
+            query = "SELECT idDetalle FROM DetalleTransaccion WHERE cuentaMayor = "+ this.getNombreCuenta() +";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            while (conexion.rs.next()) {                
+                this.detalleTransaccion.add(new DetalleTransaccion(conexion.rs.getInt("idDetalle")));
+            }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Planilla.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ha ocurrido un problema al consula Libro Mayor.");
+            Logger.getLogger(LibroMayor.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+    
+    public int getUltimaTransaccion(){
+        int ultimo = 0;
+        ultimo = this.detalleTransaccion.get(this.detalleTransaccion.size()).getTransaccion().getIdTrans();
+        return ultimo;
     }
      
     // Métodos getter y setter

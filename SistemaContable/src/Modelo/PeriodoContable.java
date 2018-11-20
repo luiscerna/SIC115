@@ -42,28 +42,40 @@ public class PeriodoContable {
     
     // Para hacer pruebas nada más
     public static void main(String[] args) {
-        PeriodoContable pc = new PeriodoContable(true);
+        PeriodoContable pc = new PeriodoContable();
+        pc.PeriodoContableAbierto();
     }
     
     // Constructor para cerrar o abrir el periodo contable
-    public PeriodoContable(boolean esCerrado) {
+    public void PeriodoContableAbierto() {
         Conexion conexion = new Conexion();
         
         try {
             String query;
-            query = "SELECT * FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
+            query = "SELECT idPeriodo, cerrado, idPlanilla FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
             conexion.rs.next();
             setIdPeriodo(conexion.rs.getInt("idPeriodo"));
-            
+
             this.setCerrado(conexion.rs.getBoolean("cerrado"));
             
-            if(this.isCerrado()){
+            if(!this.isCerrado()){
                 // Mostrando todos los datos en consola
-                this.planilla = new Planilla(conexion.rs.getInt("idPlanilla"));
-            
-                this.libroMayor = new LibroMayor(conexion.rs.getInt("idMayor"));
+                this.setPlanilla(new Planilla(conexion.rs.getInt("idPlanilla")));
+                System.out.println("Fecha Planilla: "+this.getPlanilla().getFechaPlanilla());
+                
+                // ESTA CONSULTA ES SOLUCION A UN ERROR ANTERIOR 
+                query = "SELECT idMayor, inicio, fin FROM PeriodoContable WHERE idPeriodo = "+ getIdPeriodo() +";";
+                conexion.pst = conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                
+                this.setInicio(conexion.rs.getDate("inicio"));
+                this.setFin(conexion.rs.getDate("fin"));
+                //System.out.println("idMayor: "+conexion.rs.getInt("idMayor"));
+                this.setLibroMayor(new LibroMayor(conexion.rs.getInt("idMayor")));
+                System.out.println("nombreCuenta: "+this.getLibroMayor().getNombreCuenta());
             } else {
                 this.setPlanilla(null);
                 this.setLibroMayor(null);
