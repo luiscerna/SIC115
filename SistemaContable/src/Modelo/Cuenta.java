@@ -8,30 +8,34 @@ import java.sql.SQLException;
 
 public class Cuenta {
     // Atributos
-    int id; //Agregue el atributo id para cuando se tenga que hacer el insert en otras tablas.
-    String codCuenta;
-    int rubro; //Encapsular
-    int nivel;//Encapsular
-    String nomCuenta;
+    private String codCuenta;
+    private int rubro; 
+    private int nivel;
+    private String nomCuenta;
+    private int id;
     
     // Constructor
     
     public Cuenta()
     {
-        
+       codCuenta=null;
+       rubro=0;
+       nivel=0;
+       nomCuenta=null;
+       id=0;
     }
-    public Cuenta(String codCuenta) throws SQLException //constructor para obtener Registro ya Existente
+    public Cuenta(String codCuenta) throws SQLException //Este constructor Ya se uso, si se modifica el parámetro favor notificar.
     {
            
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "SELECT codCuenta, nomCuenta,rubro, nivel, nomCuenta FROM Cuenta WHERE codCuenta= ?"; 
-        conexion.pst.setString(1, codCuenta);
+        String query = "SELECT codCuenta, nomCuenta, rubro, nivel, id nomCuenta FROM Cuenta WHERE codCuenta= ?"; 
         conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setString(1, codCuenta);
         conexion.rs = conexion.pst.executeQuery();
         
         //Asignado los datos a los atributos de la clase
-        if(conexion.rs.first()){
+        if(conexion.rs.next()){
             String codigo = conexion.rs.getString("codCuenta");
             int rubro = conexion.rs.getInt("rubro");
             String nombre = conexion.rs.getString("nomCuenta");
@@ -39,7 +43,31 @@ public class Cuenta {
             this.codCuenta = codigo;
             this.rubro=rubro;
             this.nivel=nivel;
-            this.nomCuenta=nomCuenta;
+            this.nomCuenta=nombre;
+            this.id=conexion.rs.getInt("id");
+        }
+    }
+    public Cuenta(int idCuenta) throws SQLException //Este constructor Ya se uso, si se modifica el parámetro favor notificar.
+    {
+           
+        //Conexion a la base de datos
+        Conexion conexion = new Conexion();
+        String query = "SELECT codCuenta, nomCuenta,rubro, nivel, nomCuenta FROM Cuenta WHERE id= ?"; 
+        conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setInt(1, idCuenta);
+        conexion.rs = conexion.pst.executeQuery();
+        
+        //Asignado los datos a los atributos de la clase
+        if(conexion.rs.next()){
+            String codigo = conexion.rs.getString("codCuenta");
+            int rubro = conexion.rs.getInt("rubro");
+            String nombre = conexion.rs.getString("nomCuenta");
+            int nivel=conexion.rs.getInt("nivel");
+            this.codCuenta = codigo;
+            this.rubro=rubro;
+            this.nivel=nivel;
+            this.nomCuenta=nombre;
+            this.id=idCuenta;
             
         }
     }
@@ -75,5 +103,19 @@ public class Cuenta {
 
     public void setNomCuenta(String nomCuenta) {
         this.nomCuenta = nomCuenta;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

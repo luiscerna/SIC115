@@ -52,8 +52,7 @@ public class DetalleGastoAdelantado {
         conexion.pst.setDouble(4, this.valorTotal);
         conexion.pst.setDouble(5, this.getGastoMensual());
       
-        conexion.rs = conexion.pst.executeQuery();
-                
+        conexion.pst.executeUpdate();
                  System.out.println("Se ha registrado exitosamente en detalle transaccion.");
             } catch (SQLException ex) {
                 Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);

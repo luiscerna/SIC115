@@ -4,7 +4,6 @@ package Modelo;
     //El metodo para obtener el catalogo esta en PeriodoContable, pues fue pensado antes de modificar la BD XD
 
 */
-import java.util.ArrayList;
 import Datos.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -12,14 +11,16 @@ import java.util.logging.Logger;
 
 
 public class DetalleTransaccion {
+
     // Atributos
     private int idDetalle;
-    private String cuentaMayor;
-    private int codCuentaMayor; // le cambie el tipo, porque estaba en String y en la tabla esta el id que seria int
+    private int codMayor;
     private double debe;
     private double haber;
     private Transaccion transaccion;
     private Cuenta cuenta;
+    private int idCuenta;
+    private int idPeriodo;
     
     // Constructores
     
@@ -28,11 +29,20 @@ public class DetalleTransaccion {
         
     }
     
+    public static void main(String[] args) throws SQLException {
+        DetalleTransaccion detalle= new DetalleTransaccion(new Transaccion(1), new Cuenta(3), 78, 0, 0);
+    }
+    
     //Constructor para Hacer Nuevo Registro en la BD:
-    public DetalleTransaccion(Transaccion trans, Cuenta cuenta, double debe, double haber) throws SQLException{ // quite el String codCuenta porque ese ya iria en la cuenta
+    public DetalleTransaccion(Transaccion trans, Cuenta cuenta, double debe, double haber, int idPeriodo) throws SQLException{ // quite el String codCuenta porque ese ya iria en la cuenta
         try {
             this.cuenta = new Cuenta(cuenta.getCodCuenta());
             this.asignarCuentaMayor(cuenta.getCodCuenta());
+            this.debe=debe;
+            this.haber=haber;
+            this.transaccion=trans;
+            this.idPeriodo=idPeriodo;
+            this.idCuenta=cuenta.getId();
             Conexion conexion = new Conexion();
             String query;
                     query = "SELECT idDetalle FROM DetalleTransaccion ORDER BY idDetalle DESC LIMIT 1;";
@@ -41,20 +51,19 @@ public class DetalleTransaccion {
                     conexion.rs.next();
                     int id = conexion.rs.getInt("idDetalle");
                     id += 1;
-                    setIdDetalle(id);
-
-            query = "INSERT INTO DetalleTransaccion (idDetalle, idTrans, cuentaMayor, debe, haber, codCuentaMayor, codCuenta) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    this.setIdDetalle(id); 
+                    
+           
+            query = "INSERT INTO DetalleTransaccion (idDetalle, idTrans, codMayor, debe, haber, idCuenta, idPeriodo) VALUES (?, ?, ?, ?, ?, ?, ?)";
             conexion.pst= conexion.conectar().prepareStatement(query);
-            conexion.pst.setInt(1, getIdDetalle());
+            conexion.pst.setInt(1, this.getIdDetalle());
             conexion.pst.setInt(2, trans.getIdTrans());
-            conexion.pst.setString(3, this.cuentaMayor);
+            conexion.pst.setInt(3, this.codMayor);
             conexion.pst.setDouble(4, debe);
             conexion.pst.setDouble(5, haber);
-            conexion.pst.setInt(6, this.codCuentaMayor);
-            conexion.pst.setInt(7, cuenta.id);
-
-            conexion.rs = conexion.pst.executeQuery();
+            conexion.pst.setInt(6, cuenta.getId());
+            conexion.pst.setInt(7, this.idPeriodo);
+            conexion.pst.executeUpdate();
             System.out.println("Se ha registrado exitosamente en detalle transaccion.");
         } catch (SQLException ex) {
             Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +75,7 @@ public class DetalleTransaccion {
         --asignar los demás valores
         --Hacer el registro en la BD 
         */
-        
+       
     }
     
     //Constructor de Consulta
@@ -79,61 +88,24 @@ public class DetalleTransaccion {
             query = "SELECT * FROM DetalleTransaccion WHERE idDetalle = "+ this.getIdDetalle()+";";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
-            conexion.rs.next();
-            this.setTransaccion(new Transaccion(conexion.rs.getInt("idTrans")));
-            this.setCuentaMayor(conexion.rs.getString("cuentaMayor"));
-            this.setDebe(conexion.rs.getDouble("debe"));
-            this.setHaber(conexion.rs.getDouble("haber"));
-            this.setCodCuentaMayor(conexion.rs.getInt("codCuentaMayor"));
-            /*
-                REVISAR EN LA BASE DE DATOS 'CODCUENTA'
-            */
+            if(conexion.rs.next()){
+                this.setTransaccion(new Transaccion(conexion.rs.getInt("idTrans")));
+                conexion.pst = conexion.conectar().prepareStatement(query);
+                conexion.rs = conexion.pst.executeQuery();
+                conexion.rs.next();
+                this.setDebe(conexion.rs.getDouble("debe"));
+                this.setHaber(conexion.rs.getDouble("haber"));
+                this.setCodMayor(conexion.rs.getInt("codMayor"));
+                this.idPeriodo=conexion.rs.getInt("idPeriodo");
+                this.idCuenta=conexion.rs.getInt("idCuenta");
+                this.cuenta=new Cuenta(this.getIdCuenta());
+            }
+           
         } catch (SQLException ex) {
             Logger.getLogger(DetalleTransaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    //Métodos getter y setter
-    public int getIdDetalle() {
-        return idDetalle;
-    }
-
-    public void setIdDetalle(int idDetalle) {
-        this.idDetalle = idDetalle;
-    }
-
-    public String getCuentaMayor() {
-        return cuentaMayor;
-    }
-
-    public void setCuentaMayor(String cuentaMayor) {
-        this.cuentaMayor = cuentaMayor;
-    }
-
-    public double getDebe() {
-        return debe;
-    }
-
-    public void setDebe(double debe) {
-        this.debe = debe;
-    }
-
-    public double getHaber() {
-        return haber;
-    }
-
-    public void setHaber(double haber) {
-        this.haber = haber;
-    }
-
-    public Transaccion getTransaccion() {
-        return transaccion;
-    }
-
-    public void setTransaccion(Transaccion transaccion) {
-        this.transaccion = transaccion;
-    }
-    
+      
     public boolean asignarCuentaMayor(String codCuenta) throws SQLException{
         
         //Cortando codCuenta
@@ -141,7 +113,7 @@ public class DetalleTransaccion {
         
         //Rescatando datos de cuenta
         Conexion conexion = new Conexion();
-        String query = "select id, codCuenta, nomCuenta from Cuenta where codCuenta = ?";
+        String query = "select id from Cuenta where codCuenta = ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.pst.setString(1, codCuentaMayor);
         conexion.rs = conexion.pst.executeQuery();
@@ -149,31 +121,126 @@ public class DetalleTransaccion {
         //Asignado los datos de la cuenta mayor al detalleCuenta
         if(conexion.rs.next()){
             int id = conexion.rs.getInt("id");
-            String codigo = conexion.rs.getString("codCuenta");
-            String nombre = conexion.rs.getString("nomCuenta");
-            this.cuentaMayor = codigo;
-            this.codCuentaMayor = id;
-            System.out.println(cuentaMayor);
-            System.out.println(codCuentaMayor);
+            this.codMayor = id;
+            System.out.println(getCodMayor());
             return true;
         }
         else 
             return false; 
     }
 
+    //Metodos getter y setter
+    /**
+     * @return the idDetalle
+     */
+    public int getIdDetalle() {
+        return idDetalle;
+    }
+
+    /**
+     * @param idDetalle the idDetalle to set
+     */
+    public void setIdDetalle(int idDetalle) {
+        this.idDetalle = idDetalle;
+    }
+
+    /**
+     * @return the codMayor
+     */
+    public int getCodMayor() {
+        return codMayor;
+    }
+
+    /**
+     * @param codMayor the codMayor to set
+     */
+    public void setCodMayor(int codMayor) {
+        this.codMayor = codMayor;
+    }
+
+    /**
+     * @return the debe
+     */
+    public double getDebe() {
+        return debe;
+    }
+
+    /**
+     * @param debe the debe to set
+     */
+    public void setDebe(double debe) {
+        this.debe = debe;
+    }
+
+    /**
+     * @return the haber
+     */
+    public double getHaber() {
+        return haber;
+    }
+
+    /**
+     * @param haber the haber to set
+     */
+    public void setHaber(double haber) {
+        this.haber = haber;
+    }
+
+    /**
+     * @return the transaccion
+     */
+    public Transaccion getTransaccion() {
+        return transaccion;
+    }
+
+    /**
+     * @param transaccion the transaccion to set
+     */
+    public void setTransaccion(Transaccion transaccion) {
+        this.transaccion = transaccion;
+    }
+
+    /**
+     * @return the cuenta
+     */
     public Cuenta getCuenta() {
         return cuenta;
     }
 
+    /**
+     * @param cuenta the cuenta to set
+     */
     public void setCuenta(Cuenta cuenta) {
         this.cuenta = cuenta;
     }
 
-    public int getCodCuentaMayor() {
-        return codCuentaMayor;
+    /**
+     * @return the idCuenta
+     */
+    public int getIdCuenta() {
+        return idCuenta;
     }
 
-    public void setCodCuentaMayor(int codCuentaMayor) {
-        this.codCuentaMayor = codCuentaMayor;
-    }  
+    /**
+     * @param idCuenta the idCuenta to set
+     */
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
+    }
+
+    /**
+     * @return the idPeriodo
+     */
+    public int getIdPeriodo() {
+        return idPeriodo;
+    }
+
+    /**
+     * @param idPeriodo the idPeriodo to set
+     */
+    public void setIdPeriodo(int idPeriodo) {
+        this.idPeriodo = idPeriodo;
+    }
 }
+
+    

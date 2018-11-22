@@ -53,7 +53,7 @@ public class DetalleInteresesAcum {
         conexion.pst.setDouble(4, tasaAnual);
         conexion.pst.setDouble(5, this.tasaMensual);
         conexion.pst.setDouble(6, this.interesMensual);
-        conexion.rs = conexion.pst.executeQuery();
+        conexion.pst.executeUpdate();
                 
               System.out.println("Se ha registrado exitosamente en detalle transaccion.");
             } catch (SQLException ex) {

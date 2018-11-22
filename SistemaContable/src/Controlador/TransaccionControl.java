@@ -7,6 +7,7 @@ package Controlador;
 import Modelo.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -26,78 +27,126 @@ con el metodo local getNumSiguientePartida y le asigne la fecha acutual.
  * @author Irene Delgado :D  <dh16001@ues.edu.sv>
  */
 public class TransaccionControl {
+    
+    // Para hacer pruebas nada más
+    public static void main(String[] args) throws SQLException {
+        TransaccionControl control= new TransaccionControl();
+        
+    }
+    
+    
     //atributos
     private Usuario usuarioActual;
     private Transaccion transaccionNueva;
     private PeriodoContable periodoActual;
-    private LibroMayor mayorActual;
     private ArrayList<DetalleTransaccion> listaDetalles;
     private ArrayList<Cuenta> nuevoCatalogo; //atrib auxiliar 
     private ArrayList<Cuenta> catalogoAcopashe; //atrib auxiliar
     
+//Constructor
+    public TransaccionControl() throws SQLException{
+        periodoActual=new PeriodoContable();
+        periodoActual.llenarCatalogo();
+        periodoActual.PeriodoContableAbierto();//Se obtiene el Periodo actual
+        this.catalogoAcopashe=periodoActual.getCatalogo();
+        this.nuevoCatalogo=new ArrayList<Cuenta>();
+        this.transaccionNueva=new Transaccion();
+        
+    }
     
     //Flujo para una Transaccion Normal
     //Paso 1: mostrar al usuario el num de partida (en esta capa) y la fecha actual (desde la capa Vista)
     //Metodo que obtine el numero de partida actual dentro del periodo actual (se obtine con metodo de clase periodo)
     //Nota: este met es pa evitar acceder directamente a la capa modelo.
-    /*public static int getNumSiguientePartida(){
-        1- obtener int de ultima transaccion con peridoActual.getUltimaTransaccion 
-        2- con el dato anterior obteniedo crear variable de tipo Transaccion tran1
-        3- devolver tran1.getNumeroPartida+1;
+    public int siguienteNumPartida(){
+        return this.periodoActual.getUltimoNumPartida()+1;
     }
-    */
     
-    //Paso 2: Se llena la lista de del catálogo que aparece en el form solo con codCuenta y nombreCuenta
-    public String[][] obtenerCuentasCatalogo() throws SQLException{
-        //this.periodoActual.llenarCatalogo();
-        this.catalogoAcopashe=periodoActual.getCatalogo();
+    //Paso 2: Se llena la lista de del catálogo que aparece en el form solo con codCuenta y nombreCuenta SOLAMENTE CUENTAS DETALLE
+    public String[][] obtenerCuentasCatalogo(int rubro) throws SQLException{
         String[][] cuentas=new String[catalogoAcopashe.size()][2];
         int a=0;
-        for(Cuenta cuenta: this.catalogoAcopashe){
-            cuentas[a][0]=cuenta.getCodCuenta();
-            cuentas[a][1]=cuenta.getNomCuenta();
-            a++;
-        }
-        return cuentas;
+        int i=0;
+        switch(rubro){
+            case 0: {
+                    for(Cuenta cuenta: this.catalogoAcopashe){
+                        if(i<(this.catalogoAcopashe.size()-2)){
+                            if(this.catalogoAcopashe.get(i+1).getNivel()<=cuenta.getNivel()){
+                            cuentas[a][0]=cuenta.getCodCuenta();
+                            cuentas[a][1]=cuenta.getNomCuenta();
+                            a++;
+                            }
+                        }
+                        i++;
+                       }
+                        return cuentas;
+                    }
+            default:{
+                    for(Cuenta cuenta: this.catalogoAcopashe){
+                        if(i<(this.catalogoAcopashe.size()-2)&&(cuenta.getRubro()==rubro)){
+                            if(this.catalogoAcopashe.get(i+1).getNivel()<=cuenta.getNivel()){
+                            cuentas[a][0]=cuenta.getCodCuenta();
+                            cuentas[a][1]=cuenta.getNomCuenta();
+                            a++;
+                            }
+                        }
+                        i++;
+                       }
+                    return cuentas;    
+            } 
     }
+    
+}
     
     /*Paso 3: El usuario selecciona la cuenta, indica si es Cargo/abono, el monto y presiona OK los datos de la cuenta se guardan de forma temporal dentro de 
     del form, luego de validar que se cumpla partida doble se pasa el listado de datos al siguiente metodo
     */
-    /**
-     * 
-     * @param idTipo
-     * @param idUsuario
-     * @param monto
-     * @param codCuentasCargos
-     * @param cargos
-     * @param codCuentasAbonos
-     * @param abonos
-     * @return 
-     */
-    public boolean registrarTransaccion (int idTipo, int idUsuario, double monto, String[] codCuentasCargos, double[] cargos, String[] codCuentasAbonos, double[] abonos){
+
+    /*public boolean registrarTransaccion (int idTipo, int idUsuario, double montoT, String[] codCuentasCargos, double[] cargos, String[] codCuentasAbonos, double[] abonos){
         
         return true;
-    }
-   /**
-    * 
-    * @param tipo
-    * @param idUsuario
-    * @param monto
-    * @param codCuentas
-    * @param cantidad
-    * @param esCargo
-    * @param detalles
-    * @return 
-    */
-    public boolean registrarTransaccion (int tipo, int idUsuario, double monto, String[] codCuentas, double[] cantidad, boolean[] esCargo){
-        
-        return true;
+    }*/
+ 
+    public boolean registrarTransaccion (int idUsuario, int tipo, Date fecha, String concepto,int numPartida, double montoT, ArrayList <AuxiliarTransaccion> cuentas ){    
+        try{
+            this.transaccionNueva=new Transaccion(idUsuario,tipo,fecha,montoT,concepto,numPartida); //Se crea la nueva transaccion Primero
+            for(AuxiliarTransaccion cuenta:cuentas){
+                periodoActual.agregarDetalleTransaccion(transaccionNueva, cuenta.getCodigoCuenta(), cuenta.getDebe(), cuenta.getHaber());
+            }
+            return true;
+        }catch(Exception e){
+            return false;
+        }   
     }
     
+    public boolean registrarDetalleGastoA(int mesesPagados, double valTotal){
+        try{
+            DetalleGastoAdelantado detalle=new DetalleGastoAdelantado(this.transaccionNueva, mesesPagados, valTotal);
+            return true;
+        }catch(Exception e){
+            return false;
+        } 
+    }
     
+    public boolean registrarDetalleInteresesAcum(double valorPresente, double tasaAnual){
+        try{
+            DetalleInteresesAcum detalle=new DetalleInteresesAcum(this.transaccionNueva, valorPresente, tasaAnual);
+            return true;
+        }catch(Exception e){
+            return false;
+        } 
+    }
     
-    public static void agregarElementoTabla(String concepto,String codigo,String nombre,String monto, boolean esCargo, JTable tabla, ArrayList lista)
+    public boolean registrarDetalleActivoF( double valPresente, double valSalvamento, int vidaUtil){
+        try{
+            DetalleActivoFijo detalle=new DetalleActivoFijo(this.transaccionNueva, valPresente, valSalvamento, vidaUtil);
+            return true;
+        }catch(Exception e){
+            return false;
+        } 
+    }
+    
+   public static void agregarElementoTabla(String concepto,String codigo,String nombre,String monto, boolean esCargo, JTable tabla, ArrayList lista)
     {   
         //Por el momento es simbolico pero luego se trabajara con la clase real
         AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();

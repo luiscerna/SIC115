@@ -2,7 +2,13 @@ package Vista;
 
 import Controlador.TransaccionControl;
 import Modelo.AuxiliarTransaccion;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FormTransaccion extends javax.swing.JFrame {
@@ -16,11 +22,19 @@ Double [] montoDetalleGastoAdelantado= new Double[2];
 Double [] montoDetalleInteresesAcumulados= new Double[2];
 Double [] montoDetalleActivoFijo= new Double[2];
 
+//Monto Total de Transaccion
+double montoTotal =0;
+
+//Enlace con la Capa Control
+TransaccionControl control;
+
     /** Creates new form FormTransaccion */
-    public FormTransaccion() {
+    public FormTransaccion() throws SQLException {
         initComponents();
+        control=new TransaccionControl();
         inicializandoComponentes();
         tabDetalleGastoAdelantado.setEnabled(false);
+        
     }
     
     //metodo para inicializar valores
@@ -38,6 +52,17 @@ Double [] montoDetalleActivoFijo= new Double[2];
         radioCargoDIA.setSelected(true);
         radioCargoDAF.setSelected(true);
         
+        //fechas
+        lblValFechaTrans.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        lblValFechaDGA.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        lblValFechaDIA.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        lblValFechaDAF.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        
+        //numPardida's
+        lblValNumPartidaTrans.setText(Integer.toString(control.siguienteNumPartida()));
+        lblValNumPartidaDGA.setText(Integer.toString(control.siguienteNumPartida()));
+        lblValNumPartidaDIA.setText(Integer.toString(control.siguienteNumPartida()));
+        lblValNumPartidaDAF.setText(Integer.toString(control.siguienteNumPartida()));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -164,6 +189,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         lblNumCuentaTrans.setText("Numero de Cuenta:");
 
         btnCatalogoTrans.setText("Catalogo");
+        btnCatalogoTrans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCatalogoTransActionPerformed(evt);
+            }
+        });
 
         panelTipoTrans.setBorder(javax.swing.BorderFactory.createTitledBorder("tipo"));
 
@@ -423,6 +453,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         });
 
         btnGuardarDGA.setText("Guardar y Finalizar");
+        btnGuardarDGA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarDGAActionPerformed(evt);
+            }
+        });
 
         lblNumPartidaDGA.setText("Numero de Partida:");
 
@@ -934,10 +969,10 @@ Double [] montoDetalleActivoFijo= new Double[2];
             String conceptoGeneral= txtConceptoGeneralTrans.getText();
             String codigoCuenta= txtNumCuentaTrans.getText();
             String monto= txtMontoTrans.getText();
-            
-            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
-            TransaccionControl.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
-            TransaccionControl.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
+         
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            control.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
+            control.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
         }
         catch(Exception e)
         {
@@ -947,6 +982,7 @@ Double [] montoDetalleActivoFijo= new Double[2];
 
     private void btnGuardarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTransActionPerformed
         // TODO add your handling code here:
+        control.registrarTransaccion(4, 0, new Date() , txtConceptoGeneralTrans.getText(), Integer.parseInt(lblValNumPartidaTrans.getText()), Double.parseDouble(lblTotalDebeTrans.getText().substring(1)), regTransacciones);
     }//GEN-LAST:event_btnGuardarTransActionPerformed
 
     private void btnRegistrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDGAActionPerformed
@@ -956,9 +992,9 @@ Double [] montoDetalleActivoFijo= new Double[2];
             String codigoCuenta= txtNumCuentaDGA.getText();
             String monto= txtMontoDGA.getText();
             
-            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
-            TransaccionControl.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
-            TransaccionControl.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            control.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
+            control.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
         }
         catch(Exception e)
         {
@@ -973,9 +1009,9 @@ Double [] montoDetalleActivoFijo= new Double[2];
             String codigoCuenta= txtNumCuentaDIA.getText();
             String monto= txtMontoDIA.getText();
             
-            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
-            TransaccionControl.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
-            TransaccionControl.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
+            control.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
+            control.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
         }
         catch(Exception e)
         {
@@ -990,9 +1026,9 @@ Double [] montoDetalleActivoFijo= new Double[2];
             String codigoCuenta= txtNumCuentaDAF.getText();
             String monto= txtMontoDAF.getText();
             
-            TransaccionControl.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
-            TransaccionControl.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
-            TransaccionControl.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            control.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
+            control.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
         }
         catch(Exception e)
         {
@@ -1002,23 +1038,40 @@ Double [] montoDetalleActivoFijo= new Double[2];
 
     private void btnBorrarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarTransActionPerformed
         // TODO add your handling code here:
-        TransaccionControl.eliminarFila(tableTransacciones);
+        control.eliminarFila(tableTransacciones);
     }//GEN-LAST:event_btnBorrarTransActionPerformed
 
     private void btnBorrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDGAActionPerformed
         // TODO add your handling code here:
-        TransaccionControl.eliminarFila(tableDetalleGastosAdelantados);
+        control.eliminarFila(tableDetalleGastosAdelantados);
     }//GEN-LAST:event_btnBorrarDGAActionPerformed
 
     private void btnBorrarDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDIAActionPerformed
         // TODO add your handling code here:
-        TransaccionControl.eliminarFila(tableDetalleInteresesAcumulados);
+        control.eliminarFila(tableDetalleInteresesAcumulados);
     }//GEN-LAST:event_btnBorrarDIAActionPerformed
 
     private void btnBorrarDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDAFActionPerformed
         // TODO add your handling code here:
-        TransaccionControl.eliminarFila(tableDetalleActivoFijo);
+        control.eliminarFila(tableDetalleActivoFijo);
     }//GEN-LAST:event_btnBorrarDAFActionPerformed
+
+    private void btnCatalogoTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoTransActionPerformed
+    try {
+        // TODO add your handling code here:
+        MostrarCatalogo catalogo= new MostrarCatalogo();
+        catalogo.setVisible(true);
+        catalogo.setLocationRelativeTo(this);
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(FormTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnCatalogoTransActionPerformed
+
+    private void btnGuardarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDGAActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnGuardarDGAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1050,7 +1103,11 @@ Double [] montoDetalleActivoFijo= new Double[2];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormTransaccion().setVisible(true);
+                try {
+                    new FormTransaccion().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(FormTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

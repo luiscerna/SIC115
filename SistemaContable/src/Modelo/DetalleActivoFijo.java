@@ -19,6 +19,18 @@ public class DetalleActivoFijo {
     {
         
     }
+    
+    //COnstructor para Insertar Registro
+    public DetalleActivoFijo(Transaccion trans, double valPresente, double valSalvamento, int vidaUtil){
+        /*Debe hacer lo siguiente:
+        --obtener el idDesgaste aumentando 1 al ultimo registrado
+        --Calcular la this.desgasteAnual
+        --Calcular el this.desgasteMensual
+        --Asignar los valores a sus respectivas variables incluyendo tipoActivo
+        --Al final, hacer el registro en la BD
+        --Se hace el registro con .executeUpdate(), el pst no devuelve resulset por que No es consulta
+        */
+    }
     public DetalleActivoFijo(int trans) throws SQLException
     {
         //Conexion a la base de datos

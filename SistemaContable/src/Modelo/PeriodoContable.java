@@ -1,20 +1,4 @@
 package Modelo;
-/*2-Se necesita un constructor que reciba como parámetro boolean esCerrado: //Constructor de Consulta, suponiendo que ya existe ese registro
-    si esCerrado es false
-        entonces llenar datos con periodo actual
-                 al crear ese periodo se debe llenar en cascada su LibroMayor, dentro de este su lista de
-                 DetalleTransaccion, y dentro de este su lista de Transaccion. El constructor de Transaccion le toca a Abi y sus dependencias tambien 
-    sino
-        entonces llenar datos con null
-*/
-/*3- Se necesita un metodo getUltimaTransaccion:devuelve int
-    si libro mayor =! null entonces
-        buscar en los correspondientes datos de los objetos en cascada (crear mas metodos de acceso en las clases que crean necesarias)
-        hasta llegar a la ultima transaccion (id más alto) 
-        y devolver su idTrans
-    sino entonces
-        devolver cero
-*/
 
 import Datos.Conexion;
 import java.sql.SQLException;
@@ -24,24 +8,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PeriodoContable {
-    
-    
+ 
     // Atributos
     private  int idPeriodo;
     private  boolean cerrado;
     private  Date  inicio;
     private  Date fin;
-    private  LibroMayor libroMayor;
+    private  ArrayList<DetalleTransaccion> detallesDelPeriodo;
     private  Planilla planilla;
     private  ArrayList<Cuenta> catalogo; //Atributo Auxiliar que no aparece en el modelo
    
     // Constructor
-    public PeriodoContable() {
-        
+    public PeriodoContable() throws SQLException {
+        detallesDelPeriodo=new ArrayList<DetalleTransaccion>();
+        catalogo=new ArrayList<Cuenta>();
     }
     
     // Para hacer pruebas nada más
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         PeriodoContable pc = new PeriodoContable();
         pc.PeriodoContableAbierto();
     }
@@ -52,7 +36,7 @@ public class PeriodoContable {
         
         try {
             String query;
-            query = "SELECT idPeriodo, cerrado, idPlanilla FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
+            query = "SELECT * FROM PeriodoContable ORDER BY idPeriodo DESC LIMIT 1;";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
             conexion.rs.next();
@@ -66,19 +50,26 @@ public class PeriodoContable {
                 System.out.println("Fecha Planilla: "+this.getPlanilla().getFechaPlanilla());
                 
                 // ESTA CONSULTA ES SOLUCION A UN ERROR ANTERIOR 
-                query = "SELECT idMayor, inicio, fin FROM PeriodoContable WHERE idPeriodo = "+ getIdPeriodo() +";";
+                query = "SELECT inicio, fin FROM PeriodoContable WHERE idPeriodo = "+ getIdPeriodo() +";";
                 conexion.pst = conexion.conectar().prepareStatement(query);
                 conexion.rs = conexion.pst.executeQuery();
                 conexion.rs.next();
                 
                 this.setInicio(conexion.rs.getDate("inicio"));
                 this.setFin(conexion.rs.getDate("fin"));
-                //System.out.println("idMayor: "+conexion.rs.getInt("idMayor"));
-                this.setLibroMayor(new LibroMayor(conexion.rs.getInt("idMayor")));
-                System.out.println("nombreCuenta: "+this.getLibroMayor().getNombreCuenta());
+                 query = "SELECT * FROM DetalleTransaccion WHERE idPeriodo = "+ this.getIdPeriodo()+";";
+                 conexion.pst = conexion.conectar().prepareStatement(query);
+                 conexion.rs = conexion.pst.executeQuery();
+                 int i=-1;
+                 while(conexion.rs.next()){
+                    //System.out.println("idTrans: "+conexion.rs.getInt("idTrans"));
+                    this.detallesDelPeriodo.add(new DetalleTransaccion(conexion.rs.getInt("idTrans")));
+                    System.out.println("idCuenta: "+this.detallesDelPeriodo.get(++i).getIdCuenta());
+                 }
+                
             } else {
                 this.setPlanilla(null);
-                this.setLibroMayor(null);
+                this.setDetallesDelPeriodo(null);
                 this.setCatalogo(null);
                 this.setInicio(null);
                 this.setFin(null);
@@ -98,122 +89,143 @@ public class PeriodoContable {
     sino 
         devolver false
     */
-   /* public boolean llenarCatalogo() throws SQLException{ //metodo de Eliezer XD
+    public boolean llenarCatalogo() throws SQLException{ //metodo de Eliezer XD
         Conexion conexion = new Conexion();
-        String query = "select codCuenta, nomCuenta, rubro, nivel from Cuenta";
+        String query = "SELECT id, codCuenta, nomCuenta, rubro, nivel FROM Cuenta ORDER BY id";
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.rs = conexion.pst.executeQuery();
         while (conexion.rs.next()){
-            Cuenta cuenta = new Cuenta();
-                cuenta.setCodCuenta("codCuenta");//Arreglar los siguientes cambiandolos a Setter
-                cuenta.nomCuenta =  conexion.rs.getString("nomCuenta");
-                cuenta.rubro = conexion.rs.getInt("rubro");
-                cuenta.nivel = conexion.rs.getInt("nivel");
-                this.catalogo.add(cuenta);  
+                Cuenta cuentita = new Cuenta();
+                cuentita.setCodCuenta(conexion.rs.getString("codCuenta"));
+                cuentita.setNomCuenta(conexion.rs.getString("nomCuenta"));
+                cuentita.setRubro(conexion.rs.getInt("rubro"));
+                cuentita.setNivel(conexion.rs.getInt("nivel"));
+                cuentita.setId(conexion.rs.getInt("id"));
+                //this.catalogo.add(new Cuenta(conexion.rs.getInt("id")));
+                this.catalogo.add(cuentita);
             }
         return true;
     }
-    */
+    
+    
+    
+    public int getUltimoNumPartida(){
+        int ultimo = 0;
+        ultimo = this.getDetallesDelPeriodo().get(this.getDetallesDelPeriodo().size()-1).getTransaccion().getNumeroPartida();
+        return ultimo;
+    }
+
+    public void agregarDetalleTransaccion(Transaccion transaccion, String codCuenta, double debe, double haber) {
+        try{
+            this.detallesDelPeriodo.add(new DetalleTransaccion(transaccion, new Cuenta(codCuenta), debe, haber, this.idPeriodo));
+            
+        }catch(SQLException ex){
+            System.out.println("Ha ocurrido un problema al ingresar un nuevo detalleTransaccion.");
+        }
+        
+        
+    }
     
     // Métodos getter y setter
-
     /**
      * @return the idPeriodo
      */
-    public   int getIdPeriodo() {
+    public int getIdPeriodo() {
         return idPeriodo;
     }
 
     /**
-     * @param aIdPeriodo the idPeriodo to set
+     * @param idPeriodo the idPeriodo to set
      */
-    public   void setIdPeriodo(int aIdPeriodo) {
-        idPeriodo = aIdPeriodo;
+    public void setIdPeriodo(int idPeriodo) {
+        this.idPeriodo = idPeriodo;
     }
 
     /**
      * @return the cerrado
      */
-    public   boolean isCerrado() {
+    public boolean isCerrado() {
         return cerrado;
     }
 
     /**
-     * @param aCerrado the cerrado to set
+     * @param cerrado the cerrado to set
      */
-    public   void setCerrado(boolean aCerrado) {
-        cerrado = aCerrado;
+    public void setCerrado(boolean cerrado) {
+        this.cerrado = cerrado;
     }
 
     /**
      * @return the inicio
      */
-    public   Date getInicio() {
+    public Date getInicio() {
         return inicio;
     }
 
     /**
-     * @param aInicio the inicio to set
+     * @param inicio the inicio to set
      */
-    public   void setInicio(Date aInicio) {
-        inicio = aInicio;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
     }
 
     /**
      * @return the fin
      */
-    public   Date getFin() {
+    public Date getFin() {
         return fin;
     }
 
     /**
-     * @param aFin the fin to set
+     * @param fin the fin to set
      */
-    public   void setFin(Date aFin) {
-        fin = aFin;
+    public void setFin(Date fin) {
+        this.fin = fin;
     }
 
     /**
-     * @return the libroMayor
+     * @return the detallesDelPeriodo
      */
-    public   LibroMayor getLibroMayor() {
-        return libroMayor;
+    public ArrayList<DetalleTransaccion> getDetallesDelPeriodo() {
+        return detallesDelPeriodo;
     }
 
     /**
-     * @param aLibroMayor the libroMayor to set
+     * @param detallesDelPeriodo the detallesDelPeriodo to set
      */
-    public   void setLibroMayor(LibroMayor aLibroMayor) {
-        libroMayor = aLibroMayor;
+    public void setDetallesDelPeriodo(ArrayList<DetalleTransaccion> detallesDelPeriodo) {
+        this.detallesDelPeriodo = detallesDelPeriodo;
     }
 
     /**
      * @return the planilla
      */
-    public   Planilla getPlanilla() {
+    public Planilla getPlanilla() {
         return planilla;
     }
 
     /**
-     * @param aPlanilla the planilla to set
+     * @param planilla the planilla to set
      */
-    public   void setPlanilla(Planilla aPlanilla) {
-        planilla = aPlanilla;
+    public void setPlanilla(Planilla planilla) {
+        this.planilla = planilla;
     }
 
     /**
      * @return the catalogo
      */
-    public   ArrayList<Cuenta> getCatalogo() {
+    public ArrayList<Cuenta> getCatalogo() {
         return catalogo;
     }
 
     /**
-     * @param aCatalogo the catalogo to set
+     * @param catalogo the catalogo to set
      */
-    public   void setCatalogo(ArrayList<Cuenta> aCatalogo) {
-        catalogo = aCatalogo;
+    public void setCatalogo(ArrayList<Cuenta> catalogo) {
+        this.catalogo = catalogo;
     }
+    
+   
 
     
 }
@@ -223,8 +235,6 @@ public class PeriodoContable {
                 planilla = new Planilla(true);
                 System.out.println("El id de la nueva planilla es: "+planilla.getIdPlanilla());
                 
-                // Crear Registro del Libro Mayor
-                libroMayor = new LibroMayor(true);
                 System.out.println("El id del nuevo libro mayor es: "+libroMayor.getIdMayor());
                 
                  // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable

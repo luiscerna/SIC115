@@ -233,6 +233,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Catalogo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCatalogoTransActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="panelTipoTrans">
               <Properties>
@@ -677,6 +680,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar y Finalizar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarDGAActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNumPartidaDGA">
               <Properties>

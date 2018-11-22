@@ -23,28 +23,34 @@ public class Transaccion {
     private Usuario usuarios;
     private int tipo;
    ;
-    // Constructor
     
+
+    // Constructor
     public Transaccion()
     {
         
         
     }
-    
-    public Transaccion(int idTrans) throws SQLException //Dependiendo de su "tipo" debe
+    //Constructor de Nuevo Registro en la BD
+    public Transaccion(int idUsuario,int idTipo, Date fecha, double montoT, String concepto, int numPartida){
+        //Insertar registro en la BD 
+        
+    }
+    //Constructor de Consulta
+    public Transaccion(int idtrans) throws SQLException //Dependiendo de su "tipo" debe
                                                        // crear su respectivo detalleActivoFijo o detalleInteresAcum o detalleGastoAdelantado (ver esas clases)
                                                        //Para eso consultar la tabla Tipo como referencia, en la BD
                                                       //Como referencia ver relaciones que dependen de esta tabla en la BD
    { 
        //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "SELECT idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida FROM Transaccion WHERE idTrans= ?";
-        conexion.pst.setInt(1, idTrans);
+        String query = "SELECT idTrans, idTipo, fechaTrans,monto, concepto, numeroPartida FROM Transaccion WHERE idTrans = ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
+        conexion.pst.setInt(1, idtrans);
         conexion.rs = conexion.pst.executeQuery();
         
         //Asignado los datos a los atributos de la clase
-        if(conexion.rs.first()){
+        if(conexion.rs.next()){
             int id = conexion.rs.getInt("idTrans");
             int idTipo = conexion.rs.getInt("idTipo");
             int num = conexion.rs.getInt("numeroPartida");
@@ -58,39 +64,43 @@ public class Transaccion {
             this.concepto=concepto; 
             
             this.tipo=idTipo; 
+            
+            if(this.tipo==1)
+            { 
+            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
+        
+            }
+            if(this.tipo==2)
+            {
+                DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
+
+            }
+            if(this.tipo==3)
+            {
+                DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
+
+            }
+            if(this.tipo==4)
+            {
+               DetalleInteresesAcum detalleInteresesAcum = new DetalleInteresesAcum(this.idTrans);
+            }
+            if(this.tipo==5)
+            {
+                DetalleInteresesAcum detalleInteresesAcum = new DetalleInteresesAcum(this.idTrans);
+            }
+            if(this.tipo==6)
+            {
+                DetalleActivoFijo detalleActivoFijo=new DetalleActivoFijo(this.idTrans);
+            }
+            if(this.tipo==7)
+            {
+                DetalleActivoFijo detalleActivoFijo=new DetalleActivoFijo(this.idTrans);
+            }
+        }else{
+            System.out.println("No hay Regitro Válido en Transaccion");
         }
           
-        if(this.tipo==1)
-        { 
-            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
         
-           }
-        if(this.tipo==2)
-        {
-            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
-        
-        }
-        if(this.tipo==3)
-        {
-            DetalleGastoAdelantado detalleGastoAdelantado = new DetalleGastoAdelantado(this.idTrans) ;
-        
-        }
-        if(this.tipo==4)
-        {
-           DetalleInteresesAcum detalleInteresesAcum = new DetalleInteresesAcum(this.idTrans);
-        }
-        if(this.tipo==5)
-        {
-            DetalleInteresesAcum detalleInteresesAcum = new DetalleInteresesAcum(this.idTrans);
-        }
-        if(this.tipo==6)
-        {
-            DetalleActivoFijo detalleActivoFijo=new DetalleActivoFijo(this.idTrans);
-        }
-        if(this.tipo==7)
-        {
-            DetalleActivoFijo detalleActivoFijo=new DetalleActivoFijo(this.idTrans);
-        }
         
         
     }
