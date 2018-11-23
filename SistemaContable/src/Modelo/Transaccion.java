@@ -20,7 +20,7 @@ public class Transaccion {
     private Date fechaTrans;
     private double monto;
     private String concepto;
-    private Usuario usuarios;
+    private Usuario usuario;
     private int tipo;
    ;
     
@@ -34,6 +34,8 @@ public class Transaccion {
     //Constructor de Nuevo Registro en la BD
     public Transaccion(int idUsuario,int idTipo, Date fecha, double montoT, String concepto, int numPartida){
         //Insertar registro en la BD 
+        this.usuario=new Usuario(idUsuario);
+        
         
     }
     //Constructor de Consulta
@@ -148,11 +150,11 @@ public class Transaccion {
     }
 
     public Usuario getUsuarios() {
-        return usuarios;
+        return usuario;
     }
 
     public void setUsuarios(Usuario usuarios) {
-        this.usuarios = usuarios;
+        this.usuario = usuarios;
     }
 
     public int getTipo() {

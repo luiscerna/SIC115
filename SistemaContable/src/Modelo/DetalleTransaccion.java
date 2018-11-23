@@ -66,7 +66,7 @@ public class DetalleTransaccion {
             conexion.pst.executeUpdate();
             System.out.println("Se ha registrado exitosamente en detalle transaccion.");
         } catch (SQLException ex) {
-            Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DetalleTransaccion.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Ha ocurrido un error al registrar.");
         }  
         

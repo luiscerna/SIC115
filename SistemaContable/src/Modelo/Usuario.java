@@ -1,9 +1,5 @@
 package Modelo;
 
-/* 1-Se necesita un metodo get que reciba el idUsuario y llene los demás
-    campos de este objeto o un constructor que haga lo mismo con el mismo parámetro
-    */
-
 
 import java.util.ArrayList;
 
@@ -17,6 +13,15 @@ public class Usuario extends Empleado {
 
     // Constructor
     public Usuario() {
+        
+    }
+    //Constructor de Consulta
+    public Usuario(int idUsuario) {
+        
+    }
+    
+    //Constructor de Nuevo Registro
+    public Usuario(String usuario, String password, int nivel){
         
     }
     
