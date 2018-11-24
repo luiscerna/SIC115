@@ -11,6 +11,8 @@ correspondiente al idTrans que se le pase como parametro
 import Datos.Conexion;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Transaccion {
     
@@ -33,10 +35,37 @@ public class Transaccion {
     }
     //Constructor de Nuevo Registro en la BD
     public Transaccion(int idUsuario,int idTipo, Date fecha, double montoT, String concepto, int numPartida){
-        //Insertar registro en la BD 
-        this.usuario=new Usuario(idUsuario);
+        this.setUsuarios(new Usuario(idUsuario));
+        this.setTipo(idTipo);
+        this.setFechaTrans(fecha);
+        this.setMonto(montoT);
+        this.setConcepto(concepto);
+        this.setNumeroPartida(numPartida);
         
+        Conexion conexion = new Conexion();
         
+        try {
+            // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
+            String query;
+            query = "SELECT idTrans FROM Transaccion ORDER BY idTrans DESC LIMIT 1;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            conexion.rs.next();
+            int id = 0;
+            id = conexion.rs.getInt("idTrans");
+            id += 1;
+            this.setIdTrans(id);
+            System.out.println("idTrans nuevo: "+this.getIdTrans());
+                        
+            // Hacer el registro en la bd
+            query = "INSERT INTO Transaccion (idTrans, codEmpleado, idUsuario, idTipo, fechaTrans, ,monto, concepto, numeroPartida) VALUES ("+this.getIdTrans()+", "+this.getUsuarios().getCodEmpleado()+", "+this.getTipo()+", '"+this.getFechaTrans()+"', "+this.getMonto()+", '"+this.getConcepto()+"', "+this.getNumeroPartida()+");";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha registrado exitosamente la Transaccion.");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DetalleActivoFijo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     //Constructor de Consulta
     public Transaccion(int idtrans) throws SQLException //Dependiendo de su "tipo" debe
