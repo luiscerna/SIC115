@@ -23,6 +23,10 @@ public class DetalleGastoAdelantado {
     {
         
     }
+     public static void main(String[] args) throws SQLException {
+         //prueba
+       DetalleGastoAdelantado detalle = new DetalleGastoAdelantado(new Transaccion(1), 10, 5000);
+    }
     public DetalleGastoAdelantado(Transaccion trans, int mesesPagados, double valTotal)
     {
         /*Debe hacer lo siguiente:
@@ -37,9 +41,13 @@ public class DetalleGastoAdelantado {
                 query = "SELECT idGastoA FROM DetalleGastoAdelantado ORDER BY idGastoA DESC LIMIT 1;";
                 conexion.pst= conexion.conectar().prepareStatement(query);
                 conexion.rs = conexion.pst.executeQuery();
-                conexion.rs.next();
-                int id = conexion.rs.getInt("idGastoA");
-                id += 1;
+                int id = 0;
+                if(conexion.rs.next()){
+                id = conexion.rs.getInt("idGastoA");
+                id += 1;}
+                else {
+                    id=1;
+                }
                 setIdGastoA(id);
                 
                 this.gastoMensual = valTotal/mesesPagados;
@@ -49,11 +57,12 @@ public class DetalleGastoAdelantado {
         conexion.pst.setInt(1, getIdGastoA());
         conexion.pst.setInt(2, trans.getIdTrans());
         conexion.pst.setInt(3, mesesPagados);
-        conexion.pst.setDouble(4, this.valorTotal);
+        conexion.pst.setDouble(4, valTotal);
         conexion.pst.setDouble(5, this.getGastoMensual());
       
         conexion.pst.executeUpdate();
                  System.out.println("Se ha registrado exitosamente en detalle transaccion.");
+                 System.out.println(this.getIdGastoA());
             } catch (SQLException ex) {
                 Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Ha ocurrido un error al registrar.");
