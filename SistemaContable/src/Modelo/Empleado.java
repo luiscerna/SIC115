@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Empleado {
     // Atributos
-    private String codEmpleado;
+    private int codEmpleado;
     private String nombreEmpleado;
     private String apellidoEmpleado;
     private boolean esObrero;
@@ -17,11 +17,11 @@ public class Empleado {
     }
     
     // Métodos getter y setter
-    public String getCodEmpleado() {
+    public int getCodEmpleado() {
         return codEmpleado;
     }
 
-    public void setCodEmpleado(String codEmpleado) {
+    public void setCodEmpleado(int codEmpleado) {
         this.codEmpleado = codEmpleado;
     }
 

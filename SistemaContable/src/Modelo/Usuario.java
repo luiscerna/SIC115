@@ -30,6 +30,7 @@ public class Usuario extends Empleado {
             conexion.rs = conexion.pst.executeQuery();
             if(conexion.rs.next()){
                 this.setIdUsuario(conexion.rs.getInt("idUsuario"));
+                this.setCodEmpleado(conexion.rs.getInt("codEmpleado"));
                 this.setUsuario(conexion.rs.getString("usuario"));
                 this.setPassword(conexion.rs.getString("password"));
                 this.setNivelAcceso(conexion.rs.getInt("nivelAcceso"));

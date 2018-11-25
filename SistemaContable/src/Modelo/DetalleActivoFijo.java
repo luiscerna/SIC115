@@ -12,14 +12,8 @@ public class DetalleActivoFijo {
     private double valor;
     private int vidaUtil;
     private double valorSalvamento;
-    private String tipoActivo;
     private double desgasteAnual;
     private double desgasteMensual;
-
-    // Para hacer pruebas nada más
-    public static void main(String[] args) throws SQLException {
-        //Transaccion trans = new Transaccion(0);
-    }
     
     // Constructor
     public DetalleActivoFijo() 
@@ -45,12 +39,16 @@ public class DetalleActivoFijo {
             query = "SELECT idDesgaste FROM DetalleActivoFijo ORDER BY idDesgaste DESC LIMIT 1;";
             conexion.pst= conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
-            conexion.rs.next();
             int id = 0;
-            id = conexion.rs.getInt("idDesgaste");
-            id += 1;
+            if(conexion.rs.next()){
+                id = conexion.rs.getInt("idDesgaste");
+                id += 1;
+            } else {
+                id = 1;
+            }
+            
             this.setIdDesgaste(id);
-            System.out.println("idDesgaste nuev: "+this.getIdDesgaste());
+            System.out.println("idDesgaste nuevo: "+this.getIdDesgaste());
             
             // Calcular desgaste anual (P-L)/n
             double desgasteAnual = (this.getValor()-this.getValorSalvamento())/this.getVidaUtil();
@@ -58,9 +56,10 @@ public class DetalleActivoFijo {
             
             // Calcular desgaste mensual ((P-L)/n)/12 => desgasteAnual/12
             double desgasteMensual = this.desgasteAnual/12;
+            this.setDesgasteMensual(desgasteMensual);
             
             // Hacer el registro en la bd
-            query = "INSERT INTO DetalleActivoFijo (idDesgaste, idTrans, valor, vidaUtil, varlorSalvamento, tipoActivo, desgasteAnual, desgasteMensual) VALUES ("+this.getIdDesgaste()+", "+this.getTrans()+", "+this.getValor()+", "+this.getVidaUtil()+", "+this.getValorSalvamento()+", '"+this.getTipoActivo()+"', "+this.getDesgasteAnual()+", "+this.getDesgasteMensual()+");";
+            query = "INSERT INTO DetalleActivoFijo (idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, desgasteAnual, desgasteMensual) VALUES ("+this.getIdDesgaste()+", "+this.getTrans().getIdTrans()+", "+this.getValor()+", "+this.getVidaUtil()+", "+this.getValorSalvamento()+", "+this.getDesgasteAnual()+", "+this.getDesgasteMensual()+");";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.pst.executeUpdate();
             System.out.println("Se ha registrado exitosamente el detalle activo fijo.");
@@ -82,7 +81,7 @@ public class DetalleActivoFijo {
     {
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "SELECT idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, tipoActivo, desgateAnual, desgasteMensual FROM DetalleActivoFijo WHERE idTrans= ?";
+        String query = "SELECT idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, desgateAnual, desgasteMensual FROM DetalleActivoFijo WHERE idTrans= ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.pst.setInt(1, trans);
         conexion.rs = conexion.pst.executeQuery();
@@ -94,7 +93,6 @@ public class DetalleActivoFijo {
             double valor = conexion.rs.getInt("valor");
             int vida =conexion.rs.getInt("vidaUtil");
             double salvamento =conexion.rs.getDouble("valorSalvamento");
-            String activo=conexion.rs.getString("tipoActivo");
             double desgasteAnual=conexion.rs.getDouble("desgasteAnual");
             double desgasteMensual=conexion.rs.getDouble("desgasteMensual");
             this.idDesgaste = idDesgaste;
@@ -102,7 +100,6 @@ public class DetalleActivoFijo {
             this.valor=valor;
             this.vidaUtil=vida;
             this.valorSalvamento=salvamento;
-            this.tipoActivo=activo;
             this.desgasteAnual=desgasteAnual;
             this.desgasteMensual=desgasteMensual;
         }
@@ -139,14 +136,6 @@ public class DetalleActivoFijo {
 
     public void setValorSalvamento(double valorSalvamento) {
         this.valorSalvamento = valorSalvamento;
-    }
-
-    public String getTipoActivo() {
-        return tipoActivo;
-    }
-
-    public void setTipoActivo(String tipoActivo) {
-        this.tipoActivo = tipoActivo;
     }
 
     public double getDesgasteAnual() {

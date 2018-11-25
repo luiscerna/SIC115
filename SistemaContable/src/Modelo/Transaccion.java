@@ -24,8 +24,15 @@ public class Transaccion {
     private String concepto;
     private Usuario usuario;
     private int tipo;
-   ;
+   
     
+    // Para hacer pruebas nada más
+    public static void main(String[] args) {
+        
+        Date ahora = new Date();
+        //String concepto = "Pago de algo xD";
+        Transaccion trans = new Transaccion(1, 1, ahora, 1000, "Pago de algo xD", 1);
+    }
 
     // Constructor
     public Transaccion()
@@ -50,15 +57,19 @@ public class Transaccion {
             query = "SELECT idTrans FROM Transaccion ORDER BY idTrans DESC LIMIT 1;";
             conexion.pst= conexion.conectar().prepareStatement(query);
             conexion.rs = conexion.pst.executeQuery();
-            conexion.rs.next();
             int id = 0;
-            id = conexion.rs.getInt("idTrans");
-            id += 1;
+            if(conexion.rs.next()){
+                id = conexion.rs.getInt("idTrans");
+                id += 1;
+            } else {
+                id = 1;
+            }
+            
             this.setIdTrans(id);
             System.out.println("idTrans nuevo: "+this.getIdTrans());
                         
             // Hacer el registro en la bd
-            query = "INSERT INTO Transaccion (idTrans, codEmpleado, idUsuario, idTipo, fechaTrans, ,monto, concepto, numeroPartida) VALUES ("+this.getIdTrans()+", "+this.getUsuarios().getCodEmpleado()+", "+this.getTipo()+", '"+this.getFechaTrans()+"', "+this.getMonto()+", '"+this.getConcepto()+"', "+this.getNumeroPartida()+");";
+            query = "INSERT INTO Transaccion (idTrans, codEmpleado, idUsuario, idTipo, fechaTrans, monto, concepto, numeroPartida) VALUES ("+this.getIdTrans()+", "+this.getUsuarios().getCodEmpleado()+", "+this.getUsuarios().getIdUsuario()+", "+this.getTipo()+", '2018-11-14 00:00:00', "+this.getMonto()+", '"+this.getConcepto()+"', "+this.getNumeroPartida()+");";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.pst.executeUpdate();
             System.out.println("Se ha registrado exitosamente la Transaccion.");
