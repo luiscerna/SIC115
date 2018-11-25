@@ -2,8 +2,9 @@ package Vista;
 
 import Controlador.TransaccionControl;
 import Modelo.AuxiliarTransaccion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -1057,15 +1058,26 @@ TransaccionControl control;
     }//GEN-LAST:event_btnBorrarDAFActionPerformed
 
     private void btnCatalogoTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoTransActionPerformed
-    try {
-        // TODO add your handling code here:
-        MostrarCatalogo catalogo= new MostrarCatalogo();
-        catalogo.setVisible(true);
-        catalogo.setLocationRelativeTo(this);
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(FormTransaccion.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            // TODO add your handling code here:
+            MostrarCatalogo catalogo= new MostrarCatalogo();
+            catalogo.setVisible(true);
+            catalogo.setLocationRelativeTo(this);
+            
+            catalogo.btnAceptar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    txtNumCuentaTrans.setText(catalogo.getCodCuenta());
+                    /*
+                        Acá se debe hacer referencia en dónde se quiera mostrar el nombre de la cuenta
+                        que se trajo: catalogo.getNombreCuenta();    devuelve un String
+                    */
+                    catalogo.dispose();
+                }
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCatalogoTransActionPerformed
 
     private void btnGuardarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDGAActionPerformed
