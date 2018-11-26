@@ -2,8 +2,9 @@ package Vista;
 
 import Controlador.TransaccionControl;
 import Modelo.AuxiliarTransaccion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,13 +31,37 @@ double montoTotal =0;
 //Enlace con la Capa Control
 TransaccionControl control;
 
+//variable de contexto para capturar nombre
+String nombreCuentaActual="";
+String tipo="";
+
     /** Creates new form FormTransaccion */
-    public FormTransaccion() throws SQLException {
+    public FormTransaccion(ArrayList<Boolean> valores, String categoria) throws SQLException {
         initComponents();
         control=new TransaccionControl();
         inicializandoComponentes();
-        tabDetalleGastoAdelantado.setEnabled(false);
-        panelesTransaccion.setEnabledAt(panelesTransaccion.indexOfComponent(panelTipoTrans),false);
+        inicializandoPestañas(valores);
+        tipo=categoria;
+    }
+    public FormTransaccion()throws SQLException {
+        initComponents();
+        control=new TransaccionControl();
+        inicializandoComponentes();
+    }
+    
+    //Metodo de inicializacion de Pestañas
+    private void inicializandoPestañas(ArrayList<Boolean> listaValor)
+    {
+        int contador=0;
+        for(boolean b: listaValor)
+        {
+            panelesTransaccion.setEnabledAt(contador,b);
+            if(b==true)
+            {
+                panelesTransaccion.setSelectedIndex(contador);
+            }
+            contador++;
+        }
     }
     
     //metodo para inicializar valores
@@ -972,9 +997,12 @@ TransaccionControl control;
             String codigoCuenta= txtNumCuentaTrans.getText();
             String monto= txtMontoTrans.getText();
          
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
             control.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
             control.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
+            
+            //restableciendo valor de nombre cuenta actual
+            nombreCuentaActual="";
         }
         catch(Exception e)
         {
@@ -994,9 +1022,12 @@ TransaccionControl control;
             String codigoCuenta= txtNumCuentaDGA.getText();
             String monto= txtMontoDGA.getText();
             
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
             control.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
             control.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
+            
+            //restableciendo valor de nombre cuenta actual
+            nombreCuentaActual="";
         }
         catch(Exception e)
         {
@@ -1011,9 +1042,12 @@ TransaccionControl control;
             String codigoCuenta= txtNumCuentaDIA.getText();
             String monto= txtMontoDIA.getText();
             
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
             control.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
             control.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
+            
+            //restableciendo valor de nombre cuenta actual
+            nombreCuentaActual="";
         }
         catch(Exception e)
         {
@@ -1028,9 +1062,12 @@ TransaccionControl control;
             String codigoCuenta= txtNumCuentaDAF.getText();
             String monto= txtMontoDAF.getText();
             
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,"Prueba",monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
             control.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
             control.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
+            
+            //restableciendo valor de nombre cuenta actual
+            nombreCuentaActual="";
         }
         catch(Exception e)
         {
@@ -1059,15 +1096,27 @@ TransaccionControl control;
     }//GEN-LAST:event_btnBorrarDAFActionPerformed
 
     private void btnCatalogoTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoTransActionPerformed
-    try {
-        // TODO add your handling code here:
-        MostrarCatalogo catalogo= new MostrarCatalogo();
-        catalogo.setVisible(true);
-        catalogo.setLocationRelativeTo(this);
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(FormTransaccion.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            // TODO add your handling code here:
+            MostrarCatalogo catalogo= new MostrarCatalogo();
+            catalogo.setVisible(true);
+            catalogo.setLocationRelativeTo(this);
+            
+            catalogo.btnAceptar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    txtNumCuentaTrans.setText(catalogo.getCodCuenta());
+                    nombreCuentaActual= catalogo.getNombreCuenta();
+                    /*
+                        Acá se debe hacer referencia en dónde se quiera mostrar el nombre de la cuenta
+                        que se trajo: catalogo.getNombreCuenta();    devuelve un String
+                    */
+                    catalogo.dispose();
+                }
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(FormTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCatalogoTransActionPerformed
 
     private void btnGuardarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDGAActionPerformed

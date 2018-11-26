@@ -17,8 +17,10 @@ import javax.swing.table.TableModel;
  * @author Irene Delgado :D  <dh16001@ues.edu.sv>
  */
 public class MostrarCatalogo extends javax.swing.JFrame {
-
+  
     TransaccionControl control;
+    private String codCuenta;
+    private String nombreCuenta;
     /**
      * Creates new form MostrarCatalogo
      */
@@ -38,7 +40,7 @@ public class MostrarCatalogo extends javax.swing.JFrame {
         }
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,6 +84,11 @@ public class MostrarCatalogo extends javax.swing.JFrame {
         tbCatalogo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tbCatalogo.setName(""); // NOI18N
         tbCatalogo.setRowHeight(22);
+        tbCatalogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbCatalogoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbCatalogo);
 
         jLabel1.setFont(new java.awt.Font("Vani", 0, 24)); // NOI18N
@@ -120,6 +127,11 @@ public class MostrarCatalogo extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAceptar.setText("Aceptar");
         btnAceptar.setEnabled(false);
@@ -319,6 +331,21 @@ public class MostrarCatalogo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbtnActivoActionPerformed
 
+    private void tbCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCatalogoMouseClicked
+        // TODO add your handling code here:
+        int index = tbCatalogo.getSelectedRow();
+        TableModel model = tbCatalogo.getModel();
+        this.setCodCuenta(model.getValueAt(index, 0).toString());
+        this.setNombreCuenta(model.getValueAt(index, 1).toString());
+        System.out.println(this.getNombreCuenta());
+        this.btnAceptar.setEnabled(true);
+    }//GEN-LAST:event_tbCatalogoMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -359,7 +386,7 @@ public class MostrarCatalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    public javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup grupoRubros;
     private javax.swing.JLabel jLabel1;
@@ -371,4 +398,20 @@ public class MostrarCatalogo extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnResultado;
     private javax.swing.JTable tbCatalogo;
     // End of variables declaration//GEN-END:variables
+
+    public String getCodCuenta() {
+        return codCuenta;
+    }
+
+    public void setCodCuenta(String codCuenta) {
+        this.codCuenta = codCuenta;
+    }
+
+    public String getNombreCuenta() {
+        return nombreCuenta;
+    }
+
+    public void setNombreCuenta(String nombreCuenta) {
+        this.nombreCuenta = nombreCuenta;
+    }
 }

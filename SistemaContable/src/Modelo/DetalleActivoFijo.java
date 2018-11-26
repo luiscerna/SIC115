@@ -2,6 +2,8 @@ package Modelo;
     //Crear constructor de Consulta DetalleACtivoFijo(int idTrans) que obtenga el registro Único de esa tabla y le asigne sus valores a los atributos correspondien
 import Datos.Conexion;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DetalleActivoFijo {
     // Atributos
@@ -10,10 +12,9 @@ public class DetalleActivoFijo {
     private double valor;
     private int vidaUtil;
     private double valorSalvamento;
-    private String tipoActivo;
     private double desgasteAnual;
     private double desgasteMensual;
-
+    
     // Constructor
     public DetalleActivoFijo() 
     {
@@ -22,20 +23,65 @@ public class DetalleActivoFijo {
     
     //COnstructor para Insertar Registro
     public DetalleActivoFijo(Transaccion trans, double valPresente, double valSalvamento, int vidaUtil){
+        // Asignando valores a sus variables
+        // TipoActivo se encuentra en trans así que a ese haré referencia
+        
+        this.setTrans(trans);
+        this.setValor(valPresente);
+        this.setValorSalvamento(valSalvamento);
+        this.setVidaUtil(vidaUtil);
+        
+        Conexion conexion = new Conexion();
+        
+        try {
+            // Leer ultimo id OJO: Provisional porque en el modelo no está el id autoincrementable
+            String query;
+            query = "SELECT idDesgaste FROM DetalleActivoFijo ORDER BY idDesgaste DESC LIMIT 1;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            int id = 0;
+            if(conexion.rs.next()){
+                id = conexion.rs.getInt("idDesgaste");
+                id += 1;
+            } else {
+                id = 1;
+            }
+            
+            this.setIdDesgaste(id);
+            System.out.println("idDesgaste nuevo: "+this.getIdDesgaste());
+            
+            // Calcular desgaste anual (P-L)/n
+            double desgasteAnual = (this.getValor()-this.getValorSalvamento())/this.getVidaUtil();
+            this.setDesgasteAnual(desgasteAnual);
+            
+            // Calcular desgaste mensual ((P-L)/n)/12 => desgasteAnual/12
+            double desgasteMensual = this.desgasteAnual/12;
+            this.setDesgasteMensual(desgasteMensual);
+            
+            // Hacer el registro en la bd
+            query = "INSERT INTO DetalleActivoFijo (idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, desgasteAnual, desgasteMensual) VALUES ("+this.getIdDesgaste()+", "+this.getTrans().getIdTrans()+", "+this.getValor()+", "+this.getVidaUtil()+", "+this.getValorSalvamento()+", "+this.getDesgasteAnual()+", "+this.getDesgasteMensual()+");";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha registrado exitosamente el detalle activo fijo.");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DetalleActivoFijo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         /*Debe hacer lo siguiente:
-        --obtener el idDesgaste aumentando 1 al ultimo registrado
-        --Calcular la this.desgasteAnual
-        --Calcular el this.desgasteMensual
-        --Asignar los valores a sus respectivas variables incluyendo tipoActivo
-        --Al final, hacer el registro en la BD
-        --Se hace el registro con .executeUpdate(), el pst no devuelve resulset por que No es consulta
+        ya --obtener el idDesgaste aumentando 1 al ultimo registrado
+        ya --Calcular la this.desgasteAnual
+        ya --Calcular el this.desgasteMensual
+        ya --Asignar los valores a sus respectivas variables incluyendo tipoActivo (Se hace al principio, lo encontré más conveniente)
+        ya --Al final, hacer el registro en la BD
+        ya --Se hace el registro con .executeUpdate(), el pst no devuelve resulset por que No es consulta
         */
     }
     public DetalleActivoFijo(int trans) throws SQLException
     {
         //Conexion a la base de datos
         Conexion conexion = new Conexion();
-        String query = "SELECT idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, tipoActivo, desgateAnual, desgasteMensual FROM DetalleActivoFijo WHERE idTrans= ?";
+        String query = "SELECT idDesgaste, idTrans, valor, vidaUtil, valorSalvamento, desgateAnual, desgasteMensual FROM DetalleActivoFijo WHERE idTrans= ?";
         conexion.pst= conexion.conectar().prepareStatement(query);
         conexion.pst.setInt(1, trans);
         conexion.rs = conexion.pst.executeQuery();
@@ -47,7 +93,6 @@ public class DetalleActivoFijo {
             double valor = conexion.rs.getInt("valor");
             int vida =conexion.rs.getInt("vidaUtil");
             double salvamento =conexion.rs.getDouble("valorSalvamento");
-            String activo=conexion.rs.getString("tipoActivo");
             double desgasteAnual=conexion.rs.getDouble("desgasteAnual");
             double desgasteMensual=conexion.rs.getDouble("desgasteMensual");
             this.idDesgaste = idDesgaste;
@@ -55,7 +100,6 @@ public class DetalleActivoFijo {
             this.valor=valor;
             this.vidaUtil=vida;
             this.valorSalvamento=salvamento;
-            this.tipoActivo=activo;
             this.desgasteAnual=desgasteAnual;
             this.desgasteMensual=desgasteMensual;
         }
@@ -92,14 +136,6 @@ public class DetalleActivoFijo {
 
     public void setValorSalvamento(double valorSalvamento) {
         this.valorSalvamento = valorSalvamento;
-    }
-
-    public String getTipoActivo() {
-        return tipoActivo;
-    }
-
-    public void setTipoActivo(String tipoActivo) {
-        this.tipoActivo = tipoActivo;
     }
 
     public double getDesgasteAnual() {

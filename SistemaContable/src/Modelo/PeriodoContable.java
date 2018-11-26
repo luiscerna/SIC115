@@ -47,7 +47,7 @@ public class PeriodoContable {
             if(!this.isCerrado()){
                 // Mostrando todos los datos en consola
                 this.setPlanilla(new Planilla(conexion.rs.getInt("idPlanilla")));
-                System.out.println("Fecha Planilla: "+this.getPlanilla().getFechaPlanilla());
+                //System.out.println("Fecha Planilla: "+this.getPlanilla().getFechaPlanilla());
                 
                 // ESTA CONSULTA ES SOLUCION A UN ERROR ANTERIOR 
                 query = "SELECT inicio, fin FROM PeriodoContable WHERE idPeriodo = "+ getIdPeriodo() +";";

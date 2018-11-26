@@ -7,7 +7,7 @@ package Modelo;
 */
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import Datos.Conexion;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,7 +24,7 @@ public class Planilla {
         
     }
 
-    // Constructor para registrar una nueva Planilla
+    // Constructor para consultar una nueva Planilla
     public Planilla(int idPlanilla) {
         Conexion conexion = new Conexion();
         this.setIdPlanilla(idPlanilla);
@@ -38,6 +38,30 @@ public class Planilla {
             // FALTA CARGAR LOS EMPLEADOS 
         } catch (SQLException ex) {
             Logger.getLogger(Planilla.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //Constructor crear planilla
+    public Planilla(int idPlanilla, Date fecha){
+        try {
+             Conexion conexion = new Conexion();
+            String query;
+                    query = "SELECT idPlanilla FROM Planilla ORDER BY idPlanilla DESC LIMIT 1;";
+                    conexion.pst= conexion.conectar().prepareStatement(query);
+                    conexion.rs = conexion.pst.executeQuery();
+                    conexion.rs.next();
+                    int id = conexion.rs.getInt("idPlanilla");
+                    id += 1;
+                    this.setIdPlanilla(id);
+                    
+            query = "INSERT INTO Planilla (idPlanilla, fechaPlanilla) VALUES (?, ?)";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.pst.setInt(1, this.getIdPlanilla());
+            conexion.pst.setDate(2, fecha);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha registrado exitosamente en Planilla.");
+        } catch (SQLException ex) {
+            Logger.getLogger(DetalleTransaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

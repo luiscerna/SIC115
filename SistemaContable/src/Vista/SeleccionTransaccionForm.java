@@ -1,5 +1,6 @@
 package Vista;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class SeleccionTransaccionForm extends javax.swing.JFrame {
@@ -28,6 +29,7 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
         radioDAF = new javax.swing.JRadioButton();
         btnInicar = new javax.swing.JButton();
         btnFinalizado = new javax.swing.JButton();
+        cbTipoTransaccion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,29 +57,31 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
 
         btnFinalizado.setText("Finalizado");
 
+        cbTipoTransaccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Venta" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioDGA)
-                    .addComponent(radioTransaccion)
-                    .addComponent(radioDIA)
-                    .addComponent(radioDAF))
-                .addGap(90, 90, 90))
             .addGroup(layout.createSequentialGroup()
+                .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(lblSeleccionTransaccion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(btnInicar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFinalizado)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblSeleccionTransaccion)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnInicar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFinalizado)))
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioDGA)
+                            .addComponent(radioTransaccion)
+                            .addComponent(radioDIA)
+                            .addComponent(radioDAF)
+                            .addComponent(cbTipoTransaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(108, 108, 108))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,10 +97,12 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addComponent(radioDAF)
                 .addGap(18, 18, 18)
+                .addComponent(cbTipoTransaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInicar)
                     .addComponent(btnFinalizado))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -105,7 +111,8 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
     private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
         try{
         //línea 1-instanciamos un objeto de la clase Formulario2.java
-        FormTransaccion verformulario2=new FormTransaccion(); 
+        String categoria = (String) cbTipoTransaccion.getSelectedItem();
+        FormTransaccion verformulario2=new FormTransaccion(leerValoresRadio(),categoria); 
  
          //línea 2-hacemos visible el formulario que queremos llamar 
          verformulario2.setVisible(true);
@@ -116,6 +123,17 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInicarActionPerformed
 
+    //Metodo cuyo proposito es determinar los valores de los radio buttons para saber la opcion seleccionada
+    private ArrayList<Boolean> leerValoresRadio()
+    {
+        ArrayList<Boolean> lista= new ArrayList<Boolean>();
+        lista.add(radioTransaccion.isSelected());
+        lista.add(radioDGA.isSelected());
+        lista.add(radioDIA.isSelected());
+        lista.add(radioDAF.isSelected());
+        return lista;
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -155,6 +173,7 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
     private javax.swing.JButton btnFinalizado;
     private javax.swing.JButton btnInicar;
     private javax.swing.ButtonGroup btngpSeleccion;
+    private javax.swing.JComboBox<String> cbTipoTransaccion;
     private javax.swing.JLabel lblSeleccionTransaccion;
     private javax.swing.JRadioButton radioDAF;
     private javax.swing.JRadioButton radioDGA;

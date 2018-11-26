@@ -16,6 +16,13 @@ public class DetalleInteresesAcum {
     private double interesMensual;
 
     // Constructor
+   
+    
+     public static void main(String[] args) throws SQLException {
+         //prueba
+       DetalleInteresesAcum detalle = new DetalleInteresesAcum(new Transaccion(1), 400, 0.045 );
+    }
+    
     public DetalleInteresesAcum(){
             
     }
@@ -36,9 +43,14 @@ public class DetalleInteresesAcum {
                 query = "SELECT idAcum FROM DetalleInteresesAcum ORDER BY idAcum DESC LIMIT 1;";
                 conexion.pst= conexion.conectar().prepareStatement(query);
                 conexion.rs = conexion.pst.executeQuery();
-                conexion.rs.next();
-                int id = conexion.rs.getInt("idAcum");
+                int id=0;
+                if(conexion.rs.next()){
+                id = conexion.rs.getInt("idAcum");
                 id += 1;
+        } else {
+               id = 1;}
+                
+                       
                 setIdAcum(id);
           
         this.tasaMensual = tasaAnual/12;
@@ -55,7 +67,8 @@ public class DetalleInteresesAcum {
         conexion.pst.setDouble(6, this.interesMensual);
         conexion.pst.executeUpdate();
                 
-              System.out.println("Se ha registrado exitosamente en detalle transaccion.");
+              System.out.println("Se ha registrado exitosamente en DetalleInteresesAcum.");
+              System.out.println(this.getIdAcum());
             } catch (SQLException ex) {
                 Logger.getLogger(PeriodoContable.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println("Ha ocurrido un error al registrar.");
