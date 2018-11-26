@@ -20,11 +20,33 @@ public class Puesto {
     public void setNivelAcceso(int nivelAcceso) {
         this.nivelAcceso = nivelAcceso;
     }
+    
+    // Solo de prueba
+    public static void main(String[] args) {
+        
+        // Probando insert
+        //Puesto pue = new Puesto(9, "Puesto 9", 1500, 1);
+        
+        // Probando select
+        /*Puesto pue = new Puesto(9);
+        System.out.println("codPuesto: "+pue.getNombrePuesto()+" nombrePuesto: "+pue.getNombrePuesto());*/
+        
+        // Probando actualizarPuesto
+        /*Puesto pue = new Puesto();
+        pue.actualizarPuesto(9, "Puesto 99", 1200, 2);*/
+        
+        // Probando delete
+        /*Puesto pue = new Puesto();
+        pue.eliminarPuesto(9);*/
+        
+        // Todo funciona good
+    }
 
     // Constructor
     public Puesto() {
         
     }
+    
     //Constructor consulta
     public Puesto(int codPuesto){
     
@@ -43,33 +65,72 @@ public class Puesto {
             }
            
         } catch (SQLException ex) {
-            Logger.getLogger(DetalleTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public Puesto(int codPuesto, String nombre, Double sueldo, int nivel){
+    public Puesto(int codPuesto, String nombre, double sueldo, int nivel){
          try {
              Conexion conexion = new Conexion();
             String query;
-                    query = "SELECT codPuesto FROM Puesto ORDER BY codPuesto DESC LIMIT 1;";
-                    conexion.pst= conexion.conectar().prepareStatement(query);
-                    conexion.rs = conexion.pst.executeQuery();
-                    conexion.rs.next();
-                    int id = conexion.rs.getInt("codPuesto");
-                    id += 1;
-                    this.setCodPuesto(id); 
+            query = "SELECT codPuesto FROM Puesto ORDER BY codPuesto DESC LIMIT 1;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            int id = 0;
+            if(conexion.rs.next()){
+                id = conexion.rs.getInt("codPuesto");
+                id += 1;
+            } else {
+                id = 1;
+            }
+            this.setCodPuesto(id); 
             
-            query = "INSERT INTO Puesto (codPuesto, nombrePuesto, sueldoBase, usuario, nivelAcceso) VALUES (?, ?, ?, ?, ?)";
+            query = "INSERT INTO Puesto (codPuesto, nombrePuesto, sueldoBase, nivelAcceso) VALUES (?, ?, ?, ?)";
             conexion.pst= conexion.conectar().prepareStatement(query);
             conexion.pst.setInt(1, codPuesto);
             conexion.pst.setString(2, nombre);
             conexion.pst.setDouble(3, sueldo);
-            conexion.pst.setString(4, nombre);
-            conexion.pst.setInt(5, nivel);
+            conexion.pst.setInt(4, nivel);
             conexion.pst.executeUpdate();
-            System.out.println("Se ha registrado exitosamente en detalle transaccion.");
+            System.out.println("Se ha registrado exitosamente en puesto.");
          } catch (SQLException ex) {
-            Logger.getLogger(DetalleTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // Método para actualizar datos
+    public void actualizarPuesto(int codPuesto, String nombrePuesto, double sueldoBase, int nivelAcceso){
+        this.setCodPuesto(codPuesto);
+        this.setNombrePuesto(nombrePuesto);
+        this.setSueldoBase(sueldoBase);
+        this.setNivelAcceso(nivelAcceso);
+        
+        Conexion conexion = new Conexion();
+        try {
+            String query;
+            query = "UPDATE Puesto SET nombrePuesto = '"+getNombrePuesto()+"', sueldoBase = "+getSueldoBase()+", nivelAcceso = "+getNivelAcceso()+" WHERE codPuesto = "+getCodPuesto()+";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha actualizado exitosamente en puesto.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // Método eliminar empleado a partir de su id
+    public void eliminarPuesto(int codPuesto){
+        this.setCodPuesto(codPuesto);
+        
+        Conexion conexion = new Conexion();
+        
+        try {
+            String query;
+            query = "DELETE FROM Puesto WHERE codPuesto = "+getCodPuesto()+";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha eliminado exitosamente en puesto.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

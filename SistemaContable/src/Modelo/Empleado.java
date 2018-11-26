@@ -1,6 +1,10 @@
 package Modelo;
 
+import Datos.Conexion;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Empleado {
     // Atributos
@@ -11,9 +15,130 @@ public class Empleado {
     private ArrayList<TarjetaDeTrabajo> tarjetaDeTrabajo;
     private Puesto puesto;
 
+    // Solo de prueba
+    public static void main(String[] args) {
+        
+        // Probando insert
+        //Empleado emp = new Empleado("Luis", "Cerna", true, 1);
+        
+        // Probando select
+        /*Empleado emp = new Empleado(5);
+        System.out.println("codEmpleado: "+emp.getCodEmpleado()+" nombre: "+emp.getNombreEmpleado()+" codPuesto: "+emp.getPuesto().getCodPuesto());
+        */
+        
+        // Probando actualizarEmpleado
+        /*Empleado emp = new Empleado();
+        emp.actualizarEmpleado(5, "Luis Roberto", "Cerna Vásquez", false, 5);
+        */
+        
+        // Probando delete
+        /*Empleado emp = new Empleado();
+        emp.eliminarEmpleado(5);
+        */
+        
+        // Todo funciona good
+    }
+    
     // Constructor
     public Empleado() {
         
+    }
+    
+    // Constructor para traer una consulta de empleado con respecto a su id
+    public Empleado(int codEmpleado) {
+        setCodEmpleado(codEmpleado);
+        
+        Conexion conexion = new Conexion();
+        
+        try {
+            String query;
+            query = "SELECT * FROM Empleado WHERE codEmpleado = "+ this.getCodEmpleado()+";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            if(conexion.rs.next()){
+                this.setNombreEmpleado(conexion.rs.getString("nombreEmpleado"));
+                this.setApellidoEmpleado(conexion.rs.getString("apellidoEmpleado"));
+                this.setEsObrero(conexion.rs.getBoolean("esObrero"));
+                this.setPuesto(new Puesto(conexion.rs.getInt("codPuesto")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
+    // Constructor insert
+    public Empleado(String nombreEmpleado, String apellidoEmpleado, boolean esObrero, int codPuesto){
+        this.setNombreEmpleado(nombreEmpleado);
+        this.setApellidoEmpleado(apellidoEmpleado);
+        this.setEsObrero(esObrero);
+        this.setPuesto(new Puesto(codPuesto));
+        
+        Conexion conexion = new Conexion();
+            
+        try {
+            String query;
+            query = "SELECT codEmpleado FROM Empleado ORDER BY codEmpleado DESC LIMIT 1;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            int id = 0;
+            if(conexion.rs.next()){
+                id = conexion.rs.getInt("codEmpleado");
+                id += 1;
+            } else {
+                id = 1;
+            }
+            this.setCodEmpleado(id);
+            System.out.println("codEmpleado nuevo "+getCodEmpleado());
+            
+            query = "INSERT INTO Empleado (codEmpleado, nombreEmpleado, apellidoEmpleado, esObrero, codPuesto) VALUES (?, ?, ?, ?, ?)";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.pst.setInt(1, getCodEmpleado());
+            conexion.pst.setString(2, getNombreEmpleado());
+            conexion.pst.setString(3, getApellidoEmpleado());
+            conexion.pst.setBoolean(4, isEsObrero());
+            conexion.pst.setInt(5, getPuesto().getCodPuesto());
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha registrado exitosamente en empleado.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // Método para actualizar datos
+    public void actualizarEmpleado(int codEmpleado, String nombreEmpleado, String apellidoEmpleado, boolean esObrero, int codPuesto){
+        this.setCodEmpleado(codEmpleado);
+        this.setNombreEmpleado(nombreEmpleado);
+        this.setApellidoEmpleado(apellidoEmpleado);
+        this.setEsObrero(esObrero);
+        this.setPuesto(new Puesto(codPuesto));
+        
+        Conexion conexion = new Conexion();
+        try {
+            String query;
+            query = "UPDATE Empleado SET nombreEmpleado = '"+getNombreEmpleado()+"', apellidoEmpleado = '"+getApellidoEmpleado()+"', esObrero = "+isEsObrero()+", codPuesto = "+getPuesto().getCodPuesto()+" WHERE codEmpleado = "+getCodEmpleado()+";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha actualizado exitosamente en empleado.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // Método eliminar empleado a partir de su id
+    public void eliminarEmpleado(int codEmpleado){
+        this.setCodEmpleado(codEmpleado);
+        
+        Conexion conexion = new Conexion();
+        
+        try {
+            String query;
+            query = "DELETE FROM Empleado WHERE codEmpleado = "+getCodEmpleado()+";";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.executeUpdate();
+            System.out.println("Se ha eliminado exitosamente en empleado.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     // Métodos getter y setter
