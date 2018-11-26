@@ -52,7 +52,7 @@ public class TransaccionControl {
         this.nuevoCatalogo=new ArrayList<Cuenta>();
         this.transaccionNueva=new Transaccion();
         
-    }
+    } 
     
     //Flujo para una Transaccion Normal
     //Paso 1: mostrar al usuario el num de partida (en esta capa) y la fecha actual (desde la capa Vista)

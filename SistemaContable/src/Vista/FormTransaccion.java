@@ -12,11 +12,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FormTransaccion extends javax.swing.JFrame {
+    //Arreglo de objetos auxiliares para capturar datos de formularios
 ArrayList <AuxiliarTransaccion> regTransacciones= new ArrayList<AuxiliarTransaccion>();
 ArrayList <AuxiliarTransaccion> regDetalleGastoAdelantado= new ArrayList<AuxiliarTransaccion>();
 ArrayList <AuxiliarTransaccion> regDetalleInteresesAcumulados= new ArrayList<AuxiliarTransaccion>();
 ArrayList <AuxiliarTransaccion> regDetalleActivoFijo= new ArrayList<AuxiliarTransaccion>();
 
+    //Montos debe y haber de cada tipo de transaccion
 Double [] montoTransacciones= new Double[2];
 Double [] montoDetalleGastoAdelantado= new Double[2];
 Double [] montoDetalleInteresesAcumulados= new Double[2];
@@ -34,7 +36,7 @@ TransaccionControl control;
         control=new TransaccionControl();
         inicializandoComponentes();
         tabDetalleGastoAdelantado.setEnabled(false);
-        
+        panelesTransaccion.setEnabledAt(panelesTransaccion.indexOfComponent(panelTipoTrans),false);
     }
     
     //metodo para inicializar valores

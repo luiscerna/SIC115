@@ -111,7 +111,7 @@ public class PeriodoContable {
     
     public int getUltimoNumPartida(){
         int ultimo = 0;
-        ultimo = this.getDetallesDelPeriodo().get(this.getDetallesDelPeriodo().size()-1).getTransaccion().getNumeroPartida();
+        ultimo = this.getDetallesDelPeriodo().get(this.detallesDelPeriodo.size()-1).getTransaccion().getNumeroPartida();
         return ultimo;
     }
 
