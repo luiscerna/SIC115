@@ -5,6 +5,7 @@
  */
 
 package Vista;
+import Vista.Login;
 
 /**
  *
@@ -12,9 +13,19 @@ package Vista;
  */
 public class FormMenuGerente extends javax.swing.JFrame {
 
+    private String usuario;
+    private int idUsuario;
+    private String nombre;
+    private String apellido;
+    
     /** Creates new form FormMenu */
     public FormMenuGerente() {
         initComponents();
+        this.setLocationRelativeTo(null);//Para que se muestre al centro de la pantalla
+    }
+    
+    public void mnsjBienvenida(){
+        this.lblBienvenida.setText("Bienvenid@ "+ this.nombre);
     }
 
     /** This method is called from within the constructor to
@@ -125,7 +136,11 @@ public class FormMenuGerente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
+        Login inicio=new Login();
+        this.setVisible(false);
+        inicio.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
@@ -175,4 +190,60 @@ public class FormMenuGerente extends javax.swing.JFrame {
     private javax.swing.JLabel lblBienvenida;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the idUsuario
+     */
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * @param idUsuario the idUsuario to set
+     */
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+        System.out.println(this.nombre);
+    }
+
+    /**
+     * @return the apellido
+     */
+    public String getApellido() {
+        return apellido;
+    }
+
+    /**
+     * @param apellido the apellido to set
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 }

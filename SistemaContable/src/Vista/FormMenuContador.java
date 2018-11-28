@@ -6,17 +6,29 @@
 
 package Vista;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Paola
  */
 public class FormMenuContador extends javax.swing.JFrame {
-
+    private String usuario;
+    private int idUsuario;
+    private String nombre;
+    private String apellido;
+    
     /** Creates new form FormMenu */
     public FormMenuContador() {
         initComponents();
+        this.setLocationRelativeTo(null);//Para que se muestre al centro de la pantalla
     }
-
+    
+    public void mnsjBienvenida(){
+        this.lblBienvenida.setText("Bienvenid@ "+ this.nombre);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -28,7 +40,7 @@ public class FormMenuContador extends javax.swing.JFrame {
 
         btnEstadosCostos = new javax.swing.JButton();
         btnEstadosF = new javax.swing.JButton();
-        btnLibroDiario = new javax.swing.JButton();
+        btnTransaccion = new javax.swing.JButton();
         btnLibroMayor = new javax.swing.JButton();
         btnPlanilla = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
@@ -43,8 +55,13 @@ public class FormMenuContador extends javax.swing.JFrame {
         btnEstadosF.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnEstadosF.setText("Estados Financieros");
 
-        btnLibroDiario.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnLibroDiario.setText("Libro Diario");
+        btnTransaccion.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
+        btnTransaccion.setText("Registrar Transaccion");
+        btnTransaccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransaccionActionPerformed(evt);
+            }
+        });
 
         btnLibroMayor.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnLibroMayor.setText("Libro Mayor");
@@ -77,28 +94,24 @@ public class FormMenuContador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnEstadosF)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addComponent(btnLibroDiario)))
-                                .addGap(158, 158, 158))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTransaccion)
+                            .addComponent(btnEstadosF)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(lblBienvenida)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblBienvenida))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnLibroMayor)
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPlanilla)
-                        .addGap(85, 85, 85))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCerrarSesion)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPlanilla)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -112,12 +125,12 @@ public class FormMenuContador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEstadosF)
                     .addComponent(btnLibroMayor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPlanilla)
-                    .addComponent(btnLibroDiario))
+                    .addComponent(btnTransaccion)
+                    .addComponent(btnPlanilla))
                 .addGap(48, 48, 48)
                 .addComponent(btnEstadosCostos)
                 .addGap(59, 59, 59))
@@ -127,8 +140,29 @@ public class FormMenuContador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        Login inicio=new Login();
+        this.setVisible(false);
+        inicio.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnTransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccionActionPerformed
+        try {
+            FormTransaccion form=new FormTransaccion(); //REEMPLAZAR POR EL OTRO FORM DE MOTO
+            form.setApellido(this.apellido);
+            form.setNombre(this.nombre);
+            form.setIdUsuario(this.idUsuario);
+            form.setUsuario(this.usuario);
+            form.setVisible(true);
+            this.dispose();
+            this.setEnabled(false);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormMenuContador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnTransaccionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,11 +204,65 @@ public class FormMenuContador extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnEstadosCostos;
     private javax.swing.JButton btnEstadosF;
-    private javax.swing.JButton btnLibroDiario;
     private javax.swing.JButton btnLibroMayor;
     private javax.swing.JButton btnPlanilla;
+    private javax.swing.JButton btnTransaccion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblBienvenida;
     // End of variables declaration//GEN-END:variables
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
 
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the idUsuario
+     */
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * @param idUsuario the idUsuario to set
+     */
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the apellido
+     */
+    public String getApellido() {
+        return apellido;
+    }
+
+    /**
+     * @param apellido the apellido to set
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 }

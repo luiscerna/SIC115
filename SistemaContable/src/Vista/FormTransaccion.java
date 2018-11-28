@@ -13,6 +13,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FormTransaccion extends javax.swing.JFrame {
+
+   
+    //Datos del usuario actual
+    private String usuario;
+    private int idUsuario;
+    private String nombre;
+    private String apellido;
+    
     //Arreglo de objetos auxiliares para capturar datos de formularios
 ArrayList <AuxiliarTransaccion> regTransacciones= new ArrayList<AuxiliarTransaccion>();
 ArrayList <AuxiliarTransaccion> regDetalleGastoAdelantado= new ArrayList<AuxiliarTransaccion>();
@@ -1161,6 +1169,62 @@ String tipo="";
                 }
             }
         });
+    }
+    
+     /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the idUsuario
+     */
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * @param idUsuario the idUsuario to set
+     */
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the apellido
+     */
+    public String getApellido() {
+        return apellido;
+    }
+
+    /**
+     * @param apellido the apellido to set
+     */
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

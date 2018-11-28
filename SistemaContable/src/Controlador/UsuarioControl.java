@@ -22,8 +22,10 @@ public class UsuarioControl {
         }else return false;
     }
     
-    public int obtenerNivelAcceso(){
-        return user.getNivelAcceso();
+    public int obtenerNivelId(int i){
+        if(i==0){
+            return user.getNivelAcceso();
+        }else return user.getIdUsuario();
     }
     
     public String obtenerNombreApellido(int n){

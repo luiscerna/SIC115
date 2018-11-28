@@ -7,6 +7,11 @@ package Vista;
 
 import javax.swing.JFrame;
 import Controlador.UsuarioControl;
+import Vista.FormMenuContador;
+import Vista.FormMenuGerente;
+import Vista.FormMenuJefeBodega;
+import Vista.FormMenuJefePersonal;
+
 
 /**
  *
@@ -158,6 +163,11 @@ public class Login extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         lblUsuarioMensaje.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblUsuarioMensaje.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,16 +264,58 @@ public class Login extends javax.swing.JFrame {
         this.ocultarMensajes();
         String usuario=this.txtUsuario.getText();
         String contrasena=new String(this.txtContrasena.getPassword());
-        if(usuario==null||contrasena==null){
+        if(usuario==null||contrasena==null){ //Validar si los campos estan vacios
             if(usuario.isEmpty()){
                 this.lblUsuarioMensaje.setVisible(true);
             }
             if(contrasena==null||contrasena.isEmpty()){
                 this.lblContraMensaje.setVisible(true);
             }
-        }else if(control.validarUsuario(usuario, contrasena)){
-              this.lblUsuarioMensaje.setText("Ya funciona el Login!!1 :D");
-                this.lblUsuarioMensaje.setVisible(true);
+        }else if(control.validarUsuario(usuario, contrasena)){ //Validar que el usuario y la contraseña existan y coincidan
+              switch(control.obtenerNivelId(0)){ //Dependiendo del nivel de usuario abre el menu que corresponde y cierra el login
+                  case 1:
+                      FormMenuGerente form= new FormMenuGerente();
+                      form.setApellido(control.obtenerNombreApellido(2));
+                      form.setNombre(control.obtenerNombreApellido(1));
+                      form.setIdUsuario(control.obtenerNivelId(1));
+                      form.mnsjBienvenida();
+                      form.setVisible(true);
+                      this.setEnabled(false);
+                      this.setVisible(false);
+                      break;
+                  case 2:
+                      FormMenuContador form1= new FormMenuContador();
+                      form1.setApellido(control.obtenerNombreApellido(2));
+                      form1.setNombre(control.obtenerNombreApellido(1));
+                      form1.setIdUsuario(control.obtenerNivelId(1));
+                      form1.mnsjBienvenida();
+                      form1.setVisible(true);
+                      this.setEnabled(false);
+                      this.setVisible(false);
+                      break;
+                  case 3:
+                      FormMenuJefePersonal form2= new FormMenuJefePersonal();
+                      form2.setApellido(control.obtenerNombreApellido(2));
+                      form2.setNombre(control.obtenerNombreApellido(1));
+                      form2.setIdUsuario(control.obtenerNivelId(1));
+                      form2.mnsjBienvenida();
+                      form2.setVisible(true);
+                      this.setEnabled(false);
+                      this.setVisible(false);
+                      break;
+                  case 4:
+                      FormMenuJefeBodega form3= new FormMenuJefeBodega();
+                      form3.setApellido(control.obtenerNombreApellido(2));
+                      form3.setNombre(control.obtenerNombreApellido(1));
+                      form3.setIdUsuario(control.obtenerNivelId(1));
+                      form3.mnsjBienvenida();
+                      form3.setVisible(true);
+                      this.setEnabled(false);
+                      this.setVisible(false);
+                      break;
+                  default:
+                      break;
+              }
             }else{
                 this.lblUsuarioMensaje.setText("Usuario o Contraseña incorrecta.");
                 this.lblUsuarioMensaje.setVisible(true);
@@ -272,6 +324,11 @@ public class Login extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
