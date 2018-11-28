@@ -31,6 +31,11 @@ public class TransaccionControl {
     // Para hacer pruebas nada más
     public static void main(String[] args) throws SQLException {
         TransaccionControl control= new TransaccionControl();
+        if(control.existeCuenta("1101")){
+            System.out.println("Si Existe");
+        }else{
+            System.out.println("NO existe");
+        }
         
     }
     
@@ -102,10 +107,6 @@ public class TransaccionControl {
     del form, luego de validar que se cumpla partida doble se pasa el listado de datos al siguiente metodo
     */
 
-    /*public boolean registrarTransaccion (int idTipo, int idUsuario, double montoT, String[] codCuentasCargos, double[] cargos, String[] codCuentasAbonos, double[] abonos){
-        
-        return true;
-    }*/
  
     public boolean registrarTransaccion (int idUsuario, int tipo, Date fecha, String concepto,int numPartida, double montoT, ArrayList <AuxiliarTransaccion> cuentas ){    
         try{
@@ -146,6 +147,48 @@ public class TransaccionControl {
         } 
     }
     
+    //Metodo para validar que existe la cuenta antes de agregarla a la Tabla de Registros
+    public boolean existeCuenta(String codCuenta) throws SQLException{
+        if(((new Cuenta(codCuenta)).getNomCuenta())!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //Metodo con nombre automático
+    public static void agregarElementoTabla(String concepto,String codigo,String monto, boolean esCargo, JTable tabla, ArrayList lista) throws SQLException
+    {   
+        //Por el momento es simbolico pero luego se trabajara con la clase real
+        AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
+        auxiliar.setNombreCuenta((new Cuenta(codigo)).getNomCuenta());
+        auxiliar.setCodigoCuenta(codigo);
+        auxiliar.setConceptoGeneral(concepto);
+        if(esCargo)
+        {
+            auxiliar.setDebe(Double.parseDouble(monto));
+            auxiliar.setHaber(0.00);
+        }
+        else
+        {
+            auxiliar.setHaber(Double.parseDouble(monto));
+            auxiliar.setDebe(0.00);
+        }
+        
+        //Agregar elemento del registro de la tabla
+        Object [] registro= new Object[4];
+        registro[0]=auxiliar.getCodigoCuenta();
+        registro[1]= auxiliar.getNombreCuenta();
+        registro[2]=auxiliar.getDebe();
+        registro[3]=auxiliar.getHaber();
+        
+        //Objeteniendo el modelo de la tabla
+        DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+        modelo.addRow(registro);
+        tabla.setModel(modelo);
+        lista.add(auxiliar);
+    }
+    
+    //Metodeo de Moto
    public static void agregarElementoTabla(String concepto,String codigo,String nombre,String monto, boolean esCargo, JTable tabla, ArrayList lista)
     {   
         //Por el momento es simbolico pero luego se trabajara con la clase real

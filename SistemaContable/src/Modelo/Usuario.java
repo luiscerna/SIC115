@@ -23,6 +23,12 @@ public class Usuario extends Empleado {
     
     // Solo de prueba
     public static void main(String[] args) {
+        Usuario user=new Usuario();
+        if(user.llenarUsuario("Pocasangre123"))
+            System.out.println("Funciona");
+        else
+            System.out.println("Erroooor");
+    
         
         // Probando insert
         /*String usuario = "luiscerna";
@@ -49,7 +55,33 @@ public class Usuario extends Empleado {
         
         // Todo funciona good
     }
-    
+    public boolean llenarUsuario(String usuario){
+       try {
+            Conexion conexion = new Conexion();
+            this.setUsuario(usuario);
+            String query;
+            query = "SELECT * FROM Usuario WHERE usuario = ? ;";
+            conexion.pst = conexion.conectar().prepareStatement(query);
+            conexion.pst.setString(1, usuario);
+            conexion.rs = conexion.pst.executeQuery();
+            if(conexion.rs.next()){
+                this.setIdUsuario(conexion.rs.getInt("idUsuario"));
+                this.setCodEmpleado(conexion.rs.getInt("codEmpleado"));
+                this.setNombreEmpleado(conexion.rs.getString("nombreEmpleado"));
+                this.setApellidoEmpleado(conexion.rs.getString("apellidoEmpleado"));
+                this.setUsuario(conexion.rs.getString("usuario"));
+                this.setPassword(conexion.rs.getString("password"));
+                this.setNivelAcceso(conexion.rs.getInt("nivelAcceso"));
+                return true;
+            }else{
+                return false;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } 
+    }
     //Constructor de Consulta
     public Usuario(int idUsuario) {
          try {

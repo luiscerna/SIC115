@@ -45,6 +45,8 @@ public class Cuenta {
             this.nivel=nivel;
             this.nomCuenta=nombre;
             this.id=conexion.rs.getInt("id");
+        }else{
+            this.nomCuenta=null;
         }
     }
     public Cuenta(int idCuenta) throws SQLException //Este constructor Ya se uso, si se modifica el parámetro favor notificar.
