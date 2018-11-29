@@ -156,36 +156,41 @@ public class TransaccionControl {
         }
     }
     //Metodo con nombre automático
-    public static void agregarElementoTabla(String concepto,String codigo,String monto, boolean esCargo, JTable tabla, ArrayList lista) throws SQLException
+    public static void agregarElementoTablaCampo(String concepto,String codigo,String monto, boolean esCargo, JTable tabla, ArrayList lista) throws SQLException
     {   
         //Por el momento es simbolico pero luego se trabajara con la clase real
         AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
-        auxiliar.setNombreCuenta((new Cuenta(codigo)).getNomCuenta());
-        auxiliar.setCodigoCuenta(codigo);
-        auxiliar.setConceptoGeneral(concepto);
-        if(esCargo)
+        if((new Cuenta(codigo)).getNomCuenta()!= null)
         {
-            auxiliar.setDebe(Double.parseDouble(monto));
-            auxiliar.setHaber(0.00);
+            auxiliar.setNombreCuenta((new Cuenta(codigo)).getNomCuenta());
+            auxiliar.setCodigoCuenta(codigo);
+            auxiliar.setConceptoGeneral(concepto);
+            if(esCargo)
+            {
+                auxiliar.setDebe(Double.parseDouble(monto));
+                auxiliar.setHaber(0.00);
+            }
+            else
+            {
+                auxiliar.setHaber(Double.parseDouble(monto));
+                auxiliar.setDebe(0.00);
+            }
+
+            //Agregar elemento del registro de la tabla
+            Object [] registro= new Object[4];
+            registro[0]=auxiliar.getCodigoCuenta();
+            registro[1]= auxiliar.getNombreCuenta();
+            registro[2]=auxiliar.getDebe();
+            registro[3]=auxiliar.getHaber();
+
+            //Objeteniendo el modelo de la tabla
+            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+            modelo.addRow(registro);
+            tabla.setModel(modelo);
+            lista.add(auxiliar);
+        }else{
+            JOptionPane.showMessageDialog(null,"Parece que la cuenta solicitada no existe!\nPor favor ingresar nuevamente o auxiliarse\ndel boton de CATALOGO ");
         }
-        else
-        {
-            auxiliar.setHaber(Double.parseDouble(monto));
-            auxiliar.setDebe(0.00);
-        }
-        
-        //Agregar elemento del registro de la tabla
-        Object [] registro= new Object[4];
-        registro[0]=auxiliar.getCodigoCuenta();
-        registro[1]= auxiliar.getNombreCuenta();
-        registro[2]=auxiliar.getDebe();
-        registro[3]=auxiliar.getHaber();
-        
-        //Objeteniendo el modelo de la tabla
-        DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
-        modelo.addRow(registro);
-        tabla.setModel(modelo);
-        lista.add(auxiliar);
     }
     
     //Metodeo de Moto

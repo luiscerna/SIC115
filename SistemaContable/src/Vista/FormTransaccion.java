@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class FormTransaccion extends javax.swing.JFrame {
 
@@ -42,6 +43,9 @@ TransaccionControl control;
 //variable de contexto para capturar nombre
 String nombreCuentaActual="";
 String tipo="";
+
+//variable booleana que controlara si se ingreso unicamente en el campo del codigo o se se uso el boton catalogo
+boolean usoBoton= false;
 
     /** Creates new form FormTransaccion */
     public FormTransaccion(ArrayList<Boolean> valores, String categoria) throws SQLException {
@@ -1004,13 +1008,19 @@ String tipo="";
             String conceptoGeneral= txtConceptoGeneralTrans.getText();
             String codigoCuenta= txtNumCuentaTrans.getText();
             String monto= txtMontoTrans.getText();
-         
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            
+            //validando si uso txtBox o Boton de catologo
+            if(usoBoton)
+                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            else
+                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            
             control.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
             control.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
             
             //restableciendo valor de nombre cuenta actual
             nombreCuentaActual="";
+            usoBoton=false;
         }
         catch(Exception e)
         {
@@ -1029,13 +1039,18 @@ String tipo="";
             String conceptoGeneral= txtConceptoGeneralDGA.getText();
             String codigoCuenta= txtNumCuentaDGA.getText();
             String monto= txtMontoDGA.getText();
-            
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            //validando si uso txtBox o Boton de catologo
+            if(usoBoton)
+                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            else
+                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+                
             control.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
             control.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
             
             //restableciendo valor de nombre cuenta actual
             nombreCuentaActual="";
+            usoBoton=false;
         }
         catch(Exception e)
         {
@@ -1050,12 +1065,18 @@ String tipo="";
             String codigoCuenta= txtNumCuentaDIA.getText();
             String monto= txtMontoDIA.getText();
             
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
+            //validando si uso txtBox o Boton de catologo
+            if(usoBoton)
+                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
+            else
+                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
+            
             control.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
             control.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
             
             //restableciendo valor de nombre cuenta actual
             nombreCuentaActual="";
+            usoBoton=false;
         }
         catch(Exception e)
         {
@@ -1070,12 +1091,18 @@ String tipo="";
             String codigoCuenta= txtNumCuentaDAF.getText();
             String monto= txtMontoDAF.getText();
             
-            control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            //validando si uso txtBox o Boton de catologo
+            if(usoBoton)
+                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            else
+                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            
             control.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
             control.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
             
             //restableciendo valor de nombre cuenta actual
             nombreCuentaActual="";
+            usoBoton=false;
         }
         catch(Exception e)
         {
@@ -1106,6 +1133,7 @@ String tipo="";
     private void btnCatalogoTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoTransActionPerformed
         try {
             // TODO add your handling code here:
+            usoBoton=true;
             MostrarCatalogo catalogo= new MostrarCatalogo();
             catalogo.setVisible(true);
             catalogo.setLocationRelativeTo(this);
