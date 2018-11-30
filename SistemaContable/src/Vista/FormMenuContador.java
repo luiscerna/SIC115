@@ -6,9 +6,18 @@
 
 package Vista;
 
+import Datos.Conexion;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -69,14 +78,19 @@ public class FormMenuContador extends javax.swing.JFrame {
         btnPlanilla.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnPlanilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonpanill.jpg"))); // NOI18N
         btnPlanilla.setBorder(null);
-        btnPlanilla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPlanilla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPlanilla.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonplanill_press.jpg"))); // NOI18N
         btnPlanilla.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonplanill_press.jpg"))); // NOI18N
+        btnPlanilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanillaActionPerformed(evt);
+            }
+        });
 
         btnLibroMayor.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnLibroMayor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonLibM.jpg"))); // NOI18N
         btnLibroMayor.setBorder(null);
-        btnLibroMayor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLibroMayor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLibroMayor.setFocusPainted(false);
         btnLibroMayor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonlibM_press.jpg"))); // NOI18N
         btnLibroMayor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonlibM_press.jpg"))); // NOI18N
@@ -89,7 +103,7 @@ public class FormMenuContador extends javax.swing.JFrame {
         btnTransaccion.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnTransaccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botontransa.jpg"))); // NOI18N
         btnTransaccion.setBorder(null);
-        btnTransaccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTransaccion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTransaccion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonTransa_press.jpg"))); // NOI18N
         btnTransaccion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonTransa_press.jpg"))); // NOI18N
         btnTransaccion.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +116,7 @@ public class FormMenuContador extends javax.swing.JFrame {
         btnEstadosF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonEstadosf.jpg"))); // NOI18N
         btnEstadosF.setAutoscrolls(true);
         btnEstadosF.setBorder(null);
-        btnEstadosF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEstadosF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEstadosF.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonEstadosF_press.jpg"))); // NOI18N
         btnEstadosF.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonEstadosF_press.jpg"))); // NOI18N
 
@@ -110,7 +124,7 @@ public class FormMenuContador extends javax.swing.JFrame {
         btnEstadosCostos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btonEstadosCos.jpg"))); // NOI18N
         btnEstadosCostos.setToolTipText("");
         btnEstadosCostos.setBorder(null);
-        btnEstadosCostos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEstadosCostos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEstadosCostos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btonEstadosCos_press.jpg"))); // NOI18N
         btnEstadosCostos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btonEstadosCos_press.jpg"))); // NOI18N
 
@@ -219,6 +233,23 @@ public class FormMenuContador extends javax.swing.JFrame {
             Logger.getLogger(FormMenuContador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLibroMayorActionPerformed
+
+    private void btnPlanillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanillaActionPerformed
+        // TODO add your handling code here:
+         Conexion conn= new Conexion();
+        JasperReport reporte = null;
+        String path = "src\\Reportes\\planilla.jasper";
+    try {
+        reporte = (JasperReport)JRLoader.loadObjectFromFile(path);
+        Map parametros = new HashMap();
+        JasperPrint jprint = JasperFillManager.fillReport( reporte, parametros, conn.conexion);
+        JasperViewer view = new JasperViewer(jprint, false);
+        view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        view.setVisible(true);
+    } catch (JRException ex) {
+        Logger.getLogger(FormMenuContador.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnPlanillaActionPerformed
 
     /**
      * @param args the command line arguments
