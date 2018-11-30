@@ -69,6 +69,7 @@ public class Puesto {
         }
     }
     
+    //Nuevo Registro
     public Puesto(int codPuesto, String nombre, double sueldo, int nivel){
          try {
              Conexion conexion = new Conexion();

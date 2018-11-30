@@ -6,6 +6,10 @@
 
 package Vista;
 import Vista.Login;
+import Vista.LibroMayorDialog;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,6 +63,11 @@ public class FormMenuGerente extends javax.swing.JFrame {
 
         btnLibroMayor.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnLibroMayor.setText("Libro Mayor");
+        btnLibroMayor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLibroMayorActionPerformed(evt);
+            }
+        });
 
         btnGestionarPersonal.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnGestionarPersonal.setText("Gestionar Personal");
@@ -142,6 +151,18 @@ public class FormMenuGerente extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnLibroMayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibroMayorActionPerformed
+        try {
+            LibroMayorDialog formMayor= new LibroMayorDialog(this,true);
+            this.setVisible(false);
+            formMayor.setVisible(true);
+            this.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormMenuGerente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnLibroMayorActionPerformed
 
     /**
      * @param args the command line arguments

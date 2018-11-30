@@ -65,6 +65,11 @@ public class FormMenuContador extends javax.swing.JFrame {
 
         btnLibroMayor.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnLibroMayor.setText("Libro Mayor");
+        btnLibroMayor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLibroMayorActionPerformed(evt);
+            }
+        });
 
         btnPlanilla.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnPlanilla.setText("Planilla");
@@ -163,6 +168,17 @@ public class FormMenuContador extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnTransaccionActionPerformed
+
+    private void btnLibroMayorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLibroMayorActionPerformed
+        try {
+            LibroMayorDialog formMayor= new LibroMayorDialog(this,true);
+            this.setVisible(false);
+            formMayor.setVisible(true);
+            this.setVisible(true);        // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(FormMenuContador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnLibroMayorActionPerformed
 
     /**
      * @param args the command line arguments

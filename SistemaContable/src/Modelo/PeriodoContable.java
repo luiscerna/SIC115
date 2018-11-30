@@ -64,7 +64,7 @@ public class PeriodoContable {
                  while(conexion.rs.next()){
                     //System.out.println("idTrans: "+conexion.rs.getInt("idTrans"));
                     this.detallesDelPeriodo.add(new DetalleTransaccion(conexion.rs.getInt("idTrans")));
-                    System.out.println("idCuenta: "+this.detallesDelPeriodo.get(++i).getIdCuenta());
+                    //System.out.println("idCuenta: "+this.detallesDelPeriodo.get(++i).getIdCuenta());
                  }
                 
             } else {
@@ -106,8 +106,6 @@ public class PeriodoContable {
             }
         return true;
     }
-    
-    
     
     public int getUltimoNumPartida(){
         int ultimo = 0;
