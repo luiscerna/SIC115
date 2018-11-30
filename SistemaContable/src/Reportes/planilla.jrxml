@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2670b75-95c4-4ec5-aed1-4f30b37438c5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="70d04850-1f94-4348-9108-ee634c1038d4"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      EMPLEADO.`NOMBREEMPLEADO` AS EMPLEADO_NOMBREEMPLEADO,
@@ -22,13 +26,67 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="256" y="12" width="239" height="19" uuid="93eed7dd-107a-4ff1-906d-08b68fac62e4"/>
+				<text><![CDATA[PLANILLA DE SUELDOS ACOPASHE DE R.L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="46" width="204" height="20" uuid="a4643397-4136-4706-b822-ca2193350592"/>
+				<text><![CDATA[Expresado en dolares americanos (USD$)]]></text>
+			</staticText>
+			<image>
+				<reportElement x="11" y="0" width="245" height="108" uuid="af449130-a082-4a7d-b28c-07eda89e42fc"/>
+				<imageExpression><![CDATA["C:\\Users\\Roberto Ventura\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo_acopashe.jpg"]]></imageExpression>
+			</image>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="84" height="20" uuid="fd2e9a29-adc7-4f36-bd07-dd1028c35de1"/>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="41" width="60" height="20" uuid="51941774-1010-4d09-a887-566afc74533f"/>
+				<text><![CDATA[Puesto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="41" width="29" height="20" uuid="5b197de5-da44-4759-afbc-405571da418a"/>
+				<text><![CDATA[H.E.D]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="41" width="31" height="20" uuid="4f3f6da5-4e5e-48c6-8f7e-1804b055db2a"/>
+				<text><![CDATA[H.E.N]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="41" width="81" height="20" uuid="c6e62ec3-807a-4c46-b147-c102b71d25a4"/>
+				<text><![CDATA[Monto de Horas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="41" width="73" height="20" uuid="b20bcc57-045e-4de4-aeb9-92c365cb827c"/>
+				<text><![CDATA[Salario + H.E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="41" width="53" height="20" uuid="3ef08965-5a6a-457e-8c62-e6ffea3b251e"/>
+				<text><![CDATA[AFP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="506" y="41" width="45" height="20" uuid="de59e684-f7eb-4669-a2b7-4d2ed37b8b4a"/>
+				<text><![CDATA[ISSS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="567" y="41" width="87" height="20" uuid="7fee8b1b-e09e-425a-b317-432b24085b8d"/>
+				<text><![CDATA[Total Descuentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="665" y="41" width="87" height="20" uuid="58b316b6-1321-4542-9c8b-852fd0233c5a"/>
+				<text><![CDATA[Neto a pagar]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch"/>
