@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Vista;
+import Controlador.UsuarioControl;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,8 +17,23 @@ public class FormGestionarUsuario extends javax.swing.JFrame {
     /**
      * Creates new form FormGestionarUsuario
      */
+    UsuarioControl usuarioControl;
+    
     public FormGestionarUsuario() {
         initComponents();
+        this.usuarioControl = new UsuarioControl();
+        ArrayList<String> empleados = this.usuarioControl.todosEmpleados();
+        System.out.println("Tamaño "+empleados.size());
+        cbEmpleado.removeAllItems();
+        for (String empleado : empleados) {
+            cbEmpleado.addItem(empleado);
+        }
+        
+        ArrayList<String> nivelaccesos = this.usuarioControl.todosNivelAcceso();
+        cbNivelAcceso.removeAllItems();
+        for (String nivelacceso: nivelaccesos){
+            cbNivelAcceso.addItem(nivelacceso);
+        }
     }
 
     /**
@@ -55,6 +73,11 @@ public class FormGestionarUsuario extends javax.swing.JFrame {
         cbNivelAcceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elija el nivel de acceso", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,10 +97,9 @@ public class FormGestionarUsuario extends javax.swing.JFrame {
                             .addComponent(cbEmpleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbNivelAcceso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtContraseña))
-                                .addGap(3, 3, 3))))
+                                .addComponent(cbNivelAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3))
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(jButton1)
@@ -101,11 +123,11 @@ public class FormGestionarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContraseña)
-                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblContraseña))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNivelAcceso)
                     .addComponent(cbNivelAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -116,6 +138,48 @@ public class FormGestionarUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String mensajeError = "";
+        
+        if(txtUsuario.getText().equals("")){
+            mensajeError += "Campo de usuario vacio.\n";
+        }
+        
+        if(txtContraseña.getText().equals("")){
+            mensajeError += "Campo de contraseña vacio.\n";
+        }
+        
+        if(mensajeError.equals("")){
+            int codEmpleado = 0;
+            for (int i = 0; i < cbEmpleado.getSelectedItem().toString().length(); i++) {
+                if(cbEmpleado.getSelectedItem().toString().charAt(i) == '.'){
+                    codEmpleado = Integer.parseInt(cbEmpleado.getSelectedItem().toString().substring(0, i));
+                }
+            }
+            
+            usuarioControl.obtenerEmpleado(codEmpleado);
+            String usuario = this.txtUsuario.getText();
+            String contraseña = this.txtContraseña.getText();
+            int nivel = Integer.parseInt(this.cbNivelAcceso.getSelectedItem().toString());
+            String nombre = usuarioControl.getEmp().getNombreEmpleado();
+            String apellido = usuarioControl.getEmp().getApellidoEmpleado();
+            int puesto = usuarioControl.getEmp().getPuesto().getCodPuesto();
+            
+            usuarioControl.crearUsuario(usuario, contraseña, nivel, codEmpleado, nombre, apellido, puesto);
+            
+            JOptionPane.showMessageDialog(null, "Registrado Exitosamente");
+            
+            // Limpiar inputs
+            
+            cbEmpleado.setSelectedIndex(0);
+            this.txtUsuario.setText("");
+            this.txtContraseña.setText("");
+            cbNivelAcceso.setSelectedIndex(0);
+        } else {
+            JOptionPane.showMessageDialog(null, mensajeError);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

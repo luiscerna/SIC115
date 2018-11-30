@@ -137,6 +137,26 @@ public class Puesto {
             Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    // Obtener los niveles de acceso disponibles
+    public ArrayList<String> todosNivelAcceso() {
+        ArrayList<String> nivelacceso = new ArrayList<String>();
+        Conexion conexion = new Conexion();
+        String query;
+        
+        try {
+            query = "SELECT DISTINCT nivelAcceso FROM Puesto ORDER BY nivelAcceso ASC;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            while (conexion.rs.next()){
+                nivelacceso.add(conexion.rs.getString("nivelAcceso"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return nivelacceso;
+    }
 
     // Métodos getter y setter
     public int getCodPuesto() {

@@ -152,6 +152,26 @@ public class Empleado {
         }
     }
     
+    // Todos los empleados que no son obreros   
+    public ArrayList<String> todosEmpleados() {
+        ArrayList<String> empleados = new ArrayList<String>();
+        Conexion conexion = new Conexion();
+        String query;
+        
+        try {
+            query = "SELECT codEmpleado, nombreEmpleado FROM Empleado WHERE esObrero = false ORDER BY codEmpleado ASC;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            while (conexion.rs.next()){
+                empleados.add(conexion.rs.getString("codEmpleado")+". "+conexion.rs.getString("nombreEmpleado"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return empleados;
+    }
+    
     // Métodos getter y setter
     public int getCodEmpleado() {
         return codEmpleado;
