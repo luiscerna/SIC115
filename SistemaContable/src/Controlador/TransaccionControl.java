@@ -257,11 +257,12 @@ public class TransaccionControl {
             boton.setEnabled(false);
     }
     
-    public static void eliminarFila(JTable tabla)
+    public static void eliminarFila(JTable tabla, ArrayList<AuxiliarTransaccion> lista)
     {
         //obtenemos modelo de la tabla
         DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
         int fila = tabla.getSelectedRow();
+        
         //condicion para ver si ha seleccionado o no una fila
         if (fila<0)
         {
@@ -274,6 +275,7 @@ public class TransaccionControl {
             
             if(JOptionPane.OK_OPTION==confirmar)
             {
+                lista.remove(calcularPosicionLista(lista,tabla.getValueAt(fila,0)));
                 modelo.removeRow(fila);
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
             }
@@ -282,5 +284,226 @@ public class TransaccionControl {
        
 
     
+    }
+    
+    private static int calcularPosicionLista(ArrayList<AuxiliarTransaccion> lista, Object codigo)
+    {
+        int valor=0;
+        int contador=0;
+        for(AuxiliarTransaccion elemento: lista)
+        {
+            if(elemento.getCodigoCuenta()== codigo.toString())
+                valor=contador;
+            contador++;
+        }
+        return valor;
+    }
+    
+    //Para las operaciones de IVA
+    public static void agregarElementoTablaIVA(String concepto,String codigo,String nombre,String monto, boolean esCargo, JTable tabla, ArrayList lista,boolean esCompra,Double [] IVA)
+    {   
+        //si es compra
+        if(esCompra)
+        {
+            AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
+            auxiliar.setNombreCuenta(nombre);
+            auxiliar.setCodigoCuenta(codigo);
+            auxiliar.setConceptoGeneral(concepto);
+            if(esCargo)
+            {
+                auxiliar.setDebe(Double.parseDouble(monto));
+                auxiliar.setHaber(0.00);
+                IVA[0]+=Double.parseDouble(monto)*0.13;
+            }
+            else
+            {
+                //auxiliar.setHaber(Double.parseDouble(monto));
+                auxiliar.setDebe(0.00);
+                if(IVA[0]==0)
+                  auxiliar.setHaber(Double.parseDouble(monto)*1.13);
+                else{
+                    auxiliar.setHaber(Double.parseDouble(monto)+IVA[0]);
+                    IVA[0]=0.0;
+                }
+                
+            }
+
+            //Agregar elemento del registro de la tabla
+            Object [] registro= new Object[4];
+            registro[0]=auxiliar.getCodigoCuenta();
+            registro[1]= auxiliar.getNombreCuenta();
+            registro[2]=auxiliar.getDebe();
+            registro[3]=auxiliar.getHaber();
+
+            //Objeteniendo el modelo de la tabla
+            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+            modelo.addRow(registro);
+            tabla.setModel(modelo);
+            lista.add(auxiliar);
+        }
+        else
+        {
+            AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
+            auxiliar.setNombreCuenta(nombre);
+            auxiliar.setCodigoCuenta(codigo);
+            auxiliar.setConceptoGeneral(concepto);
+            if(esCargo)
+            {
+                //auxiliar.setDebe(Double.parseDouble(monto));
+                auxiliar.setHaber(0.00);
+                if(IVA[1]==0)
+                    auxiliar.setDebe(Double.parseDouble(monto)*1.13);
+                else{
+                    auxiliar.setDebe(Double.parseDouble(monto)+ IVA[1]);
+                    IVA[1]=0.0;
+                }
+            }
+            else
+            {
+                //auxiliar.setHaber(Double.parseDouble(monto));
+                auxiliar.setDebe(0.00);
+                auxiliar.setHaber(Double.parseDouble(monto));
+                IVA[1]+=Double.parseDouble(monto)*0.13;
+            }
+
+            //Agregar elemento del registro de la tabla
+            Object [] registro= new Object[4];
+            registro[0]=auxiliar.getCodigoCuenta();
+            registro[1]= auxiliar.getNombreCuenta();
+            registro[2]=auxiliar.getDebe();
+            registro[3]=auxiliar.getHaber();
+
+            //Objeteniendo el modelo de la tabla
+            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+            modelo.addRow(registro);
+            tabla.setModel(modelo);
+            lista.add(auxiliar);
+        }
+    }
+    
+    public static void agregarElementoTablaCampoIVA(String concepto,String codigo,String monto, boolean esCargo, JTable tabla, ArrayList lista,boolean esCompra, Double []IVA) throws SQLException
+    {   
+        //Por el momento es simbolico pero luego se trabajara con la clase real
+        if(esCompra){
+            AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
+            if((new Cuenta(codigo)).getNomCuenta()!= null)
+            {
+                auxiliar.setNombreCuenta((new Cuenta(codigo)).getNomCuenta());
+                auxiliar.setCodigoCuenta(codigo);
+                auxiliar.setConceptoGeneral(concepto);
+                if(esCargo)
+                {
+                    auxiliar.setDebe(Double.parseDouble(monto));
+                    auxiliar.setHaber(0.00);
+                    IVA[0] += Double.parseDouble(monto)*0.13;
+                }
+                else
+                {
+                    //auxiliar.setHaber(Double.parseDouble(monto));
+                    auxiliar.setDebe(0.00);
+                    if(IVA[0]==0)
+                    {
+                        auxiliar.setHaber(Double.parseDouble(monto)*1.13);
+                    }
+                    else
+                    {
+                        auxiliar.setHaber(Double.parseDouble(monto)+IVA[0]);
+                        IVA[0]=0.0;
+                    }
+                }
+
+                //Agregar elemento del registro de la tabla
+                Object [] registro= new Object[4];
+                registro[0]=auxiliar.getCodigoCuenta();
+                registro[1]= auxiliar.getNombreCuenta();
+                registro[2]=auxiliar.getDebe();
+                registro[3]=auxiliar.getHaber();
+
+                //Objeteniendo el modelo de la tabla
+                DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+                modelo.addRow(registro);
+                tabla.setModel(modelo);
+                lista.add(auxiliar);
+            }else{
+                JOptionPane.showMessageDialog(null,"Parece que la cuenta solicitada no existe!\nPor favor ingresar nuevamente o auxiliarse\ndel boton de CATALOGO ");
+            }
+        }
+        else
+        {
+            AuxiliarTransaccion auxiliar= new AuxiliarTransaccion();
+            if((new Cuenta(codigo)).getNomCuenta()!= null)
+            {
+                auxiliar.setNombreCuenta((new Cuenta(codigo)).getNomCuenta());
+                auxiliar.setCodigoCuenta(codigo);
+                auxiliar.setConceptoGeneral(concepto);
+                if(esCargo)
+                {
+                    //auxiliar.setDebe(Double.parseDouble(monto));
+                    auxiliar.setHaber(0.00);
+                    if(IVA[1]==0)
+                    {
+                        auxiliar.setDebe(Double.parseDouble(monto)*1.13);
+                    }
+                    else
+                    {
+                        auxiliar.setDebe(Double.parseDouble(monto)+IVA[1]);
+                        IVA[1]=0.0;
+                    }
+                }
+                else
+                {
+                    auxiliar.setHaber(Double.parseDouble(monto));
+                    auxiliar.setDebe(0.00);
+                    IVA[1]+= Double.parseDouble(monto)*0.13;
+                }
+
+                //Agregar elemento del registro de la tabla
+                Object [] registro= new Object[4];
+                registro[0]=auxiliar.getCodigoCuenta();
+                registro[1]= auxiliar.getNombreCuenta();
+                registro[2]=auxiliar.getDebe();
+                registro[3]=auxiliar.getHaber();
+
+                //Objeteniendo el modelo de la tabla
+                DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+                modelo.addRow(registro);
+                tabla.setModel(modelo);
+                lista.add(auxiliar);
+            }else{
+                JOptionPane.showMessageDialog(null,"Parece que la cuenta solicitada no existe!\nPor favor ingresar nuevamente o auxiliarse\ndel boton de CATALOGO ");
+            }
+        }
+    }
+    //este metodo actualizara los valores del debe y haber una vez calculado el IVA
+    public static void incluirIVATotal(Double []IVA,ArrayList<AuxiliarTransaccion> lista, JTable tabla)
+    {
+        AuxiliarTransaccion cuentaIVA = new AuxiliarTransaccion();
+        if(IVA[0]>0){
+            cuentaIVA.setNombreCuenta("IVA Credito Fiscal");
+            cuentaIVA.setDebe(IVA[0]);
+            cuentaIVA.setHaber(0.0);
+            cuentaIVA.setCodigoCuenta("11060203");
+            lista.add(cuentaIVA);
+            
+        }
+        else if(IVA[1]>0)
+        {
+            cuentaIVA.setNombreCuenta("IVA Debito Fiscal");
+            cuentaIVA.setHaber(IVA[1]);
+            cuentaIVA.setDebe(0.0);
+            cuentaIVA.setCodigoCuenta("11060204");
+            lista.add(cuentaIVA);
+        }
+        
+        if(IVA[1]!=0.0 || IVA[0]!=0.0){
+            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+            Object [] registro= new Object[4];
+            registro[0]=cuentaIVA.getCodigoCuenta();
+            registro[1]=cuentaIVA.getNombreCuenta();
+            registro[2]=cuentaIVA.getDebe();
+            registro[3]=cuentaIVA.getHaber();
+            modelo.addRow(registro);
+            tabla.setModel(modelo);
+        }
     }
 }

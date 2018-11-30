@@ -23,30 +23,34 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
 
         btngpSeleccion = new javax.swing.ButtonGroup();
         lblSeleccionTransaccion = new javax.swing.JLabel();
-        radioTransaccion = new javax.swing.JRadioButton();
-        radioDGA = new javax.swing.JRadioButton();
-        radioDIA = new javax.swing.JRadioButton();
-        radioDAF = new javax.swing.JRadioButton();
+        radioNormal = new javax.swing.JRadioButton();
+        radioSeguro = new javax.swing.JRadioButton();
+        radioAlquiler = new javax.swing.JRadioButton();
+        radioPropaganda = new javax.swing.JRadioButton();
         btnInicar = new javax.swing.JButton();
         btnFinalizado = new javax.swing.JButton();
         cbTipoTransaccion = new javax.swing.JComboBox<>();
+        radioPrestamoPorPagar = new javax.swing.JRadioButton();
+        radioPrestamoPorCobrar = new javax.swing.JRadioButton();
+        radioActivoFijoTangible = new javax.swing.JRadioButton();
+        radioActivoFijoIntangible = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblSeleccionTransaccion.setText("Seleccione el tipo de Transaccion a registrar:");
 
-        btngpSeleccion.add(radioTransaccion);
-        radioTransaccion.setSelected(true);
-        radioTransaccion.setText("Transaccion Normal");
+        btngpSeleccion.add(radioNormal);
+        radioNormal.setSelected(true);
+        radioNormal.setText("Normal");
 
-        btngpSeleccion.add(radioDGA);
-        radioDGA.setText("Detalle Gasto Adelantado");
+        btngpSeleccion.add(radioSeguro);
+        radioSeguro.setText("Seguro");
 
-        btngpSeleccion.add(radioDIA);
-        radioDIA.setText("Detalle Intereses Acumulados");
+        btngpSeleccion.add(radioAlquiler);
+        radioAlquiler.setText("Alquiler");
 
-        btngpSeleccion.add(radioDAF);
-        radioDAF.setText("Detalle Activo Fijo");
+        btngpSeleccion.add(radioPropaganda);
+        radioPropaganda.setText("Propaganda");
 
         btnInicar.setText("Iniciar registro");
         btnInicar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +63,18 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
 
         cbTipoTransaccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Venta" }));
 
+        btngpSeleccion.add(radioPrestamoPorPagar);
+        radioPrestamoPorPagar.setText("Prestamo por pagar");
+
+        btngpSeleccion.add(radioPrestamoPorCobrar);
+        radioPrestamoPorCobrar.setText("Prestamo por cobrar");
+
+        btngpSeleccion.add(radioActivoFijoTangible);
+        radioActivoFijoTangible.setText("Activo fijo tangible");
+
+        btngpSeleccion.add(radioActivoFijoIntangible);
+        radioActivoFijoIntangible.setText("Activo fijo intangible");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,22 +82,28 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblSeleccionTransaccion)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnInicar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnFinalizado)))
-                        .addGap(90, 90, 90))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblSeleccionTransaccion)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnInicar)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnFinalizado))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(cbTipoTransaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(21, 21, 21)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioDGA)
-                            .addComponent(radioTransaccion)
-                            .addComponent(radioDIA)
-                            .addComponent(radioDAF)
-                            .addComponent(cbTipoTransaccion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(108, 108, 108))))
+                            .addComponent(radioNormal)
+                            .addComponent(radioSeguro)
+                            .addComponent(radioAlquiler)
+                            .addComponent(radioPropaganda))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioPrestamoPorPagar)
+                            .addComponent(radioActivoFijoTangible)
+                            .addComponent(radioPrestamoPorCobrar)
+                            .addComponent(radioActivoFijoIntangible))))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,16 +111,24 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(lblSeleccionTransaccion)
                 .addGap(18, 18, 18)
-                .addComponent(radioTransaccion)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioNormal)
+                    .addComponent(radioPrestamoPorPagar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioDGA)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioDIA)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioSeguro)
+                    .addComponent(radioPrestamoPorCobrar))
                 .addGap(3, 3, 3)
-                .addComponent(radioDAF)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioAlquiler)
+                    .addComponent(radioActivoFijoTangible))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioPropaganda)
+                    .addComponent(radioActivoFijoIntangible))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(cbTipoTransaccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInicar)
                     .addComponent(btnFinalizado))
@@ -112,7 +142,7 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
         try{
         //línea 1-instanciamos un objeto de la clase Formulario2.java
         String categoria = (String) cbTipoTransaccion.getSelectedItem();
-        FormTransaccion verformulario2=new FormTransaccion(leerValoresRadio(),categoria); 
+        FormTransaccion verformulario2=new FormTransaccion(categoria,identificarCategoria(leerValoresRadio())); 
  
          //línea 2-hacemos visible el formulario que queremos llamar 
          verformulario2.setVisible(true);
@@ -127,12 +157,30 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
     private ArrayList<Boolean> leerValoresRadio()
     {
         ArrayList<Boolean> lista= new ArrayList<Boolean>();
-        lista.add(radioTransaccion.isSelected());
-        lista.add(radioDGA.isSelected());
-        lista.add(radioDIA.isSelected());
-        lista.add(radioDAF.isSelected());
+        lista.add(radioNormal.isSelected());
+        lista.add(radioSeguro.isSelected());
+        lista.add(radioAlquiler.isSelected());
+        lista.add(radioPropaganda.isSelected());
+        lista.add(radioPrestamoPorPagar.isSelected());
+        lista.add(radioPrestamoPorCobrar.isSelected());
+        lista.add(radioActivoFijoTangible.isSelected());
+        lista.add(radioActivoFijoIntangible.isSelected());
         return lista;
         
+    }
+    
+    private int identificarCategoria(ArrayList<Boolean> valoresRadio)
+    {
+        int contador=0;
+        int tipo=0;
+        for(Boolean valor: valoresRadio)
+        {
+            if(valor)
+                tipo=contador;
+            
+            contador++;
+        }
+        return tipo;
     }
     /**
      * @param args the command line arguments
@@ -175,9 +223,13 @@ public class SeleccionTransaccionForm extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btngpSeleccion;
     private javax.swing.JComboBox<String> cbTipoTransaccion;
     private javax.swing.JLabel lblSeleccionTransaccion;
-    private javax.swing.JRadioButton radioDAF;
-    private javax.swing.JRadioButton radioDGA;
-    private javax.swing.JRadioButton radioDIA;
-    private javax.swing.JRadioButton radioTransaccion;
+    private javax.swing.JRadioButton radioActivoFijoIntangible;
+    private javax.swing.JRadioButton radioActivoFijoTangible;
+    private javax.swing.JRadioButton radioAlquiler;
+    private javax.swing.JRadioButton radioNormal;
+    private javax.swing.JRadioButton radioPrestamoPorCobrar;
+    private javax.swing.JRadioButton radioPrestamoPorPagar;
+    private javax.swing.JRadioButton radioPropaganda;
+    private javax.swing.JRadioButton radioSeguro;
     // End of variables declaration//GEN-END:variables
 }

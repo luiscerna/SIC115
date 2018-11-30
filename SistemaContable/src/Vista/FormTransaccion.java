@@ -42,18 +42,27 @@ TransaccionControl control;
 
 //variable de contexto para capturar nombre
 String nombreCuentaActual="";
-String tipo="";
+String categoria="";
+int tipoRegistro; //este atributo es para identificar el tipo de transaccion y habilitar formulario
+
+//Valores que determinaran si se debe calcular iva y que tipo de iva
+boolean esCompra;
+Double [] IVA= new Double[2];
 
 //variable booleana que controlara si se ingreso unicamente en el campo del codigo o se se uso el boton catalogo
 boolean usoBoton= false;
 
     /** Creates new form FormTransaccion */
-    public FormTransaccion(ArrayList<Boolean> valores, String categoria) throws SQLException {
+    public FormTransaccion(String categoria,int tipo) throws SQLException {
         initComponents();
         control=new TransaccionControl();
         inicializandoComponentes();
-        inicializandoPestañas(valores);
-        tipo=categoria;
+        inicializandoPestañas(tipo);
+        this.categoria=categoria;
+        this.tipoRegistro=tipo;
+        this.esCompra= (categoria=="Compra");
+        this.IVA[0]=0.00;
+        this.IVA[1]=0.00;
     }
     public FormTransaccion()throws SQLException {
         initComponents();
@@ -62,17 +71,48 @@ boolean usoBoton= false;
     }
     
     //Metodo de inicializacion de Pestañas
-    private void inicializandoPestañas(ArrayList<Boolean> listaValor)
+    private void inicializandoPestañas(int tipo)
     {
-        int contador=0;
-        for(boolean b: listaValor)
+        //inicializando las pestañas a desabilitado
+        panelesTransaccion.setEnabledAt(0,false);
+        panelesTransaccion.setEnabledAt(1,false);
+        panelesTransaccion.setEnabledAt(2,false);
+        panelesTransaccion.setEnabledAt(3,false);
+        
+        switch(tipo)
         {
-            panelesTransaccion.setEnabledAt(contador,b);
-            if(b==true)
-            {
-                panelesTransaccion.setSelectedIndex(contador);
-            }
-            contador++;
+            case 0:
+                panelesTransaccion.setEnabledAt(0,true);
+                panelesTransaccion.setSelectedIndex(0);
+                break;
+            case 1:
+                panelesTransaccion.setEnabledAt(1,true);
+                panelesTransaccion.setSelectedIndex(1);
+                break;
+            case 2:
+                panelesTransaccion.setEnabledAt(1,true);
+                panelesTransaccion.setSelectedIndex(1);
+                break;
+            case 3:
+                panelesTransaccion.setEnabledAt(1,true);
+                panelesTransaccion.setSelectedIndex(1);
+                break;
+            case 4:
+                panelesTransaccion.setEnabledAt(2,true);
+                panelesTransaccion.setSelectedIndex(2);
+                break;
+            case 5:
+                panelesTransaccion.setEnabledAt(2,true);
+                panelesTransaccion.setSelectedIndex(2);
+                break;
+            case 6:
+                panelesTransaccion.setEnabledAt(3,true);
+                panelesTransaccion.setSelectedIndex(3);
+                break;
+            case 7:
+                panelesTransaccion.setEnabledAt(3,true);
+                panelesTransaccion.setSelectedIndex(3);
+                break;    
         }
     }
     
@@ -138,6 +178,7 @@ boolean usoBoton= false;
         lblValDiferenciaHaberTrans = new javax.swing.JLabel();
         btnBorrarTrans = new javax.swing.JButton();
         btnGuardarTrans = new javax.swing.JButton();
+        checkIVATransaccion = new javax.swing.JCheckBox();
         tabDetalleGastoAdelantado = new javax.swing.JPanel();
         lblValNumPartidaDGA = new javax.swing.JLabel();
         lblFechaDGA = new javax.swing.JLabel();
@@ -168,6 +209,7 @@ boolean usoBoton= false;
         lblValorTotal = new javax.swing.JLabel();
         lblMesesPagados = new javax.swing.JLabel();
         txtMesesPagados = new javax.swing.JTextField();
+        checkIVADGA = new javax.swing.JCheckBox();
         tabDetalleInteresesAcumulados = new javax.swing.JPanel();
         lblNumPartidaDIA = new javax.swing.JLabel();
         lblValNumPartidaDIA = new javax.swing.JLabel();
@@ -198,6 +240,7 @@ boolean usoBoton= false;
         lblTasaAnual = new javax.swing.JLabel();
         lblValorPresente1 = new javax.swing.JLabel();
         txtValorPresenteDIA = new javax.swing.JTextField();
+        checkIVADIA = new javax.swing.JCheckBox();
         tabDetalleActivoFijo = new javax.swing.JPanel();
         lblNumPartidaDAF = new javax.swing.JLabel();
         lblValNumPartidaDAF = new javax.swing.JLabel();
@@ -230,6 +273,7 @@ boolean usoBoton= false;
         lblVidaUtil = new javax.swing.JLabel();
         lblValorPresente = new javax.swing.JLabel();
         txtValorPresente = new javax.swing.JTextField();
+        checkIVADAF = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -326,6 +370,8 @@ boolean usoBoton= false;
             }
         });
 
+        checkIVATransaccion.setText("Calcular IVA");
+
         javax.swing.GroupLayout tabTransaccionesLayout = new javax.swing.GroupLayout(tabTransacciones);
         tabTransacciones.setLayout(tabTransaccionesLayout);
         tabTransaccionesLayout.setHorizontalGroup(
@@ -375,8 +421,13 @@ boolean usoBoton= false;
                         .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNumCuentaTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addComponent(btnCatalogoTrans)
+                        .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabTransaccionesLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnCatalogoTrans))
+                            .addGroup(tabTransaccionesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkIVATransaccion)))
                         .addGap(35, 35, 35)
                         .addComponent(panelTipoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
@@ -387,7 +438,7 @@ boolean usoBoton= false;
                     .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(247, 247, 247)
                         .addComponent(btnGuardarTrans)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         tabTransaccionesLayout.setVerticalGroup(
             tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,8 +461,10 @@ boolean usoBoton= false;
                         .addComponent(lblMontoTrans))
                     .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addComponent(txtNumCuentaTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMontoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkIVATransaccion)))
                     .addComponent(btnCatalogoTrans)
                     .addComponent(panelTipoTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabTransaccionesLayout.createSequentialGroup()
@@ -421,8 +474,8 @@ boolean usoBoton= false;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTotalDebeTrans)
+                    .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTotalDebeTrans, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblTotalesTrans))
                     .addComponent(lblTotalHaberTrans))
                 .addGroup(tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,6 +626,8 @@ boolean usoBoton= false;
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        checkIVADGA.setText("Calcular IVA");
+
         javax.swing.GroupLayout tabDetalleGastoAdelantadoLayout = new javax.swing.GroupLayout(tabDetalleGastoAdelantado);
         tabDetalleGastoAdelantado.setLayout(tabDetalleGastoAdelantadoLayout);
         tabDetalleGastoAdelantadoLayout.setHorizontalGroup(
@@ -602,9 +657,14 @@ boolean usoBoton= false;
                 .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNumCuentaDGA, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMontoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(btnCatalogoDGA)
-                .addGap(50, 50, 50)
+                .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnCatalogoDGA))
+                    .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(checkIVADGA)))
+                .addGap(36, 36, 36)
                 .addComponent(panelTipoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrarDGA))
@@ -659,8 +719,10 @@ boolean usoBoton= false;
                     .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addComponent(txtNumCuentaDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(txtMontoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(tabDetalleGastoAdelantadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMontoDGA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkIVADGA)))
                     .addGroup(tabDetalleGastoAdelantadoLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(btnCatalogoDGA))
@@ -825,6 +887,8 @@ boolean usoBoton= false;
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        checkIVADIA.setText("Calcular IVA");
+
         javax.swing.GroupLayout tabDetalleInteresesAcumuladosLayout = new javax.swing.GroupLayout(tabDetalleInteresesAcumulados);
         tabDetalleInteresesAcumulados.setLayout(tabDetalleInteresesAcumuladosLayout);
         tabDetalleInteresesAcumuladosLayout.setHorizontalGroup(
@@ -856,8 +920,10 @@ boolean usoBoton= false;
                                     .addComponent(txtNumCuentaDIA, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                                     .addComponent(txtMontoDIA))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCatalogoDIA)
-                                .addGap(50, 50, 50)
+                                .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCatalogoDIA)
+                                    .addComponent(checkIVADIA))
+                                .addGap(44, 44, 44)
                                 .addComponent(panelTipoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnRegistrarDIA))))
@@ -913,7 +979,8 @@ boolean usoBoton= false;
                         .addGap(18, 18, 18)
                         .addGroup(tabDetalleInteresesAcumuladosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblMontoDIA)
-                            .addComponent(txtMontoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtMontoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkIVADIA)))
                     .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(panelTipoDIA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1086,6 +1153,8 @@ boolean usoBoton= false;
                     .addComponent(txtVidaUtil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        checkIVADAF.setText("Calcular IVA");
+
         javax.swing.GroupLayout tabDetalleActivoFijoLayout = new javax.swing.GroupLayout(tabDetalleActivoFijo);
         tabDetalleActivoFijo.setLayout(tabDetalleActivoFijoLayout);
         tabDetalleActivoFijoLayout.setHorizontalGroup(
@@ -1119,8 +1188,13 @@ boolean usoBoton= false;
                             .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtNumCuentaDAF, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtMontoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(10, 10, 10)
-                            .addComponent(btnCatalogoDAF)
+                            .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(btnCatalogoDAF))
+                                .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(checkIVADAF)))
                             .addGap(18, 18, 18)
                             .addComponent(panelTipoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -1171,8 +1245,10 @@ boolean usoBoton= false;
                     .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(txtNumCuentaDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(txtMontoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(tabDetalleActivoFijoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMontoDAF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkIVADAF)))
                     .addGroup(tabDetalleActivoFijoLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(btnCatalogoDAF))
@@ -1245,12 +1321,24 @@ boolean usoBoton= false;
             String codigoCuenta= txtNumCuentaTrans.getText();
             String monto= txtMontoTrans.getText();
             
-            //validando si uso txtBox o Boton de catologo
-            if(usoBoton)
-                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            //Validando si hay IVA o no
+            if(checkIVATransaccion.isSelected())
+            {
+                //validando si uso txtBox o Boton de catologo
+                if(usoBoton)
+                    control.agregarElementoTablaIVA(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones,esCompra,IVA);
+                else
+                    control.agregarElementoTablaCampoIVA(conceptoGeneral,codigoCuenta,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones,esCompra,IVA);
+                control.incluirIVATotal(IVA,regTransacciones,tableTransacciones);
+            }
             else
-                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
-            
+            {
+                //validando si uso txtBox o Boton de catologo
+                if(usoBoton)
+                    control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+                else
+                    control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoTrans.isSelected(), tableTransacciones, regTransacciones);
+            }
             control.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
             control.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
             
@@ -1260,7 +1348,9 @@ boolean usoBoton= false;
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
+            //JOptionPane.showMessageDialog(null,"Error!\nCampos vacios o con formatos erroneos");
+            JOptionPane.showMessageDialog(null,e);
+            e.printStackTrace();
         }
     }//GEN-LAST:event_btnRegistrarTransActionPerformed
 
@@ -1270,16 +1360,29 @@ boolean usoBoton= false;
     }//GEN-LAST:event_btnGuardarTransActionPerformed
 
     private void btnRegistrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDGAActionPerformed
-        //obtenido valores de los campos
+         //obtenido valores de los campos
         try{
             String conceptoGeneral= txtConceptoGeneralDGA.getText();
             String codigoCuenta= txtNumCuentaDGA.getText();
             String monto= txtMontoDGA.getText();
-            //validando si uso txtBox o Boton de catologo
-            if(usoBoton)
-                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            
+            if(checkIVADGA.isSelected())
+            {
+                if(usoBoton)
+                    control.agregarElementoTablaIVA(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado, esCompra, IVA);
+                else
+                    control.agregarElementoTablaCampoIVA(conceptoGeneral,codigoCuenta,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado,esCompra,IVA);
+                control.incluirIVATotal(IVA,regDetalleGastoAdelantado,tableDetalleGastosAdelantados);
+            }
             else
-                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            {
+                if(usoBoton)
+                    control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+                else
+                    control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDGA.isSelected(), tableDetalleGastosAdelantados, regDetalleGastoAdelantado);
+            }
+            
+            
                 
             control.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
             control.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
@@ -1301,12 +1404,25 @@ boolean usoBoton= false;
             String codigoCuenta= txtNumCuentaDIA.getText();
             String monto= txtMontoDIA.getText();
             
-            //validando si uso txtBox o Boton de catologo
+            
+            if(checkIVADIA.isSelected())
+            {
+                //validando si uso txtBox o Boton de catologo
+            if(usoBoton)
+                control.agregarElementoTablaIVA(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados,esCompra,IVA);
+            else
+                control.agregarElementoTablaCampoIVA(conceptoGeneral,codigoCuenta,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados,esCompra,IVA);
+            control.incluirIVATotal(IVA,regDetalleInteresesAcumulados,tableDetalleInteresesAcumulados);
+            }
+            else
+            {
+                //validando si uso txtBox o Boton de catologo
             if(usoBoton)
                 control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
             else
                 control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados);
-            
+            }
+
             control.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
             control.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
             
@@ -1321,17 +1437,31 @@ boolean usoBoton= false;
     }//GEN-LAST:event_btnRegistrarDIAActionPerformed
 
     private void btnRegistrarDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDAFActionPerformed
-        //obtenido valores de los campos
+       //obtenido valores de los campos
         try{
             String conceptoGeneral= txtConceptoGeneralDAF.getText();
             String codigoCuenta= txtNumCuentaDAF.getText();
             String monto= txtMontoDAF.getText();
             
-            //validando si uso txtBox o Boton de catologo
-            if(usoBoton)
-                control.agregarElementoTabla(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            if(checkIVADAF.isSelected())
+            {
+                //validando si uso txtBox o Boton de catologo
+                if(usoBoton)
+                    control.agregarElementoTablaIVA(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo,esCompra,IVA);
+                else
+                    control.agregarElementoTablaCampoIVA(conceptoGeneral,codigoCuenta,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo,esCompra,IVA);
+                control.incluirIVATotal(IVA,regDetalleActivoFijo,tableDetalleActivoFijo);
+            }
             else
-                control.agregarElementoTablaCampo(conceptoGeneral,codigoCuenta,monto, radioCargoDAF.isSelected(), tableDetalleActivoFijo, regDetalleActivoFijo);
+            {
+                //validando si uso txtBox o Boton de catologo
+                if(usoBoton)
+                    control.agregarElementoTablaIVA(conceptoGeneral,codigoCuenta,nombreCuentaActual,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados,esCompra,IVA);
+                else
+                    control.agregarElementoTablaCampoIVA(conceptoGeneral,codigoCuenta,monto, radioCargoDIA.isSelected(), tableDetalleInteresesAcumulados, regDetalleInteresesAcumulados,esCompra,IVA);
+            }
+            
+            
             
             control.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
             control.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
@@ -1348,22 +1478,30 @@ boolean usoBoton= false;
 
     private void btnBorrarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarTransActionPerformed
         // TODO add your handling code here:
-        control.eliminarFila(tableTransacciones);
+        control.eliminarFila(tableTransacciones,regTransacciones);
+        control.calcularTotalesYDiferencia(montoTransacciones, regTransacciones, lblTotalDebeTrans, lblTotalHaberTrans, lblValDiferenciaHaberTrans);
+        control.validadorPartidaDoble(montoTransacciones, btnGuardarTrans);
     }//GEN-LAST:event_btnBorrarTransActionPerformed
 
     private void btnBorrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDGAActionPerformed
         // TODO add your handling code here:
-        control.eliminarFila(tableDetalleGastosAdelantados);
+        control.eliminarFila(tableDetalleGastosAdelantados,regDetalleGastoAdelantado);
+        control.calcularTotalesYDiferencia(montoDetalleGastoAdelantado, regDetalleGastoAdelantado, lblTotalDebeDGA, lblTotalHaberDGA, lblValDiferenciaHaberDGA);
+        control.validadorPartidaDoble(montoDetalleGastoAdelantado, btnGuardarDGA);
     }//GEN-LAST:event_btnBorrarDGAActionPerformed
 
     private void btnBorrarDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDIAActionPerformed
         // TODO add your handling code here:
-        control.eliminarFila(tableDetalleInteresesAcumulados);
+        control.eliminarFila(tableDetalleInteresesAcumulados,regDetalleInteresesAcumulados);
+        control.calcularTotalesYDiferencia(montoDetalleInteresesAcumulados, regDetalleInteresesAcumulados, lblTotalDebeDIA, lblTotalHaberDIA, lblValDiferenciaHaberDIA);
+        control.validadorPartidaDoble(montoDetalleInteresesAcumulados, btnGuardarDIA);
     }//GEN-LAST:event_btnBorrarDIAActionPerformed
 
     private void btnBorrarDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarDAFActionPerformed
         // TODO add your handling code here:
-        control.eliminarFila(tableDetalleActivoFijo);
+        control.eliminarFila(tableDetalleActivoFijo,regDetalleActivoFijo);
+        control.calcularTotalesYDiferencia(montoDetalleActivoFijo, regDetalleActivoFijo, lblTotalDebeDAF, lblTotalHaberDAF, lblValDiferenciaHaberDAF);
+        control.validadorPartidaDoble(montoDetalleActivoFijo, btnGuardarDAF);
     }//GEN-LAST:event_btnBorrarDAFActionPerformed
 
     private void btnCatalogoTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoTransActionPerformed
@@ -1600,6 +1738,10 @@ boolean usoBoton= false;
     private javax.swing.ButtonGroup btngpDetalleGastoAdelantado;
     private javax.swing.ButtonGroup btngpDetalleInteresesAcumulados;
     private javax.swing.ButtonGroup btngpTransacciones;
+    private javax.swing.JCheckBox checkIVADAF;
+    private javax.swing.JCheckBox checkIVADGA;
+    private javax.swing.JCheckBox checkIVADIA;
+    private javax.swing.JCheckBox checkIVATransaccion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

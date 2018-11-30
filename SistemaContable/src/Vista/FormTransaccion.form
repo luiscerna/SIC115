@@ -143,9 +143,17 @@
                                       <Component id="txtNumCuentaTrans" min="-2" pref="128" max="-2" attributes="0"/>
                                       <Component id="txtMontoTrans" min="-2" pref="128" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                  <Component id="btnCatalogoTrans" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="35" pref="35" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                          <Component id="btnCatalogoTrans" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="checkIVATransaccion" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="panelTipoTrans" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
                                   <Component id="btnRegistrarTrans" min="-2" max="-2" attributes="0"/>
@@ -159,7 +167,7 @@
                                   <Component id="btnGuardarTrans" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -187,8 +195,11 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="txtNumCuentaTrans" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                                  <Component id="txtMontoTrans" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtMontoTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkIVATransaccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Component id="btnCatalogoTrans" min="-2" max="-2" attributes="0"/>
                               <Component id="panelTipoTrans" min="-2" max="-2" attributes="0"/>
@@ -201,9 +212,9 @@
                           <Component id="jScrollPane1" min="-2" pref="223" max="-2" attributes="0"/>
                           <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblTotalDebeTrans" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTotalesTrans" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTotalesTrans" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lblTotalHaberTrans" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -403,6 +414,11 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarTransActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JCheckBox" name="checkIVATransaccion">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Calcular IVA"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="tabDetalleGastoAdelantado">
@@ -447,9 +463,17 @@
                               <Component id="txtNumCuentaDGA" min="-2" pref="128" max="-2" attributes="0"/>
                               <Component id="txtMontoDGA" min="-2" pref="128" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="btnCatalogoDGA" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Component id="btnCatalogoDGA" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="checkIVADGA" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="panelTipoDGA" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                           <Component id="btnRegistrarDGA" min="-2" max="-2" attributes="0"/>
@@ -520,8 +544,11 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                   <Component id="txtNumCuentaDGA" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                  <Component id="txtMontoDGA" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtMontoDGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkIVADGA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
@@ -809,6 +836,11 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JCheckBox" name="checkIVADGA">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Calcular IVA"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="tabDetalleInteresesAcumulados">
@@ -855,8 +887,11 @@
                                               <Component id="txtMontoDIA" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="btnCatalogoDIA" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="btnCatalogoDIA" min="-2" max="-2" attributes="0"/>
+                                              <Component id="checkIVADIA" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                           <Component id="panelTipoDIA" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="btnRegistrarDIA" min="-2" max="-2" attributes="0"/>
@@ -931,6 +966,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblMontoDIA" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtMontoDIA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkIVADIA" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1221,6 +1257,11 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JCheckBox" name="checkIVADIA">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Calcular IVA"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="tabDetalleActivoFijo">
@@ -1276,8 +1317,16 @@
                                           <Component id="txtNumCuentaDAF" min="-2" pref="128" max="-2" attributes="0"/>
                                           <Component id="txtMontoDAF" min="-2" pref="128" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="btnCatalogoDAF" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                              <Component id="btnCatalogoDAF" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="checkIVADAF" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="panelTipoDAF" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1341,8 +1390,11 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Component id="txtNumCuentaDAF" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                  <Component id="txtMontoDAF" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtMontoDAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkIVADAF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -1642,6 +1694,11 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JCheckBox" name="checkIVADAF">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Calcular IVA"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

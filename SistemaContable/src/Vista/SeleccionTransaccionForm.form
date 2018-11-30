@@ -27,31 +27,38 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblSeleccionTransaccion" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="btnInicar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnFinalizado" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="lblSeleccionTransaccion" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnInicar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnFinalizado" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="cbTipoTransaccion" min="-2" pref="154" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="radioDGA" min="-2" max="-2" attributes="0"/>
-                          <Component id="radioTransaccion" min="-2" max="-2" attributes="0"/>
-                          <Component id="radioDIA" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="radioDAF" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbTipoTransaccion" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                          <Component id="radioNormal" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioSeguro" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioAlquiler" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioPropaganda" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="radioPrestamoPorPagar" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioActivoFijoTangible" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioPrestamoPorCobrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="radioActivoFijoIntangible" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,16 +68,28 @@
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="lblSeleccionTransaccion" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="radioTransaccion" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="radioNormal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioPrestamoPorPagar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="radioDGA" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="radioDIA" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="radioSeguro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioPrestamoPorCobrar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Component id="radioDAF" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="radioAlquiler" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioActivoFijoTangible" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="radioPropaganda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="radioActivoFijoIntangible" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Component id="cbTipoTransaccion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnInicar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnFinalizado" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -86,37 +105,37 @@
         <Property name="text" type="java.lang.String" value="Seleccione el tipo de Transaccion a registrar:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioTransaccion">
+    <Component class="javax.swing.JRadioButton" name="radioNormal">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btngpSeleccion"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Transaccion Normal"/>
+        <Property name="text" type="java.lang.String" value="Normal"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioDGA">
+    <Component class="javax.swing.JRadioButton" name="radioSeguro">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btngpSeleccion"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Detalle Gasto Adelantado"/>
+        <Property name="text" type="java.lang.String" value="Seguro"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioDIA">
+    <Component class="javax.swing.JRadioButton" name="radioAlquiler">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btngpSeleccion"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Detalle Intereses Acumulados"/>
+        <Property name="text" type="java.lang.String" value="Alquiler"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="radioDAF">
+    <Component class="javax.swing.JRadioButton" name="radioPropaganda">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btngpSeleccion"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Detalle Activo Fijo"/>
+        <Property name="text" type="java.lang.String" value="Propaganda"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnInicar">
@@ -144,6 +163,38 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioPrestamoPorPagar">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="btngpSeleccion"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Prestamo por pagar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioPrestamoPorCobrar">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="btngpSeleccion"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Prestamo por cobrar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioActivoFijoTangible">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="btngpSeleccion"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Activo fijo tangible"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioActivoFijoIntangible">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="btngpSeleccion"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Activo fijo intangible"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
