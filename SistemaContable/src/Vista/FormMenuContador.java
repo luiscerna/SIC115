@@ -82,7 +82,7 @@ public class FormMenuContador extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Paola\\Downloads\\SIC\\PROYECTO SIC\\proyecto\\SIC115\\SistemaContable\\src\\Imagenes\\logo.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.png"))); // NOI18N
         jLabel1.setText("Logo aqui");
 
         lblBienvenida.setFont(new java.awt.Font("Traditional Arabic", 1, 24)); // NOI18N
