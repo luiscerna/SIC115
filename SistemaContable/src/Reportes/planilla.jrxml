@@ -22,11 +22,40 @@ FROM
 	<field name="EMPLEADO_APELLIDOEMPLEADO" class="java.lang.String"/>
 	<field name="PUESTO_NOMBREPUESTO" class="java.lang.String"/>
 	<field name="PUESTO_SUELDOBASE" class="java.lang.Double"/>
+	<variable name="MontoHoras" class="java.lang.Double"/>
+	<variable name="SalarioHE" class="java.lang.Double"/>
+	<variable name="AFP" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{PUESTO_SUELDOBASE}*(0.065)]]></variableExpression>
+	</variable>
+	<variable name="ISSS" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{PUESTO_SUELDOBASE}*(0.075)]]></variableExpression>
+	</variable>
+	<variable name="TotalDescuentos" class="java.lang.Double">
+		<variableExpression><![CDATA[(($V{ISSS})+($V{AFP}))]]></variableExpression>
+	</variable>
+	<variable name="Neto" class="java.lang.Double">
+		<variableExpression><![CDATA[(($F{PUESTO_SUELDOBASE})-($V{TotalDescuentos}))]]></variableExpression>
+	</variable>
+	<variable name="TotalAFP" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{AFP}]]></variableExpression>
+	</variable>
+	<variable name="TotalISSS" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{ISSS}]]></variableExpression>
+	</variable>
+	<variable name="TotalDesc" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{TotalDescuentos}]]></variableExpression>
+	</variable>
+	<variable name="TotalNeto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{Neto}]]></variableExpression>
+	</variable>
+	<variable name="TotalSueldo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{PUESTO_SUELDOBASE}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="108" splitType="Stretch">
+		<band height="168" splitType="Stretch">
 			<staticText>
 				<reportElement x="256" y="12" width="239" height="19" uuid="93eed7dd-107a-4ff1-906d-08b68fac62e4"/>
 				<text><![CDATA[PLANILLA DE SUELDOS ACOPASHE DE R.L]]></text>
@@ -36,68 +65,130 @@ FROM
 				<text><![CDATA[Expresado en dolares americanos (USD$)]]></text>
 			</staticText>
 			<image>
-				<reportElement x="11" y="0" width="245" height="108" uuid="af449130-a082-4a7d-b28c-07eda89e42fc"/>
+				<reportElement x="11" y="1" width="245" height="162" uuid="af449130-a082-4a7d-b28c-07eda89e42fc"/>
 				<imageExpression><![CDATA["C:\\Users\\Roberto Ventura\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo_acopashe.jpg"]]></imageExpression>
 			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="546" y="101" width="130" height="20" uuid="8cf9db24-2284-42e2-8bb6-c98beda2b9e8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="698" y="101" width="44" height="20" uuid="d75e79d2-df59-45bc-815f-0b9ffa457da7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="41" width="84" height="20" uuid="fd2e9a29-adc7-4f36-bd07-dd1028c35de1"/>
+				<reportElement x="80" y="0" width="55" height="20" uuid="fd2e9a29-adc7-4f36-bd07-dd1028c35de1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="97" y="41" width="60" height="20" uuid="51941774-1010-4d09-a887-566afc74533f"/>
-				<text><![CDATA[Puesto]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="183" y="41" width="29" height="20" uuid="5b197de5-da44-4759-afbc-405571da418a"/>
-				<text><![CDATA[H.E.D]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="225" y="41" width="31" height="20" uuid="4f3f6da5-4e5e-48c6-8f7e-1804b055db2a"/>
-				<text><![CDATA[H.E.N]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="268" y="41" width="81" height="20" uuid="c6e62ec3-807a-4c46-b147-c102b71d25a4"/>
-				<text><![CDATA[Monto de Horas]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="359" y="41" width="73" height="20" uuid="b20bcc57-045e-4de4-aeb9-92c365cb827c"/>
-				<text><![CDATA[Salario + H.E]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="442" y="41" width="53" height="20" uuid="3ef08965-5a6a-457e-8c62-e6ffea3b251e"/>
-				<text><![CDATA[AFP]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="506" y="41" width="45" height="20" uuid="de59e684-f7eb-4669-a2b7-4d2ed37b8b4a"/>
+				<reportElement x="510" y="0" width="25" height="20" uuid="de59e684-f7eb-4669-a2b7-4d2ed37b8b4a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ISSS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="567" y="41" width="87" height="20" uuid="7fee8b1b-e09e-425a-b317-432b24085b8d"/>
+				<reportElement x="572" y="0" width="87" height="20" uuid="7fee8b1b-e09e-425a-b317-432b24085b8d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Total Descuentos]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="665" y="41" width="87" height="20" uuid="58b316b6-1321-4542-9c8b-852fd0233c5a"/>
+				<reportElement x="676" y="0" width="66" height="20" uuid="58b316b6-1321-4542-9c8b-852fd0233c5a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Neto a pagar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="0" width="76" height="20" uuid="266ce441-2307-425f-9537-0ee9fd35a0d9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sueldo Base]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="0" width="30" height="20" uuid="3ef08965-5a6a-457e-8c62-e6ffea3b251e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[AFP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="0" width="65" height="20" uuid="2bbc54e3-3573-4d5c-93cf-f38f921ef1e7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Puesto]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="0" width="69" height="20" uuid="da9e785e-564e-434e-989e-aaadaf04ce68"/>
+				<textFieldExpression><![CDATA[$F{EMPLEADO_NOMBREEMPLEADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="0" width="123" height="20" uuid="7bef64f2-e509-4280-8f40-156dc415f12e"/>
+				<textFieldExpression><![CDATA[$F{EMPLEADO_APELLIDOEMPLEADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="0" width="55" height="20" uuid="68a09e0f-c54c-473a-ba1f-f73f53db4123"/>
+				<textFieldExpression><![CDATA[$F{PUESTO_NOMBREPUESTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="0" width="43" height="20" uuid="118769d3-8209-4980-9e7d-b5aaf0fe0be5"/>
+				<textFieldExpression><![CDATA[$F{PUESTO_SUELDOBASE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="53" height="20" uuid="638e8ee6-5543-40c4-ab69-3af1ec0a327b"/>
+				<textFieldExpression><![CDATA[$V{AFP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="45" height="20" uuid="042bc8cb-dd34-4d75-827c-98dcab10b6db"/>
+				<textFieldExpression><![CDATA[$V{ISSS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="597" y="0" width="47" height="20" uuid="2ecf8f2d-9793-4a05-bc5c-c9ffe934479e"/>
+				<textFieldExpression><![CDATA[$V{TotalDescuentos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="691" y="0" width="51" height="20" uuid="639fc8e7-abf8-4698-907d-314ba2d3c1ad"/>
+				<textFieldExpression><![CDATA[$V{Neto}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="338" y="0" width="55" height="20" uuid="5b12ff7e-32ee-4c82-a9aa-69a721a12591"/>
+				<textFieldExpression><![CDATA[$V{TotalSueldo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="431" y="0" width="53" height="20" uuid="de612576-f223-47e1-828a-191b7cfa9868"/>
+				<textFieldExpression><![CDATA[$V{TotalAFP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="45" height="20" uuid="aeab8efa-21ae-47e0-92a8-83cd810c47ee"/>
+				<textFieldExpression><![CDATA[$V{TotalISSS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="676" y="0" width="66" height="20" uuid="81a97a22-7ab4-452e-a2d2-90c7df51e6b2"/>
+				<textFieldExpression><![CDATA[$V{TotalNeto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="597" y="0" width="47" height="20" uuid="7a4963ad-eec4-4432-bc0c-4595c4856767"/>
+				<textFieldExpression><![CDATA[$V{TotalDescuentos}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
