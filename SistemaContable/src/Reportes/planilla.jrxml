@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2670b75-95c4-4ec5-aed1-4f30b37438c5">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     EMPLEADO.`NOMBREEMPLEADO` AS EMPLEADO_NOMBREEMPLEADO,
+     EMPLEADO.`APELLIDOEMPLEADO` AS EMPLEADO_APELLIDOEMPLEADO,
+     EMPLEADO.`ESOBRERO` AS EMPLEADO_ESOBRERO,
+     EMPLEADO.`CODEMPLEADO` AS EMPLEADO_CODEMPLEADO,
+     EMPLEADO.`CODPUESTO` AS EMPLEADO_CODPUESTO,
+     PUESTO.`CODPUESTO` AS PUESTO_CODPUESTO,
+     PUESTO.`NOMBREPUESTO` AS PUESTO_NOMBREPUESTO,
+     PUESTO.`SUELDOBASE` AS PUESTO_SUELDOBASE,
+     PUESTO.`NIVELACCESO` AS PUESTO_NIVELACCESO
+FROM
+     `EMPLEADO` EMPLEADO INNER JOIN `PUESTO` PUESTO ON EMPLEADO.`CODPUESTO` = PUESTO.`CODPUESTO`]]>
+	</queryString>
+	<field name="EMPLEADO_NOMBREEMPLEADO" class="java.lang.String"/>
+	<field name="EMPLEADO_APELLIDOEMPLEADO" class="java.lang.String"/>
+	<field name="PUESTO_NOMBREPUESTO" class="java.lang.String"/>
+	<field name="PUESTO_SUELDOBASE" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
