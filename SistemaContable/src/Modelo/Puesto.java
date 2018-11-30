@@ -2,6 +2,7 @@ package Modelo;
 
 import Datos.Conexion;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +30,8 @@ public class Puesto {
         
         // Probando select
         /*Puesto pue = new Puesto(9);
-        System.out.println("codPuesto: "+pue.getNombrePuesto()+" nombrePuesto: "+pue.getNombrePuesto());*/
+        
+        n("codPuesto: "+pue.getNombrePuesto()+" nombrePuesto: "+pue.getNombrePuesto());*/
         
         // Probando actualizarPuesto
         /*Puesto pue = new Puesto();
@@ -62,6 +64,10 @@ public class Puesto {
                 this.setNombrePuesto(conexion.rs.getString("nombrePuesto"));
                 this.setSueldoBase(conexion.rs.getDouble("sueldoBase"));
                 this.setNivelAcceso(conexion.rs.getInt("nivelAcceso"));
+            }else{
+                this.codPuesto=0;
+                this.nombrePuesto="";
+                this.sueldoBase=0;
             }
            
         } catch (SQLException ex) {
@@ -70,7 +76,7 @@ public class Puesto {
     }
     
     //Nuevo Registro
-    public Puesto(int codPuesto, String nombre, double sueldo, int nivel){
+    public Puesto( String nombre, double sueldo, int nivel){
          try {
              Conexion conexion = new Conexion();
             String query;
@@ -88,12 +94,11 @@ public class Puesto {
             
             query = "INSERT INTO Puesto (codPuesto, nombrePuesto, sueldoBase, nivelAcceso) VALUES (?, ?, ?, ?)";
             conexion.pst= conexion.conectar().prepareStatement(query);
-            conexion.pst.setInt(1, codPuesto);
+            conexion.pst.setInt(1, this.codPuesto);
             conexion.pst.setString(2, nombre);
             conexion.pst.setDouble(3, sueldo);
             conexion.pst.setInt(4, nivel);
             conexion.pst.executeUpdate();
-            System.out.println("Se ha registrado exitosamente en puesto.");
          } catch (SQLException ex) {
             Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,7 +117,6 @@ public class Puesto {
             query = "UPDATE Puesto SET nombrePuesto = '"+getNombrePuesto()+"', sueldoBase = "+getSueldoBase()+", nivelAcceso = "+getNivelAcceso()+" WHERE codPuesto = "+getCodPuesto()+";";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.pst.executeUpdate();
-            System.out.println("Se ha actualizado exitosamente en puesto.");
         } catch (SQLException ex) {
             Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,7 +133,6 @@ public class Puesto {
             query = "DELETE FROM Puesto WHERE codPuesto = "+getCodPuesto()+";";
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.pst.executeUpdate();
-            System.out.println("Se ha eliminado exitosamente en puesto.");
         } catch (SQLException ex) {
             Logger.getLogger(Puesto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -168,5 +171,22 @@ public class Puesto {
         this.nivel = nivel;
     }
     
+    public ArrayList<Integer> codsPuesto(){
+        ArrayList<Integer> cods=new ArrayList<Integer>();
+        try {
+            
+            String query;
+             Conexion conexion = new Conexion();
+            query = "SELECT codPuesto FROM Puesto ORDER BY codPuesto;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            while(conexion.rs.next()){
+                cods.add(conexion.rs.getInt("codPuesto"));
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cods;
+    }
     
 }

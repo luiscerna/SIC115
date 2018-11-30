@@ -3,6 +3,7 @@ package Datos;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Conexion {
     public static Connection conexion;
@@ -16,9 +17,8 @@ public class Conexion {
             String rutafile = System.getProperty("user.dir")+"\\Acopashe.accdb";
             String url = "jdbc:ucanaccess://" + rutafile;
             conexion=DriverManager.getConnection(url);
-            System.out.println("Conectado a la base de datos");
         } catch (SQLException e) {
-            System.out.println("No se ha podido establecer la conexión a la base de datos" + e);
+            JOptionPane.showMessageDialog(null,"No se ha podido establecer la conexión a la base de datos" + e,"Error de Conexion",JOptionPane.INFORMATION_MESSAGE);
         }
         return conexion;
     }
@@ -27,9 +27,8 @@ public class Conexion {
     public void desconectar() {
         try {
             this.conexion.close();
-            System.out.println("Conexion cerrada efectivamente");
         } catch (SQLException ex) {
-            System.out.println("Hay errores al cerrar la conexion");
+            JOptionPane.showMessageDialog(null,"No se ha podido cerrar la conexión a la base de datos o no existe ref: " + ex,"Error de Conexion",JOptionPane.INFORMATION_MESSAGE);
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

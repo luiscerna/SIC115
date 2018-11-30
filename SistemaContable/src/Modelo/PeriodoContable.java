@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date ;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class PeriodoContable {
  
@@ -118,9 +119,8 @@ public class PeriodoContable {
             this.detallesDelPeriodo.add(new DetalleTransaccion(transaccion, new Cuenta(codCuenta), debe, haber, this.idPeriodo));
             
         }catch(SQLException ex){
-            System.out.println("Ha ocurrido un problema al ingresar un nuevo detalleTransaccion.");
+            JOptionPane.showMessageDialog(null,"Error en la clase DetalleTransaccion ref: " + ex,"Error de Conexion",JOptionPane.INFORMATION_MESSAGE);
         }
-        
         
     }
     

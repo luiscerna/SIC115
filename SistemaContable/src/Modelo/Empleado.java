@@ -46,7 +46,7 @@ public class Empleado {
     
     // Constructor para traer una consulta de empleado con respecto a su id
     public Empleado(int codEmpleado) {
-        setCodEmpleado(codEmpleado);
+        this.setCodEmpleado(codEmpleado);
         
         Conexion conexion = new Conexion();
         
@@ -60,6 +60,13 @@ public class Empleado {
                 this.setApellidoEmpleado(conexion.rs.getString("apellidoEmpleado"));
                 this.setEsObrero(conexion.rs.getBoolean("esObrero"));
                 this.setPuesto(new Puesto(conexion.rs.getInt("codPuesto")));
+            }else{
+                this.setApellidoEmpleado("");
+                this.setCodEmpleado(0);
+                this.setEsObrero(false);
+                this.setPuesto(null);
+                this.setNombreEmpleado("");
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,7 +112,7 @@ public class Empleado {
     }
     
     // Método para actualizar datos
-    public void actualizarEmpleado(int codEmpleado, String nombreEmpleado, String apellidoEmpleado, boolean esObrero, int codPuesto){
+    public boolean actualizarEmpleado(int codEmpleado, String nombreEmpleado, String apellidoEmpleado, boolean esObrero, int codPuesto){
         this.setCodEmpleado(codEmpleado);
         this.setNombreEmpleado(nombreEmpleado);
         this.setApellidoEmpleado(apellidoEmpleado);
@@ -119,13 +126,15 @@ public class Empleado {
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.pst.executeUpdate();
             System.out.println("Se ha actualizado exitosamente en empleado.");
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
     
     // Método eliminar empleado a partir de su id
-    public void eliminarEmpleado(int codEmpleado){
+    public boolean eliminarEmpleado(int codEmpleado){
         this.setCodEmpleado(codEmpleado);
         
         Conexion conexion = new Conexion();
@@ -136,8 +145,10 @@ public class Empleado {
             conexion.pst = conexion.conectar().prepareStatement(query);
             conexion.pst.executeUpdate();
             System.out.println("Se ha eliminado exitosamente en empleado.");
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
     
@@ -189,4 +200,22 @@ public class Empleado {
     public void setPuesto(Puesto puesto) {
         this.puesto = puesto;
     }
-}
+    
+    public ArrayList<Integer> codsEmpleados(){
+        ArrayList<Integer> cods=new ArrayList<Integer>();
+        try {
+            
+            String query;
+             Conexion conexion = new Conexion();
+            query = "SELECT * FROM Empleado ORDER BY codEmpleado;";
+            conexion.pst= conexion.conectar().prepareStatement(query);
+            conexion.rs = conexion.pst.executeQuery();
+            while(conexion.rs.next()){
+                cods.add(Integer.valueOf(conexion.rs.getInt("codEmpleado")));
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cods;
+    }
+} 

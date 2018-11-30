@@ -71,6 +71,11 @@ public class FormMenuGerente extends javax.swing.JFrame {
 
         btnGestionarPersonal.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
         btnGestionarPersonal.setText("Gestionar Personal");
+        btnGestionarPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarPersonalActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
@@ -164,6 +169,15 @@ public class FormMenuGerente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLibroMayorActionPerformed
 
+    private void btnGestionarPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarPersonalActionPerformed
+        // TODO add your handling code here:
+        GestionarEmpleadoDialog dialog=new GestionarEmpleadoDialog(this,true);
+        this.setVisible(false);
+        dialog.setVisible(true);
+        this.setVisible(true);
+        
+    }//GEN-LAST:event_btnGestionarPersonalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,7 +265,6 @@ public class FormMenuGerente extends javax.swing.JFrame {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
-        System.out.println(this.nombre);
     }
 
     /**

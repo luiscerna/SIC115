@@ -28,16 +28,8 @@ con el metodo local getNumSiguientePartida y le asigne la fecha acutual.
  */
 public class TransaccionControl {
     
-    // Para hacer pruebas nada más
-    public static void main(String[] args) throws SQLException {
-        TransaccionControl control= new TransaccionControl();
-        if(control.existeCuenta("1101")){
-            System.out.println("Si Existe");
-        }else{
-            System.out.println("NO existe");
-        }
-        
-    }
+
+    
     
     
     //atributos

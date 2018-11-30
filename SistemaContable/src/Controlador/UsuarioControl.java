@@ -15,7 +15,6 @@ public class UsuarioControl {
     
     public boolean validarUsuario(String usuario, String contrasena){
         if(user.llenarUsuario(usuario)){//Si el usuario existe, llena los datos y retorna true
-            System.out.println("Contraseña correcta: "+user.getPassword()+"\nContraseña ingresada: "+contrasena);
             if(user.getPassword().equals(contrasena)){//Comapara los datos obtenidos de la BD con la contraseña ingresada
                 return true;
             }else return false;   
