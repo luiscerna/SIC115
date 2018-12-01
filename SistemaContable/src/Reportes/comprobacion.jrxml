@@ -1,47 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="28a16aa5-f876-4447-8c3a-a3c537baaaa0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT
      DETALLETRANSACCION.`IDDETALLE` AS DETALLETRANSACCION_IDDETALLE,
      DETALLETRANSACCION.`DEBE` AS DETALLETRANSACCION_DEBE,
      DETALLETRANSACCION.`HABER` AS DETALLETRANSACCION_HABER,
      DETALLETRANSACCION.`CODMAYOR` AS DETALLETRANSACCION_CODMAYOR,
-     DETALLETRANSACCION.`IDCUENTA` AS DETALLETRANSACCION_IDCUENTA,
      CUENTA.`CODCUENTA` AS CUENTA_CODCUENTA,
      CUENTA.`NOMCUENTA` AS CUENTA_NOMCUENTA,
-     CUENTA.`RUBRO` AS CUENTA_RUBRO,
-     CUENTA.`NIVEL` AS CUENTA_NIVEL,
      CUENTA.`ID` AS CUENTA_ID
 FROM
-     `CUENTA` CUENTA INNER JOIN `DETALLETRANSACCION` DETALLETRANSACCION ON CUENTA.`ID` = DETALLETRANSACCION.`IDCUENTA`]]>
+     `DETALLETRANSACCION` DETALLETRANSACCION INNER JOIN `CUENTA` CUENTA ON DETALLETRANSACCION.`CODMAYOR` = CUENTA.`ID`
+ORDER BY DETALLETRANSACCION.`CODMAYOR`]]>
 	</queryString>
+	<field name="DETALLETRANSACCION_IDDETALLE" class="java.lang.Integer"/>
 	<field name="DETALLETRANSACCION_DEBE" class="java.lang.Double"/>
 	<field name="DETALLETRANSACCION_HABER" class="java.lang.Double"/>
-	<field name="CUENTA_NOMCUENTA" class="java.lang.String"/>
-	<field name="CUENTA_CODCUENTA" class="java.lang.String"/>
 	<field name="DETALLETRANSACCION_CODMAYOR" class="java.lang.Integer"/>
+	<field name="CUENTA_CODCUENTA" class="java.lang.String"/>
+	<field name="CUENTA_NOMCUENTA" class="java.lang.String"/>
+	<field name="CUENTA_ID" class="java.lang.Integer"/>
+	<variable name="DEBE" class="java.lang.Double" resetType="Group" resetGroup="DETALLETRANSACCION_CODMAYOR" calculation="Sum">
+		<variableExpression><![CDATA[$F{DETALLETRANSACCION_DEBE}]]></variableExpression>
+	</variable>
+	<variable name="HABER" class="java.lang.Double" resetType="Group" resetGroup="DETALLETRANSACCION_CODMAYOR" calculation="Sum">
+		<variableExpression><![CDATA[$F{DETALLETRANSACCION_HABER}]]></variableExpression>
+	</variable>
+	<variable name="TotalDebe" class="java.lang.Double" incrementType="Group" incrementGroup="DETALLETRANSACCION_CODMAYOR" calculation="Sum">
+		<variableExpression><![CDATA[$V{DEBE}]]></variableExpression>
+	</variable>
+	<variable name="TotalHaber" class="java.lang.Double" incrementType="Group" incrementGroup="DETALLETRANSACCION_CODMAYOR" calculation="Sum">
+		<variableExpression><![CDATA[$V{HABER}]]></variableExpression>
+	</variable>
 	<group name="DETALLETRANSACCION_CODMAYOR">
 		<groupExpression><![CDATA[$F{DETALLETRANSACCION_CODMAYOR}]]></groupExpression>
 		<groupHeader>
-			<band height="40">
+			<band height="21">
 				<textField>
-					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#006600" uuid="ac038036-57c1-43ba-a0be-802299c1f6b1"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{DETALLETRANSACCION_CODMAYOR}]]></textFieldExpression>
+					<reportElement x="138" y="0" width="125" height="20" uuid="57da883a-8a81-4296-b19a-015a17ad72d3"/>
+					<textFieldExpression><![CDATA[$F{CUENTA_NOMCUENTA}]]></textFieldExpression>
 				</textField>
-				<rectangle>
-					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="eea0692a-8c76-4d06-9f7f-ecb1fc3f7e43"/>
-				</rectangle>
+				<textField>
+					<reportElement x="48" y="1" width="42" height="20" uuid="e1f23f58-46c1-4d3c-8e55-7d44a9d08435"/>
+					<textFieldExpression><![CDATA[$F{CUENTA_CODCUENTA}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="6"/>
+			<band height="20">
+				<textField>
+					<reportElement x="297" y="0" width="76" height="20" uuid="3c3a9234-6046-4eaf-a1ee-56a33a1970ad"/>
+					<textFieldExpression><![CDATA[$V{DEBE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="433" y="0" width="70" height="20" uuid="d0191058-6942-41e4-b8e2-fa85bd728b0a"/>
+					<textFieldExpression><![CDATA[$V{HABER}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupFooter>
 	</group>
 	<background>
@@ -55,12 +77,17 @@ FROM
 			</image>
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="2cc23d65-ee6c-497c-9e50-c0a6fff647dc"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Leaf Green Title]]></text>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[BALANCE DE COMPROBACION]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="100" y="46" width="174" height="22" uuid="28df45f7-77a6-44f8-8d84-68a2a6e30484"/>
-				<text><![CDATA[Leaf Green SubTitle]]></text>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[DEL FECHA A FECHA]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -76,57 +103,37 @@ FROM
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="86b680e1-5b18-4129-a790-31d584ba68ce"/>
-				<text><![CDATA[DETALLETRANSACCION_DEBE]]></text>
+				<reportElement style="Column header" x="38" y="19" width="72" height="15" uuid="86b680e1-5b18-4129-a790-31d584ba68ce"/>
+				<text><![CDATA[Cod Cuenta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="138" y="19" width="138" height="15" uuid="dee80293-1c8d-471a-a9e4-cdf101e41553"/>
-				<text><![CDATA[DETALLETRANSACCION_HABER]]></text>
+				<reportElement style="Column header" x="175" y="19" width="59" height="15" uuid="dee80293-1c8d-471a-a9e4-cdf101e41553"/>
+				<text><![CDATA[Cuenta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="276" y="19" width="138" height="15" uuid="8ccc9c51-076d-4398-af8c-235656106a5c"/>
-				<text><![CDATA[CUENTA_NOMCUENTA]]></text>
+				<reportElement style="Column header" x="297" y="19" width="34" height="15" uuid="8ccc9c51-076d-4398-af8c-235656106a5c"/>
+				<text><![CDATA[DEBE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="414" y="19" width="138" height="15" uuid="b22f9317-3568-4382-8b51-c39a20ae9ca4"/>
-				<text><![CDATA[CUENTA_CODCUENTA]]></text>
+				<reportElement style="Column header" x="433" y="19" width="51" height="15" uuid="b22f9317-3568-4382-8b51-c39a20ae9ca4"/>
+				<text><![CDATA[HABER]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
-	<detail>
-		<band height="16" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="e2bcbadd-e221-4e17-9eea-7fe8d366eb75"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-			<textField>
-				<reportElement style="Detail" x="0" y="0" width="138" height="15" uuid="4bcc8e35-407b-46ac-9b44-68ecac6d21e6"/>
-				<textFieldExpression><![CDATA[$F{DETALLETRANSACCION_DEBE}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="138" y="0" width="138" height="15" uuid="f3e1f412-e5ed-4ec4-9cd7-eff765f3d844"/>
-				<textFieldExpression><![CDATA[$F{DETALLETRANSACCION_HABER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="276" y="0" width="138" height="15" uuid="d3da7012-1fa0-4320-bba3-8d6e16f0fb7d"/>
-				<textFieldExpression><![CDATA[$F{CUENTA_NOMCUENTA}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Detail" x="414" y="0" width="138" height="15" uuid="8a8eaedf-a6cb-4bff-9980-af87b4c498f6"/>
-				<textFieldExpression><![CDATA[$F{CUENTA_CODCUENTA}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="fec34649-67ff-4425-b623-4c5d46d632d5"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
+			<textField>
+				<reportElement x="297" y="4" width="76" height="20" uuid="af1d960d-83f4-472a-8ad7-329d0c096382"/>
+				<textFieldExpression><![CDATA[$V{TotalDebe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="214" y="4" width="49" height="15" uuid="3b2a3122-eefa-491f-a296-f8de07d16323"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="433" y="4" width="70" height="20" uuid="1b01e9b6-64e6-4c6e-a103-32e9bf1a22e7"/>
+				<textFieldExpression><![CDATA[$V{TotalHaber}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
