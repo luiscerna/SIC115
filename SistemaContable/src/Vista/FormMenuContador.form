@@ -123,9 +123,8 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/logo.png"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\logo.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Logo aqui"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCerrarSesion">
@@ -145,7 +144,7 @@
               <Font name="Traditional Arabic" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonpanill.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonpanill.jpg"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -154,10 +153,10 @@
               <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonplanill_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonplanill_press.jpg"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonplanill_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonplanill_press.jpg"/>
             </Property>
           </Properties>
           <Events>
@@ -170,7 +169,7 @@
               <Font name="Traditional Arabic" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonLibM.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonLibM.jpg"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -180,10 +179,10 @@
             </Property>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonlibM_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonlibM_press.jpg"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonlibM_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonlibM_press.jpg"/>
             </Property>
           </Properties>
           <Events>
@@ -196,7 +195,7 @@
               <Font name="Traditional Arabic" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botontransa.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botontransa.jpg"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -205,10 +204,10 @@
               <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonTransa_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonTransa_press.jpg"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonTransa_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonTransa_press.jpg"/>
             </Property>
           </Properties>
           <Events>
@@ -221,7 +220,7 @@
               <Font name="Traditional Arabic" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonEstadosf.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonEstadosf.jpg"/>
             </Property>
             <Property name="autoscrolls" type="boolean" value="true"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -231,10 +230,10 @@
               <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonEstadosF_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonEstadosF_press.jpg"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/botonEstadosF_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\botonEstadosF_press.jpg"/>
             </Property>
           </Properties>
         </Component>
@@ -244,7 +243,7 @@
               <Font name="Traditional Arabic" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/btonEstadosCos.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\btonEstadosCos.jpg"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -254,10 +253,10 @@
               <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/btonEstadosCos_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\btonEstadosCos_press.jpg"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/btonEstadosCos_press.jpg"/>
+              <Image iconType="2" name="C:\Users\DELL\Desktop\SIC115\SistemaContable\src\Imagenes\btonEstadosCos_press.jpg"/>
             </Property>
           </Properties>
         </Component>

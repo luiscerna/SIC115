@@ -64,8 +64,7 @@ public class FormMenuContador extends javax.swing.JFrame {
         lblBienvenida.setFont(new java.awt.Font("Traditional Arabic", 1, 24)); // NOI18N
         lblBienvenida.setText("Bienvenido \"Nombre Usuario\"");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.png"))); // NOI18N
-        jLabel1.setText("Logo aqui");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo.png")); // NOI18N
 
         btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
@@ -76,11 +75,11 @@ public class FormMenuContador extends javax.swing.JFrame {
         });
 
         btnPlanilla.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnPlanilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonpanill.jpg"))); // NOI18N
+        btnPlanilla.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonpanill.jpg")); // NOI18N
         btnPlanilla.setBorder(null);
         btnPlanilla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPlanilla.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonplanill_press.jpg"))); // NOI18N
-        btnPlanilla.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonplanill_press.jpg"))); // NOI18N
+        btnPlanilla.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonplanill_press.jpg")); // NOI18N
+        btnPlanilla.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonplanill_press.jpg")); // NOI18N
         btnPlanilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlanillaActionPerformed(evt);
@@ -88,12 +87,12 @@ public class FormMenuContador extends javax.swing.JFrame {
         });
 
         btnLibroMayor.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnLibroMayor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonLibM.jpg"))); // NOI18N
+        btnLibroMayor.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonLibM.jpg")); // NOI18N
         btnLibroMayor.setBorder(null);
         btnLibroMayor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLibroMayor.setFocusPainted(false);
-        btnLibroMayor.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonlibM_press.jpg"))); // NOI18N
-        btnLibroMayor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonlibM_press.jpg"))); // NOI18N
+        btnLibroMayor.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonlibM_press.jpg")); // NOI18N
+        btnLibroMayor.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonlibM_press.jpg")); // NOI18N
         btnLibroMayor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLibroMayorActionPerformed(evt);
@@ -101,11 +100,11 @@ public class FormMenuContador extends javax.swing.JFrame {
         });
 
         btnTransaccion.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnTransaccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botontransa.jpg"))); // NOI18N
+        btnTransaccion.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botontransa.jpg")); // NOI18N
         btnTransaccion.setBorder(null);
         btnTransaccion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnTransaccion.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonTransa_press.jpg"))); // NOI18N
-        btnTransaccion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonTransa_press.jpg"))); // NOI18N
+        btnTransaccion.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonTransa_press.jpg")); // NOI18N
+        btnTransaccion.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonTransa_press.jpg")); // NOI18N
         btnTransaccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTransaccionActionPerformed(evt);
@@ -113,20 +112,20 @@ public class FormMenuContador extends javax.swing.JFrame {
         });
 
         btnEstadosF.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnEstadosF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonEstadosf.jpg"))); // NOI18N
+        btnEstadosF.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonEstadosf.jpg")); // NOI18N
         btnEstadosF.setAutoscrolls(true);
         btnEstadosF.setBorder(null);
         btnEstadosF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEstadosF.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonEstadosF_press.jpg"))); // NOI18N
-        btnEstadosF.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/botonEstadosF_press.jpg"))); // NOI18N
+        btnEstadosF.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonEstadosF_press.jpg")); // NOI18N
+        btnEstadosF.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonEstadosF_press.jpg")); // NOI18N
 
         btnEstadosCostos.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnEstadosCostos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btonEstadosCos.jpg"))); // NOI18N
+        btnEstadosCostos.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\btonEstadosCos.jpg")); // NOI18N
         btnEstadosCostos.setToolTipText("");
         btnEstadosCostos.setBorder(null);
         btnEstadosCostos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEstadosCostos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btonEstadosCos_press.jpg"))); // NOI18N
-        btnEstadosCostos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/btonEstadosCos_press.jpg"))); // NOI18N
+        btnEstadosCostos.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\btonEstadosCos_press.jpg")); // NOI18N
+        btnEstadosCostos.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\btonEstadosCos_press.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
