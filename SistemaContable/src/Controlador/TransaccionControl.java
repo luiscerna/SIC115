@@ -312,7 +312,7 @@ public class TransaccionControl {
                 //auxiliar.setHaber(Double.parseDouble(monto));
                 auxiliar.setDebe(0.00);
                 if(IVA[0]==0)
-                  auxiliar.setHaber(Double.parseDouble(monto)*1.13);
+                  auxiliar.setHaber((Double.parseDouble(monto))+(Double.parseDouble(monto)*0.13));
                 else{
                     auxiliar.setHaber(Double.parseDouble(monto)+IVA[0]);
                     IVA[0]=0.0;
@@ -344,7 +344,7 @@ public class TransaccionControl {
                 //auxiliar.setDebe(Double.parseDouble(monto));
                 auxiliar.setHaber(0.00);
                 if(IVA[1]==0)
-                    auxiliar.setDebe(Double.parseDouble(monto)*1.13);
+                    auxiliar.setDebe((Double.parseDouble(monto))+(Double.parseDouble(monto)*0.13));
                 else{
                     auxiliar.setDebe(Double.parseDouble(monto)+ IVA[1]);
                     IVA[1]=0.0;
@@ -395,7 +395,7 @@ public class TransaccionControl {
                     auxiliar.setDebe(0.00);
                     if(IVA[0]==0)
                     {
-                        auxiliar.setHaber(Double.parseDouble(monto)*1.13);
+                        auxiliar.setHaber((Double.parseDouble(monto))+(Double.parseDouble(monto)*0.13));
                     }
                     else
                     {
@@ -434,7 +434,7 @@ public class TransaccionControl {
                     auxiliar.setHaber(0.00);
                     if(IVA[1]==0)
                     {
-                        auxiliar.setDebe(Double.parseDouble(monto)*1.13);
+                        auxiliar.setDebe((Double.parseDouble(monto))+(Double.parseDouble(monto)*0.13));
                     }
                     else
                     {

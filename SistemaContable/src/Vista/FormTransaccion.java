@@ -70,6 +70,14 @@ boolean usoBoton= false;
         inicializandoComponentes();
     }
     
+    //metodo para cerrar formulario y regresar al SeleccionTransaccionForm
+    public void regresarAMenu()
+    {
+        SeleccionTransaccionForm form2= new SeleccionTransaccionForm();
+        form2.setVisible(true);
+        this.dispose();
+    }
+    
     //Metodo de inicializacion de Pestañas
     private void inicializandoPestañas(int tipo)
     {
@@ -1357,6 +1365,7 @@ boolean usoBoton= false;
     private void btnGuardarTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTransActionPerformed
         // TODO add your handling code here:
         control.registrarTransaccion(4, tipoRegistro, new Date() , txtConceptoGeneralTrans.getText(), Integer.parseInt(lblValNumPartidaTrans.getText()), Double.parseDouble(lblTotalDebeTrans.getText().substring(1)), regTransacciones);
+        regresarAMenu();
     }//GEN-LAST:event_btnGuardarTransActionPerformed
 
     private void btnRegistrarDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDGAActionPerformed
@@ -1533,6 +1542,7 @@ boolean usoBoton= false;
         // TODO add your handling code here:
         control.registrarTransaccion(4, tipoRegistro, new Date() , txtConceptoGeneralDGA.getText(), Integer.parseInt(lblValNumPartidaDGA.getText()), Double.parseDouble(lblTotalDebeDGA.getText().substring(1)), regDetalleGastoAdelantado);
         control.registrarDetalleGastoA(Integer.parseInt(txtMesesPagados.getText()), Double.parseDouble(txtValorTotal.getText()));
+        regresarAMenu();
     }//GEN-LAST:event_btnGuardarDGAActionPerformed
 
     private void btnCatalogoDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoDAFActionPerformed
@@ -1563,6 +1573,7 @@ boolean usoBoton= false;
     private void btnGuardarDAFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDAFActionPerformed
         control.registrarTransaccion(4, tipoRegistro, new Date() , txtConceptoGeneralDAF.getText(), Integer.parseInt(lblValNumPartidaDAF.getText()), Double.parseDouble(lblTotalDebeDAF.getText().substring(1)), regDetalleActivoFijo);
         control.registrarDetalleActivoF(Double.parseDouble(txtValorPresente.getText()), Double.parseDouble(txtValorSalvamento.getText()), Integer.parseInt(txtVidaUtil.getText()));
+        regresarAMenu();
     }//GEN-LAST:event_btnGuardarDAFActionPerformed
 
     private void btnCatalogoDIAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoDIAActionPerformed
@@ -1594,6 +1605,7 @@ boolean usoBoton= false;
         // TODO add your handling code here:
         control.registrarTransaccion(4, tipoRegistro, new Date() , txtConceptoGeneralDIA.getText(), Integer.parseInt(lblValNumPartidaDIA.getText()), Double.parseDouble(lblTotalDebeDIA.getText().substring(1)), regDetalleInteresesAcumulados);
         control.registrarDetalleInteresesAcum(Double.parseDouble(txtValorPresenteDIA.getText()), Double.parseDouble(txtTasaAnual.getText()));
+        regresarAMenu();
     }//GEN-LAST:event_btnGuardarDIAActionPerformed
 
     private void btnCatalogoDGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoDGAActionPerformed
