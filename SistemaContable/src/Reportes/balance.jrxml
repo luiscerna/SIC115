@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1be3761b-ff62-429f-bd3c-f692fb0dad09">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString>
+		<![CDATA[SELECT
+     CUENTA.`CODCUENTA` AS CUENTA_CODCUENTA,
+     CUENTA.`NOMCUENTA` AS CUENTA_NOMCUENTA,
+     CUENTA.`RUBRO` AS CUENTA_RUBRO,
+     CUENTA.`ID` AS CUENTA_ID,
+     DETALLETRANSACCION.`IDDETALLE` AS DETALLETRANSACCION_IDDETALLE,
+     DETALLETRANSACCION.`IDTRANS` AS DETALLETRANSACCION_IDTRANS,
+     DETALLETRANSACCION.`DEBE` AS DETALLETRANSACCION_DEBE,
+     DETALLETRANSACCION.`HABER` AS DETALLETRANSACCION_HABER,
+     DETALLETRANSACCION.`CODMAYOR` AS DETALLETRANSACCION_CODMAYOR,
+     PERIODOCONTABLE.`IDPERIODO` AS PERIODOCONTABLE_IDPERIODO,
+     PERIODOCONTABLE.`INICIO` AS PERIODOCONTABLE_INICIO,
+     PERIODOCONTABLE.`FIN` AS PERIODOCONTABLE_FIN,
+     DETALLETRANSACCION.`IDPERIODO` AS DETALLETRANSACCION_IDPERIODO
+FROM
+     `DETALLETRANSACCION` DETALLETRANSACCION INNER JOIN `PERIODOCONTABLE` PERIODOCONTABLE ON DETALLETRANSACCION.`IDPERIODO` = PERIODOCONTABLE.`IDPERIODO`
+     INNER JOIN `CUENTA` CUENTA ON DETALLETRANSACCION.`CODMAYOR` = CUENTA.`ID`
+WHERE  CUENTA.`RUBRO` = 1 OR CUENTA.`RUBRO` = 2 OR CUENTA.`RUBRO` = 3
+ORDER BY DETALLETRANSACCION.`CODMAYOR`]]>
+	</queryString>
+	<field name="CUENTA_CODCUENTA" class="java.lang.String"/>
+	<field name="CUENTA_NOMCUENTA" class="java.lang.String"/>
+	<field name="CUENTA_RUBRO" class="java.lang.Double"/>
+	<field name="CUENTA_ID" class="java.lang.Integer"/>
+	<field name="DETALLETRANSACCION_IDDETALLE" class="java.lang.Integer"/>
+	<field name="DETALLETRANSACCION_IDTRANS" class="java.lang.Integer"/>
+	<field name="DETALLETRANSACCION_DEBE" class="java.lang.Double"/>
+	<field name="DETALLETRANSACCION_HABER" class="java.lang.Double"/>
+	<field name="DETALLETRANSACCION_CODMAYOR" class="java.lang.Integer"/>
+	<field name="PERIODOCONTABLE_IDPERIODO" class="java.lang.Integer"/>
+	<field name="PERIODOCONTABLE_INICIO" class="java.sql.Timestamp"/>
+	<field name="PERIODOCONTABLE_FIN" class="java.sql.Timestamp"/>
+	<field name="DETALLETRANSACCION_IDPERIODO" class="java.lang.Integer"/>
+	<variable name="DEBE" class="java.lang.Double" resetType="Group" resetGroup="cuenta" calculation="Sum">
+		<variableExpression><![CDATA[$F{DETALLETRANSACCION_DEBE}]]></variableExpression>
+	</variable>
+	<variable name="HABER" class="java.lang.Double" resetType="Group" resetGroup="cuenta" calculation="Sum">
+		<variableExpression><![CDATA[$F{DETALLETRANSACCION_HABER}]]></variableExpression>
+	</variable>
+	<variable name="SALDO" class="java.lang.Double" resetType="Group" resetGroup="cuenta" incrementType="Group" incrementGroup="cuenta" calculation="Sum">
+		<variableExpression><![CDATA[$V{DEBE}-$V{HABER}]]></variableExpression>
+	</variable>
+	<group name="CUENTA_RUBRO">
+		<groupExpression><![CDATA[$F{CUENTA_RUBRO}]]></groupExpression>
+		<groupHeader>
+			<band height="29">
+				<textField>
+					<reportElement style="SubTitle" x="0" y="4" width="185" height="20" uuid="2273f206-11ec-45de-b4d9-3e4875cbaa58"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CUENTA_RUBRO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="24"/>
+		</groupFooter>
+	</group>
+	<group name="cuenta">
+		<groupExpression><![CDATA[$F{CUENTA_CODCUENTA}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<textField>
+					<reportElement x="0" y="0" width="152" height="20" uuid="072234e7-3c68-46da-bc76-b2eada40d0f6"/>
+					<textFieldExpression><![CDATA[$F{CUENTA_NOMCUENTA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="26">
+				<textField>
+					<reportElement x="175" y="0" width="100" height="20" uuid="bc3a0824-da43-47ce-b257-21ed9e198284"/>
+					<textFieldExpression><![CDATA[$V{SALDO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="91" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="546c60f1-0b50-4504-854c-55ce46e962cc"/>
+				<imageExpression><![CDATA["leaf_banner_green.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="70" y="0" width="127" height="33" uuid="378331bc-89ae-437c-9581-13dc8195c21f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[ACOPASHE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="58" y="66" width="34" height="18" uuid="032d3c22-02a2-499f-880c-ae2b40c7010b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[AL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="24" y="33" width="209" height="33" uuid="1800a315-19ed-45e0-86de-81e3772924bf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[BALANCE GENERAL]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement mode="Transparent" x="81" y="66" width="127" height="20" forecolor="#666666" backcolor="#FFFFFF" uuid="ae5e433c-9e3c-4ad3-9fab-2a5aea13a3fb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PERIODOCONTABLE_FIN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="40129a50-0010-4033-8f41-26df0e740cf6"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="938e9322-7d5c-425c-80ec-8a729b0ed90d"/>
+				<text><![CDATA[CUENTA_NOMCUENTA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="d3536853-99da-44ab-9def-23b42e1f3353"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="eafda0d4-96ca-4d45-bff6-756329e06de9"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="5f58ebfd-6627-4ba2-83af-fe3658aeea79"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
