@@ -56,24 +56,12 @@ public class FormMenuGerente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnEstadosCostos.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnEstadosCostos.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnEstadosCostosProd.jpg")); // NOI18N
-        btnEstadosCostos.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnEstadosCostosProd_press.jpg")); // NOI18N
-        btnEstadosCostos.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnEstadosCostosProd_press.jpg")); // NOI18N
 
         btnEstadosF.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnEstadosF.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonEstadosf.jpg")); // NOI18N
-        btnEstadosF.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonEstadosF_press.jpg")); // NOI18N
-        btnEstadosF.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonEstadosF_press.jpg")); // NOI18N
 
         btnGestionarU.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnGestionarU.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnGestionarU.jpg")); // NOI18N
-        btnGestionarU.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnGestionarU_press.jpg")); // NOI18N
-        btnGestionarU.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnGestionarU_press.jpg")); // NOI18N
 
         btnLibroMayor.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnLibroMayor.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonLibM.jpg")); // NOI18N
-        btnLibroMayor.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonlibM_press.jpg")); // NOI18N
-        btnLibroMayor.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\botonlibM_press.jpg")); // NOI18N
         btnLibroMayor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLibroMayorActionPerformed(evt);
@@ -81,9 +69,6 @@ public class FormMenuGerente extends javax.swing.JFrame {
         });
 
         btnGestionarPersonal.setFont(new java.awt.Font("Traditional Arabic", 0, 18)); // NOI18N
-        btnGestionarPersonal.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnGestionarPer.jpg")); // NOI18N
-        btnGestionarPersonal.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnGestionarPer_press.jpg")); // NOI18N
-        btnGestionarPersonal.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnGestionarPer_press.jpg")); // NOI18N
         btnGestionarPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGestionarPersonalActionPerformed(evt);
@@ -91,14 +76,12 @@ public class FormMenuGerente extends javax.swing.JFrame {
         });
 
         btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon("C:\\Users\\Paola\\Downloads\\BtnCerrar.jpg")); // NOI18N
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo.png")); // NOI18N
 
         lblBienvenida.setFont(new java.awt.Font("Traditional Arabic", 1, 24)); // NOI18N
         lblBienvenida.setText("Bienvenido \"Nombre Usuario\"");
@@ -109,11 +92,6 @@ public class FormMenuGerente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblBienvenida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrarSesion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -122,23 +100,34 @@ public class FormMenuGerente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnEstadosCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblBienvenida)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLibroMayor, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnGestionarPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)))
-                .addContainerGap())
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBienvenida)
-                            .addComponent(btnCerrarSesion))
+                            .addComponent(lblBienvenida, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -149,10 +138,7 @@ public class FormMenuGerente extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(btnEstadosF, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
-                                .addComponent(btnGestionarU, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                                .addComponent(btnGestionarU, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(6, 6, 6)
                 .addComponent(btnEstadosCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -164,7 +150,7 @@ public class FormMenuGerente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
