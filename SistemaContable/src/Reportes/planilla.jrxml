@@ -64,10 +64,6 @@ FROM
 				<reportElement x="268" y="46" width="204" height="20" uuid="a4643397-4136-4706-b822-ca2193350592"/>
 				<text><![CDATA[Expresado en dolares americanos (USD$)]]></text>
 			</staticText>
-			<image>
-				<reportElement x="11" y="1" width="245" height="162" uuid="af449130-a082-4a7d-b28c-07eda89e42fc"/>
-				<imageExpression><![CDATA["C:\\Users\\Roberto Ventura\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo_acopashe.jpg"]]></imageExpression>
-			</image>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="561" y="101" width="130" height="20" uuid="8cf9db24-2284-42e2-8bb6-c98beda2b9e8"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
@@ -76,6 +72,10 @@ FROM
 				<reportElement x="698" y="101" width="44" height="20" uuid="d75e79d2-df59-45bc-815f-0b9ffa457da7"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="43" y="12" width="163" height="109" uuid="d5cb8a5f-5592-440a-a40e-9b2e6bbe620d"/>
+				<imageExpression><![CDATA["C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo_acopashe.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>

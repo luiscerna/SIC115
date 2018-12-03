@@ -241,7 +241,7 @@ public class FormMenuContador extends javax.swing.JFrame {
     try {
         reporte = (JasperReport)JRLoader.loadObjectFromFile(path);
         Map parametros = new HashMap();
-        JasperPrint jprint = JasperFillManager.fillReport( reporte, parametros, conn.conexion);
+        JasperPrint jprint = JasperFillManager.fillReport( reporte, parametros, conn.conectar());
         JasperViewer view = new JasperViewer(jprint, false);
         view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         view.setVisible(true);
@@ -251,7 +251,7 @@ public class FormMenuContador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlanillaActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param args the command line argument
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
