@@ -5,6 +5,19 @@
  */
 package Vista;
 
+import Datos.Conexion;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Paola
@@ -35,6 +48,11 @@ public class FormEstadosFinancieros extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBalanceComp.setText("Balance de Comprobación");
+        btnBalanceComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBalanceCompActionPerformed(evt);
+            }
+        });
 
         btnEstadoResult.setText("Estado de Resultado");
 
@@ -71,6 +89,23 @@ public class FormEstadosFinancieros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBalanceCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBalanceCompActionPerformed
+        // TODO add your handling code here:
+            Conexion conn= new Conexion();
+        JasperReport reporte = null;
+        String path = "src\\Reportes\\balancecomprobacion.jasper";
+    try {
+        reporte = (JasperReport)JRLoader.loadObjectFromFile(path);
+        Map parametros = new HashMap();
+        JasperPrint jprint = JasperFillManager.fillReport( reporte, parametros, conn.conectar());
+        JasperViewer view = new JasperViewer(jprint, false);
+        view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        view.setVisible(true);
+    } catch (JRException ex) {
+        Logger.getLogger(FormMenuContador.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnBalanceCompActionPerformed
 
     /**
      * @param args the command line arguments

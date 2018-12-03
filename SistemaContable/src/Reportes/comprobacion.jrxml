@@ -42,19 +42,10 @@ ORDER BY DETALLETRANSACCION.`CODMAYOR`]]>
 	<group name="DETALLETRANSACCION_CODMAYOR">
 		<groupExpression><![CDATA[$F{DETALLETRANSACCION_CODMAYOR}]]></groupExpression>
 		<groupHeader>
-			<band height="21">
-				<textField>
-					<reportElement x="138" y="0" width="125" height="20" uuid="57da883a-8a81-4296-b19a-015a17ad72d3"/>
-					<textFieldExpression><![CDATA[$F{CUENTA_NOMCUENTA}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="48" y="1" width="42" height="20" uuid="e1f23f58-46c1-4d3c-8e55-7d44a9d08435"/>
-					<textFieldExpression><![CDATA[$F{CUENTA_CODCUENTA}]]></textFieldExpression>
-				</textField>
-			</band>
+			<band height="21"/>
 		</groupHeader>
 		<groupFooter>
-			<band height="20">
+			<band height="21">
 				<textField>
 					<reportElement x="297" y="0" width="76" height="20" uuid="3c3a9234-6046-4eaf-a1ee-56a33a1970ad"/>
 					<textFieldExpression><![CDATA[$V{DEBE}]]></textFieldExpression>
@@ -62,6 +53,14 @@ ORDER BY DETALLETRANSACCION.`CODMAYOR`]]>
 				<textField>
 					<reportElement x="433" y="0" width="70" height="20" uuid="d0191058-6942-41e4-b8e2-fa85bd728b0a"/>
 					<textFieldExpression><![CDATA[$V{HABER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="58" y="0" width="42" height="20" uuid="e1f23f58-46c1-4d3c-8e55-7d44a9d08435"/>
+					<textFieldExpression><![CDATA[$F{CUENTA_CODCUENTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="138" y="0" width="125" height="20" uuid="57da883a-8a81-4296-b19a-015a17ad72d3"/>
+					<textFieldExpression><![CDATA[$F{CUENTA_NOMCUENTA}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>

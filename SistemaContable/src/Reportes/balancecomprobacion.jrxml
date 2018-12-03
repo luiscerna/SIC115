@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd160e35-c0be-4af0-9ff6-9a62a754fe24">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     DETALLETRANSACCION.`IDDETALLE` AS DETALLETRANSACCION_IDDETALLE,
+     DETALLETRANSACCION.`DEBE` AS DETALLETRANSACCION_DEBE,
+     DETALLETRANSACCION.`HABER` AS DETALLETRANSACCION_HABER,
+     DETALLETRANSACCION.`IDPERIODO` AS DETALLETRANSACCION_IDPERIODO,
+     DETALLETRANSACCION.`CODMAYOR` AS DETALLETRANSACCION_CODMAYOR,
+     CUENTA.`CODCUENTA` AS CUENTA_CODCUENTA,
+     CUENTA.`NOMCUENTA` AS CUENTA_NOMCUENTA,
+     CUENTA.`ID` AS CUENTA_ID
+FROM
+     `CUENTA` CUENTA INNER JOIN `DETALLETRANSACCION` DETALLETRANSACCION ON CUENTA.`ID` = DETALLETRANSACCION.`CODMAYOR`
+ORDER BY  DETALLETRANSACCION.`CODMAYOR` ASC]]>
+	</queryString>
+	<field name="DETALLETRANSACCION_IDDETALLE" class="java.lang.Integer"/>
+	<field name="DETALLETRANSACCION_DEBE" class="java.lang.Double"/>
+	<field name="DETALLETRANSACCION_HABER" class="java.lang.Double"/>
+	<field name="DETALLETRANSACCION_IDPERIODO" class="java.lang.Integer"/>
+	<field name="DETALLETRANSACCION_CODMAYOR" class="java.lang.Integer"/>
+	<field name="CUENTA_CODCUENTA" class="java.lang.String"/>
+	<field name="CUENTA_NOMCUENTA" class="java.lang.String"/>
+	<field name="CUENTA_ID" class="java.lang.Integer"/>
+	<variable name="DETALLETRANSACCION_HABER_1" class="java.lang.Double" resetType="Group" resetGroup="CUENTA" calculation="Sum">
+		<variableExpression><![CDATA[$F{DETALLETRANSACCION_HABER}]]></variableExpression>
+	</variable>
+	<variable name="DETALLETRANSACCION_DEBE_1" class="java.lang.Double" resetType="Group" resetGroup="CUENTA" calculation="Sum">
+		<variableExpression><![CDATA[$F{DETALLETRANSACCION_DEBE}]]></variableExpression>
+	</variable>
+	<variable name="TOTALDEBE" class="java.lang.Double" incrementType="Group" incrementGroup="CUENTA" calculation="Sum">
+		<variableExpression><![CDATA[$V{DETALLETRANSACCION_DEBE_1}]]></variableExpression>
+	</variable>
+	<variable name="TOTALHABER" class="java.lang.Double" incrementType="Group" incrementGroup="CUENTA" calculation="Sum">
+		<variableExpression><![CDATA[$V{DETALLETRANSACCION_HABER_1}]]></variableExpression>
+	</variable>
+	<group name="CUENTA">
+		<groupExpression><![CDATA[$F{CUENTA_CODCUENTA}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="296" y="0" width="63" height="20" uuid="9226e73f-196f-4037-a197-29c29a0bc8e2"/>
+					<textFieldExpression><![CDATA[$V{DETALLETRANSACCION_HABER_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="16" y="0" width="127" height="20" uuid="7921d3bd-a22f-4abf-b9c8-2d3e297baaa6"/>
+					<textFieldExpression><![CDATA[$F{CUENTA_NOMCUENTA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="194" y="0" width="63" height="20" uuid="1a0f9af2-97a5-4703-8656-b1e6ff47b997"/>
+					<textFieldExpression><![CDATA[$V{DETALLETRANSACCION_DEBE_1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="19" width="555" height="1" backcolor="#B4B4B4" uuid="06459d3e-96f2-4359-820e-f481a0f93884"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="223" y="0" width="131" height="20" uuid="627bdcfa-958d-40f9-8e77-ddcff5522a62"/>
+				<textElement textAlignment="Justified">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACOPASHE DE R.L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="178" y="20" width="208" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8e710cbd-c230-46c5-a200-ffbdbab8e352"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[BALANCE DE COMPROBACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="228" y="40" width="109" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="65b51fc5-5b4c-48a6-b070-b9f97b12f93e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DEL FECHA A FECHA]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="439" y="40" width="116" height="20" uuid="6562ed02-5a5f-4654-84f2-fbd50d9a5f95"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="53" y="11" width="48" height="20" forecolor="#696969" uuid="fa12df65-cdbc-4193-83b0-711691c5c327"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="194" y="11" width="47" height="20" forecolor="#696969" backcolor="#FFFFFF" uuid="0e112940-7996-453a-b5c4-66c82dc21018"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DEBE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="296" y="11" width="58" height="20" forecolor="#696969" backcolor="#FFFFFF" uuid="26fb2403-e2d2-46c0-8c4f-d9b6e5775387"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[HABER]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1" backcolor="#B4B4B4" uuid="09b0f1bd-d17f-4eb4-bd1d-dc227e3632c2"/>
+			</line>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="194" y="12" width="47" height="20" forecolor="#333333" uuid="05abacfd-5385-4b48-be31-c92fb367983c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTALDEBE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="12" width="58" height="20" uuid="234cf1d6-f9c5-4d16-8322-b363025f24e0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTALHABER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="10" width="48" height="20" forecolor="#696969" uuid="bd26a53d-f3dd-4755-ba94-304a30d1aa0b"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="9" width="555" height="1" backcolor="#B4B4B4" uuid="891b3a2e-16f3-479c-a286-a67d4cc89e00"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>
