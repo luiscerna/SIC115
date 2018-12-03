@@ -67,7 +67,9 @@ public class FormMenuContador extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\logo.png")); // NOI18N
 
         btnCerrarSesion.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnCerrarSesion.jpg")); // NOI18N
+        btnCerrarSesion.setPressedIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnCerrarSesion_press.jpg")); // NOI18N
+        btnCerrarSesion.setRolloverIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Desktop\\SIC115\\SistemaContable\\src\\Imagenes\\BtnCerrarSesion_press.jpg")); // NOI18N
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
@@ -137,8 +139,8 @@ public class FormMenuContador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblBienvenida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrarSesion)
-                        .addGap(29, 29, 29))
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnEstadosF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,7 +162,7 @@ public class FormMenuContador extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCerrarSesion)
+                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBienvenida))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -178,7 +180,7 @@ public class FormMenuContador extends javax.swing.JFrame {
                         .addComponent(btnPlanilla)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEstadosCostos)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
