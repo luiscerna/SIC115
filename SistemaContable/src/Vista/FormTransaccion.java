@@ -285,7 +285,7 @@ boolean usoBoton= false;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel4.setBackground(new java.awt.Color(136, 175, 174));
+        panelesTransaccion.setBackground(new java.awt.Color(0, 0, 0));
 
         lblNumPartidaTrans.setText("Numero de Partida:");
 
@@ -446,7 +446,7 @@ boolean usoBoton= false;
                     .addGroup(tabTransaccionesLayout.createSequentialGroup()
                         .addGap(247, 247, 247)
                         .addComponent(btnGuardarTrans)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tabTransaccionesLayout.setVerticalGroup(
             tabTransaccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -868,7 +868,7 @@ boolean usoBoton= false;
                 .addGap(302, 302, 302)
                 .addComponent(lblTasaAnual)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTasaAnual, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(txtTasaAnual, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addGap(37, 37, 37))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -955,7 +955,7 @@ boolean usoBoton= false;
                                         .addComponent(lblTotalHaberDIA))
                                     .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
                                         .addComponent(lblDiferenciaDIA)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                         .addComponent(lblValDiferenciaHaberDIA)))
                                 .addGap(74, 74, 74))
                             .addGroup(tabDetalleInteresesAcumuladosLayout.createSequentialGroup()
